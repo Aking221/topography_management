@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_id'] = $user['id'];
         header("Location: dashboard.php");
     } else {
-        echo "Invalid email or password.";
+        echo "email ou mot de passe invalide .";
     }
 }
 ?>

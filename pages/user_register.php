@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt= $conn->prepare($sql);
     $stmt->execute([$email, $nom_complet, $telephone, $groupe, $privilege, $code_chantier, $password]);
     
-    echo "User registered successfully.";
+    echo "connection reussie .Bienvenue $nom_complet.";
 }
 ?>
 <form method="POST" action="">
