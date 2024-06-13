@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $creer_par = $_POST['creer_par'];
     $observation = $_POST['observation'];
 
-    // Préparer et exécuter la requête SQL pour insérer les données
     $stmt = $conn->prepare("INSERT INTO chantiers (code, chantier, id_pays, contact, active, creer_par, observation) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssissis", $code, $chantier, $id_pays, $contact, $active, $creer_par, $observation);
 

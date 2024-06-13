@@ -4,72 +4,46 @@ requireLogin();
 include '../../includes/header.php';
 include '../../includes/db.php';
 
-// Vérifier si l'ID du chantier est passé en paramètre
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-
-    // Récupérer les détails du chantier
-    $stmt = $conn->prepare("SELECT c.code, c.chantier, p.pays, c.contact, c.active, c.creer_par, c.observation 
-                            FROM chantiers c 
-                            LEFT JOIN pays p ON c.id_pays = p.id 
-                            WHERE c.id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Vérifier si des résultats ont été trouvés
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-    } else {
-        echo "<div class='alert error'>Chantier non trouvé.</div>";
-        exit();
-    }
-
-    // Fermer la requête
-    $stmt->close();
-    // Fermer la connexion à la base de données
-    $conn->close();
-} else {
-    echo "<div class='alert error'>ID de chantier non spécifié.</div>";
-    exit();
+    $result = $conn->query("SELECT chantiers.*, pays.pays FROM chantiers LEFT JOIN pays ON chantiers.id_pays = pays.id WHERE chantiers.id = $id");
+    $chantier = $result->fetch_assoc();
 }
 ?>
 
 <div class="home-content">
     <div class="box">
         <div class="title">Détails du chantier</div>
-        <table border="1">
+        <table>
             <tr>
                 <th>Code</th>
-                <td><?php echo htmlspecialchars($row['code']); ?></td>
+                <td><?php echo $chantier['code']; ?></td>
             </tr>
             <tr>
-                <th>Nom du Chantier</th>
-                <td><?php echo htmlspecialchars($row['chantier']); ?></td>
+                <th>Chantier</th>
+                <td><?php echo $chantier['chantier']; ?></td>
             </tr>
             <tr>
                 <th>Pays</th>
-                <td><?php echo htmlspecialchars($row['pays']); ?></td>
+                <td><?php echo $chantier['pays']; ?></td>
             </tr>
             <tr>
                 <th>Contact</th>
-                <td><?php echo htmlspecialchars($row['contact']); ?></td>
+                <td><?php echo $chantier['contact']; ?></td>
             </tr>
             <tr>
                 <th>Actif</th>
-                <td><?php echo ($row['active'] == 1) ? 'Oui' : 'Non'; ?></td>
+                <td><?php echo ($chantier['active']) ? "Oui" : "Non"; ?></td>
             </tr>
             <tr>
                 <th>Créé par</th>
-                <td><?php echo htmlspecialchars($row['creer_par']); ?></td>
+                <td><?php echo $chantier['creer_par']; ?></td>
             </tr>
             <tr>
                 <th>Observation</th>
-                <td><?php echo htmlspecialchars($row['observation']); ?></td>
+                <td><?php echo $chantier['observation']; ?></td>
             </tr>
         </table>
-        <br>
-        <a href="list.php" class="btn">Retour à la liste des chantiers</a>
     </div>
 </div>
 

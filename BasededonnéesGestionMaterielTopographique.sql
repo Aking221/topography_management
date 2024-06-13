@@ -9,9 +9,12 @@ CREATE TABLE utilisateurs (
     groupe VARCHAR(50),
     privilege VARCHAR(50),
     code_authent VARCHAR(15),
-    created_at DATETIME,
-    updated_at DATETIME
+    password VARCHAR(255), -- Colonne password ajoutée
+    code_chantier VARCHAR(15),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 -- Table: fournisseurs
 CREATE TABLE fournisseurs (
