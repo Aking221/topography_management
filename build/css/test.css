@@ -1,0 +1,14 @@
+.navbar-left{margin-left:0}.top_nav .navbar-left{margin:13px;width:auto;float:right}.top_nav .navbar-right li{display:inline-block;float:left;position:static}@media (min-width: 480px){.top_nav .navbar-left li{position:relative}.item{display:block}}
+
+.erreur {
+	font-size: 11px;
+	color: #FF0000;
+	font-weight: bold;
+	text-align:center;
+}
+.reussite {
+	font-size: 12px;
+	font-weight: bold;
+	color: #669900;
+	
+}
