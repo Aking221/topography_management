@@ -1,7 +1,8 @@
 <?php
-include '../includes/auth.php';
-requireLogin();
 include '../includes/db.php';
+include '../includes/auth.php';
+
+requireLogin();
 
 // Récupérer le nombre de chantiers
 $sqlChantiers = "SELECT COUNT(*) as total FROM chantiers";
@@ -28,11 +29,14 @@ $conn->close();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .dashboard-content {
@@ -72,6 +76,14 @@ $conn->close();
         .sidebar ul li a:hover {
             text-decoration: underline;
         }
+        .footer {
+            background-color: #f7f7f7;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 </head>
 <body class="nav-md">
@@ -80,50 +92,112 @@ $conn->close();
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="accueil.php" class="site_title"><i class="fa fa-paw"></i> <span>Topographie Management</span></a>
+                        <a href="dashboard.php" class="site_title"><img src="../logo CSE.png" width="190" height="50"/><span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span></a>
                     </div>
                     <div class="clearfix"></div>
-                    <br />
-
-                    <!-- Sidebar menu -->
-                    <div class="sidebar">
-                        <ul class="nav side-menu">
-                            <li class="nav-title">Menu</li>
-                            <li><a href="../index.php">Accueil</a></li>
-                            <li><a href="dashboard.php">Dashboard</a></li>
-                            <li><a href="../index.php?msg=logout">Se déconnecter</a></li>
-                            <li><a href="#">Matériel</a></li>
-                            <li><a href="#">Mouvement</a></li>
-                            <li><a href="#">Interventions</a></li>
-                            <li><a href="#">Suivi Commandes</a></li>
-                            <li><a href="#">Recherche / Edition</a></li>
-                            <li><a href="#">Paramétrage</a></li>
-                            <li><a href="#">Administration</a></li>
-                            <li><a href="#">Utilisateur</a></li>
-                        </ul>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="../user.png" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Bonjour,</span>
+                            <h2><?php echo $_SESSION['nomComplet'];?></h2>
+                        </div>
                     </div>
-                    <!-- /Sidebar menu -->
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li><a href="dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="materiel_topo/add.php">Ajout matériel</a></li>
+                                        <li><a href="materiel_topo/list.php">Liste matériel</a></li>
+                                        <li><a href="materiel_topo/recherche_materiel.php">Rechercher / Imprimer</a></li>
+                                        <li><a href="materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-refresh"></i> MOUVEMENT <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="transferts/add.php">Enregistrer transfert</a></li>
+                                        <li><a href="transferts/list.php">Liste des transferts</a></li>
+                                        <li><a href="transferts/recherche.php">Rechercher / Imprimer</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-table"></i> INTERVENTIONS <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="interventions/add.php">Nouvelle intervention</a></li>
+                                        <li><a href="interventions/list.php">Liste des interventions</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-tasks"></i> SUIVI COMMANDES <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="chantiers/add.php">Nouvelle commande</a></li>
+                                        <li><a href="chantiers/list.php">Liste des commandes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="chantiers/list.php">Etat 1</a></li>
+                                        <li><a href="chantiers/list.php">Etat 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="pays/list.php">Liste abréviations</a></li>
+                                        <li><a href="pays/list.php">Liste des pays</a></li>
+                                        <li><a href="chantiers/list.php">Liste des chantiers</a></li>
+                                        <li><a href="fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="user_register.php">Nouveau</a></li>
+                                        <li><a href="user_register.php">Liste des utilisateurs</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Deconnexion" href="../pages/logout.php">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
                 </div>
             </div>
-
             <div class="top_nav">
                 <div class="nav_menu">
                     <nav>
                         <ul class="navbar-right">
                             <li class="nav-item dropdown open">
-                                <a href="../index.php?msg=logout"><i class="fa fa-sign-out" style="font-size:26px"></i></a>
+                                <a href="logout.php"><i class="fa fa-sign-out" style="font-size:26px"></i></a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="../pages/logout.php"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
+
             <div class="right_col" role="main">
                 <div class="dashboard-content">
                     <h1>Tableau de Bord</h1>
                     <div class="chart-container">
+                        <```php
                         <canvas id="dashboardChart"></canvas>
                     </div>
                 </div>
+            </div>
+            <div class="footer">
+                <p>&copy; 2024 All Rights Reserved. Direction des Systèmes d'Information CSE</p>
             </div>
         </div>
     </div>
@@ -153,6 +227,27 @@ $conn->close();
                     }
                 }
             }
+        });
+
+        // Initialize the sidebar menu dropdowns
+        $(document).ready(function() {
+            $('.side-menu li a').on('click', function(e) {
+                const $this = $(this);
+                const $parent = $this.parent();
+                const $submenu = $this.next('.child_menu');
+
+                if ($submenu.length > 0) {
+                    e.preventDefault();
+
+                    if ($parent.hasClass('active')) {
+                        $parent.removeClass('active');
+                        $submenu.slideUp();
+                    } else {
+                        $parent.addClass('active');
+                        $submenu.slideDown();
+                    }
+                }
+            });
         });
     </script>
 </body>

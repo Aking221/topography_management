@@ -1,0 +1,6102 @@
+Structure du dossier pour le volume OS
+Le numéro de série du volume est 8820-9AB8
+C:.
+¦   .bowerrc
+¦   .gitattributes
+¦   .gitignore
+¦   .htaccess
+¦   BasededonnéesGestionMaterielTopographique.sql
+¦   bower.json
+¦   changelog.md
+¦   gmtcse.webp
+¦   gulpfile.js
+¦   index.php
+¦   LICENSE.txt
+¦   logo CSE.jpg
+¦   logo CSE.png
+¦   package.json
+¦   project_structure.txt
+¦   radisson.jpg
+¦   README.md
+¦   README_CN.md
+¦   topographe.jpg
+¦   user.png
+¦   
++---assets
+¦   +---css
+¦   ¦       style.css
+¦   ¦       
+¦   +---images
+¦   ¦       radisson.jpg
+¦   ¦       
+¦   +---js
+¦           script.js
+¦           
++---build
+¦   +---css
+¦   ¦       bodyindex.css
+¦   ¦       custom.css
+¦   ¦       custom.min.css
+¦   ¦       custom.min_OLD.css
+¦   ¦       test.css
+¦   ¦       
+¦   +---images
+¦   ¦       back_disabled.png
+¦   ¦       back_enabled.png
+¦   ¦       back_enabled_hover.png
+¦   ¦       forward_disabled.png
+¦   ¦       forward_enabled.png
+¦   ¦       forward_enabled_hover.png
+¦   ¦       loading.gif
+¦   ¦       
+¦   +---js
+¦           custom.js
+¦           custom.min.js
+¦           
++---docs
+¦   ¦   index.html
+¦   ¦   
+¦   +---css
+¦   ¦       animate.min.css
+¦   ¦       bootstrap.min.css
+¦   ¦       docs.min.css
+¦   ¦       shCoreDefault.css
+¦   ¦       
+¦   +---fonts
+¦   ¦   ¦   glyphicons-halflings-regular.eot
+¦   ¦   ¦   glyphicons-halflings-regular.svg
+¦   ¦   ¦   glyphicons-halflings-regular.ttf
+¦   ¦   ¦   glyphicons-halflings-regular.woff
+¦   ¦   ¦   glyphicons-halflings-regular.woff2
+¦   ¦   ¦   
+¦   ¦   +---css
+¦   ¦   ¦       font-awesome.css
+¦   ¦   ¦       font-awesome.min.css
+¦   ¦   ¦       
+¦   ¦   +---fonts
+¦   ¦   ¦       fontawesome-webfont.eot
+¦   ¦   ¦       fontawesome-webfont.svg
+¦   ¦   ¦       fontawesome-webfont.ttf
+¦   ¦   ¦       fontawesome-webfont.woff
+¦   ¦   ¦       FontAwesome.otf
+¦   ¦   ¦       
+¦   ¦   +---less
+¦   ¦   ¦       bordered-pulled.less
+¦   ¦   ¦       core.less
+¦   ¦   ¦       fixed-width.less
+¦   ¦   ¦       font-awesome.less
+¦   ¦   ¦       icons.less
+¦   ¦   ¦       larger.less
+¦   ¦   ¦       list.less
+¦   ¦   ¦       mixins.less
+¦   ¦   ¦       path.less
+¦   ¦   ¦       rotated-flipped.less
+¦   ¦   ¦       spinning.less
+¦   ¦   ¦       stacked.less
+¦   ¦   ¦       variables.less
+¦   ¦   ¦       
+¦   ¦   +---scss
+¦   ¦           font-awesome.scss
+¦   ¦           _bordered-pulled.scss
+¦   ¦           _core.scss
+¦   ¦           _fixed-width.scss
+¦   ¦           _icons.scss
+¦   ¦           _larger.scss
+¦   ¦           _list.scss
+¦   ¦           _mixins.scss
+¦   ¦           _path.scss
+¦   ¦           _rotated-flipped.scss
+¦   ¦           _spinning.scss
+¦   ¦           _stacked.scss
+¦   ¦           _variables.scss
+¦   ¦           
+¦   +---images
+¦   ¦       layout.png
+¦   ¦       min_menu.png
+¦   ¦       min_menu.tiff
+¦   ¦       welcome.png
+¦   ¦       welcome.tiff
+¦   ¦       
+¦   +---js
+¦           bootstrap.min.js
+¦           jquery.min.js
+¦           shBrushXml.js
+¦           shCore.js
+¦           
++---includes
+¦       auth.php
+¦       db.php
+¦       footer.php
+¦       header.php
+¦       
++---pages
+¦   ¦   dashboard.php
+¦   ¦   logout.php
+¦   ¦   user_login.php
+¦   ¦   user_register.php
+¦   ¦   
+¦   +---chantiers
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---familles_topo
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---fournisseurs
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---interventions
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---materiel_topo
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---pays
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---reformes
+¦   ¦       add.php
+¦   ¦       delete.php
+¦   ¦       edit.php
+¦   ¦       list.php
+¦   ¦       view.php
+¦   ¦       
+¦   +---transferts
+¦           add.php
+¦           delete.php
+¦           edit.php
+¦           list.php
+¦           view.php
+¦           
++---src
+¦   +---js
+¦   ¦   ¦   custom.js
+¦   ¦   ¦   examples.js
+¦   ¦   ¦   
+¦   ¦   +---helpers
+¦   ¦           smartresize.js
+¦   ¦           
+¦   +---scss
+¦           custom.scss
+¦           daterangepicker.scss
+¦           
++---vendors
+    +---animate.css
+    ¦       .bower.json
+    ¦       animate-config.json
+    ¦       animate.css
+    ¦       animate.min.css
+    ¦       bower.json
+    ¦       gulpfile.js
+    ¦       package.json
+    ¦       
+    +---autosize
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   bower.json
+    ¦   ¦   build.js
+    ¦   ¦   changelog.md
+    ¦   ¦   LICENSE.md
+    ¦   ¦   package.json
+    ¦   ¦   readme.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       autosize.js
+    ¦   ¦       autosize.min.js
+    ¦   ¦       
+    ¦   +---example
+    ¦   ¦       index.html
+    ¦   ¦       
+    ¦   +---src
+    ¦           autosize.js
+    ¦           
+    +---bootstrap
+    ¦   ¦   .babelrc.js
+    ¦   ¦   .bower.json
+    ¦   ¦   .browserslistrc
+    ¦   ¦   .editorconfig
+    ¦   ¦   .eslintignore
+    ¦   ¦   .eslintrc.json
+    ¦   ¦   .gitattributes
+    ¦   ¦   .gitignore
+    ¦   ¦   .stylelintignore
+    ¦   ¦   .stylelintrc
+    ¦   ¦   .travis.yml
+    ¦   ¦   CNAME
+    ¦   ¦   CODE_OF_CONDUCT.md
+    ¦   ¦   composer.json
+    ¦   ¦   Gemfile
+    ¦   ¦   Gemfile.lock
+    ¦   ¦   LICENSE
+    ¦   ¦   package-lock.json
+    ¦   ¦   package.js
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   _config.yml
+    ¦   ¦   
+    ¦   +---.github
+    ¦   ¦   ¦   CODEOWNERS
+    ¦   ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   ¦   SUPPORT.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---ISSUE_TEMPLATE
+    ¦   ¦           bug.md
+    ¦   ¦           bug_report.md
+    ¦   ¦           feature.md
+    ¦   ¦           feature_request.md
+    ¦   ¦           
+    ¦   +---build
+    ¦   ¦       .eslintrc.json
+    ¦   ¦       banner.js
+    ¦   ¦       build-plugins.js
+    ¦   ¦       change-version.js
+    ¦   ¦       generate-sri.js
+    ¦   ¦       postcss.config.js
+    ¦   ¦       rollup.config.js
+    ¦   ¦       ship.sh
+    ¦   ¦       svgo.yml
+    ¦   ¦       vnu-jar.js
+    ¦   ¦       
+    ¦   +---dist
+    ¦   ¦   +---css
+    ¦   ¦   ¦       bootstrap-grid.css
+    ¦   ¦   ¦       bootstrap-grid.css.map
+    ¦   ¦   ¦       bootstrap-grid.min.css
+    ¦   ¦   ¦       bootstrap-grid.min.css.map
+    ¦   ¦   ¦       bootstrap-reboot.css
+    ¦   ¦   ¦       bootstrap-reboot.css.map
+    ¦   ¦   ¦       bootstrap-reboot.min.css
+    ¦   ¦   ¦       bootstrap-reboot.min.css.map
+    ¦   ¦   ¦       bootstrap.css
+    ¦   ¦   ¦       bootstrap.css.map
+    ¦   ¦   ¦       bootstrap.min.css
+    ¦   ¦   ¦       bootstrap.min.css.map
+    ¦   ¦   ¦       
+    ¦   ¦   +---js
+    ¦   ¦           bootstrap.bundle.js
+    ¦   ¦           bootstrap.bundle.js.map
+    ¦   ¦           bootstrap.bundle.min.js
+    ¦   ¦           bootstrap.bundle.min.js.map
+    ¦   ¦           bootstrap.js
+    ¦   ¦           bootstrap.js.map
+    ¦   ¦           bootstrap.min.js
+    ¦   ¦           bootstrap.min.js.map
+    ¦   ¦           
+    ¦   +---js
+    ¦   ¦   +---dist
+    ¦   ¦   ¦       alert.js
+    ¦   ¦   ¦       alert.js.map
+    ¦   ¦   ¦       button.js
+    ¦   ¦   ¦       button.js.map
+    ¦   ¦   ¦       carousel.js
+    ¦   ¦   ¦       carousel.js.map
+    ¦   ¦   ¦       collapse.js
+    ¦   ¦   ¦       collapse.js.map
+    ¦   ¦   ¦       dropdown.js
+    ¦   ¦   ¦       dropdown.js.map
+    ¦   ¦   ¦       index.js
+    ¦   ¦   ¦       index.js.map
+    ¦   ¦   ¦       modal.js
+    ¦   ¦   ¦       modal.js.map
+    ¦   ¦   ¦       popover.js
+    ¦   ¦   ¦       popover.js.map
+    ¦   ¦   ¦       scrollspy.js
+    ¦   ¦   ¦       scrollspy.js.map
+    ¦   ¦   ¦       tab.js
+    ¦   ¦   ¦       tab.js.map
+    ¦   ¦   ¦       toast.js
+    ¦   ¦   ¦       toast.js.map
+    ¦   ¦   ¦       tooltip.js
+    ¦   ¦   ¦       tooltip.js.map
+    ¦   ¦   ¦       util.js
+    ¦   ¦   ¦       util.js.map
+    ¦   ¦   ¦       
+    ¦   ¦   +---src
+    ¦   ¦   ¦   ¦   alert.js
+    ¦   ¦   ¦   ¦   button.js
+    ¦   ¦   ¦   ¦   carousel.js
+    ¦   ¦   ¦   ¦   collapse.js
+    ¦   ¦   ¦   ¦   dropdown.js
+    ¦   ¦   ¦   ¦   index.js
+    ¦   ¦   ¦   ¦   modal.js
+    ¦   ¦   ¦   ¦   popover.js
+    ¦   ¦   ¦   ¦   scrollspy.js
+    ¦   ¦   ¦   ¦   tab.js
+    ¦   ¦   ¦   ¦   toast.js
+    ¦   ¦   ¦   ¦   tooltip.js
+    ¦   ¦   ¦   ¦   util.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---tools
+    ¦   ¦   ¦           sanitizer.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---tests
+    ¦   ¦       ¦   browsers.js
+    ¦   ¦       ¦   index.html
+    ¦   ¦       ¦   karma.conf.js
+    ¦   ¦       ¦   README.md
+    ¦   ¦       ¦   
+    ¦   ¦       +---integration
+    ¦   ¦       ¦       bundle.js
+    ¦   ¦       ¦       index.html
+    ¦   ¦       ¦       rollup.bundle.js
+    ¦   ¦       ¦       
+    ¦   ¦       +---unit
+    ¦   ¦       ¦       .eslintrc.json
+    ¦   ¦       ¦       alert.js
+    ¦   ¦       ¦       button.js
+    ¦   ¦       ¦       carousel.js
+    ¦   ¦       ¦       collapse.js
+    ¦   ¦       ¦       dropdown.js
+    ¦   ¦       ¦       modal.js
+    ¦   ¦       ¦       popover.js
+    ¦   ¦       ¦       scrollspy.js
+    ¦   ¦       ¦       tab.js
+    ¦   ¦       ¦       toast.js
+    ¦   ¦       ¦       tooltip.js
+    ¦   ¦       ¦       util.js
+    ¦   ¦       ¦       
+    ¦   ¦       +---visual
+    ¦   ¦               alert.html
+    ¦   ¦               button.html
+    ¦   ¦               carousel.html
+    ¦   ¦               collapse.html
+    ¦   ¦               dropdown.html
+    ¦   ¦               modal.html
+    ¦   ¦               popover.html
+    ¦   ¦               scrollspy.html
+    ¦   ¦               tab.html
+    ¦   ¦               toast.html
+    ¦   ¦               tooltip.html
+    ¦   ¦               
+    ¦   +---nuget
+    ¦   ¦       bootstrap.nuspec
+    ¦   ¦       bootstrap.sass.nuspec
+    ¦   ¦       MyGet.ps1
+    ¦   ¦       
+    ¦   +---scss
+    ¦   ¦   ¦   bootstrap-grid.scss
+    ¦   ¦   ¦   bootstrap-reboot.scss
+    ¦   ¦   ¦   bootstrap.scss
+    ¦   ¦   ¦   _alert.scss
+    ¦   ¦   ¦   _badge.scss
+    ¦   ¦   ¦   _breadcrumb.scss
+    ¦   ¦   ¦   _button-group.scss
+    ¦   ¦   ¦   _buttons.scss
+    ¦   ¦   ¦   _card.scss
+    ¦   ¦   ¦   _carousel.scss
+    ¦   ¦   ¦   _close.scss
+    ¦   ¦   ¦   _code.scss
+    ¦   ¦   ¦   _custom-forms.scss
+    ¦   ¦   ¦   _dropdown.scss
+    ¦   ¦   ¦   _forms.scss
+    ¦   ¦   ¦   _functions.scss
+    ¦   ¦   ¦   _grid.scss
+    ¦   ¦   ¦   _images.scss
+    ¦   ¦   ¦   _input-group.scss
+    ¦   ¦   ¦   _jumbotron.scss
+    ¦   ¦   ¦   _list-group.scss
+    ¦   ¦   ¦   _media.scss
+    ¦   ¦   ¦   _mixins.scss
+    ¦   ¦   ¦   _modal.scss
+    ¦   ¦   ¦   _nav.scss
+    ¦   ¦   ¦   _navbar.scss
+    ¦   ¦   ¦   _pagination.scss
+    ¦   ¦   ¦   _popover.scss
+    ¦   ¦   ¦   _print.scss
+    ¦   ¦   ¦   _progress.scss
+    ¦   ¦   ¦   _reboot.scss
+    ¦   ¦   ¦   _root.scss
+    ¦   ¦   ¦   _spinners.scss
+    ¦   ¦   ¦   _tables.scss
+    ¦   ¦   ¦   _toasts.scss
+    ¦   ¦   ¦   _tooltip.scss
+    ¦   ¦   ¦   _transitions.scss
+    ¦   ¦   ¦   _type.scss
+    ¦   ¦   ¦   _utilities.scss
+    ¦   ¦   ¦   _variables.scss
+    ¦   ¦   ¦   
+    ¦   ¦   +---mixins
+    ¦   ¦   ¦       _alert.scss
+    ¦   ¦   ¦       _background-variant.scss
+    ¦   ¦   ¦       _badge.scss
+    ¦   ¦   ¦       _border-radius.scss
+    ¦   ¦   ¦       _box-shadow.scss
+    ¦   ¦   ¦       _breakpoints.scss
+    ¦   ¦   ¦       _buttons.scss
+    ¦   ¦   ¦       _caret.scss
+    ¦   ¦   ¦       _clearfix.scss
+    ¦   ¦   ¦       _deprecate.scss
+    ¦   ¦   ¦       _float.scss
+    ¦   ¦   ¦       _forms.scss
+    ¦   ¦   ¦       _gradients.scss
+    ¦   ¦   ¦       _grid-framework.scss
+    ¦   ¦   ¦       _grid.scss
+    ¦   ¦   ¦       _hover.scss
+    ¦   ¦   ¦       _image.scss
+    ¦   ¦   ¦       _list-group.scss
+    ¦   ¦   ¦       _lists.scss
+    ¦   ¦   ¦       _nav-divider.scss
+    ¦   ¦   ¦       _pagination.scss
+    ¦   ¦   ¦       _reset-text.scss
+    ¦   ¦   ¦       _resize.scss
+    ¦   ¦   ¦       _screen-reader.scss
+    ¦   ¦   ¦       _size.scss
+    ¦   ¦   ¦       _table-row.scss
+    ¦   ¦   ¦       _text-emphasis.scss
+    ¦   ¦   ¦       _text-hide.scss
+    ¦   ¦   ¦       _text-truncate.scss
+    ¦   ¦   ¦       _transition.scss
+    ¦   ¦   ¦       _visibility.scss
+    ¦   ¦   ¦       
+    ¦   ¦   +---utilities
+    ¦   ¦   ¦       _align.scss
+    ¦   ¦   ¦       _background.scss
+    ¦   ¦   ¦       _borders.scss
+    ¦   ¦   ¦       _clearfix.scss
+    ¦   ¦   ¦       _display.scss
+    ¦   ¦   ¦       _embed.scss
+    ¦   ¦   ¦       _flex.scss
+    ¦   ¦   ¦       _float.scss
+    ¦   ¦   ¦       _overflow.scss
+    ¦   ¦   ¦       _position.scss
+    ¦   ¦   ¦       _screenreaders.scss
+    ¦   ¦   ¦       _shadows.scss
+    ¦   ¦   ¦       _sizing.scss
+    ¦   ¦   ¦       _spacing.scss
+    ¦   ¦   ¦       _stretched-link.scss
+    ¦   ¦   ¦       _text.scss
+    ¦   ¦   ¦       _visibility.scss
+    ¦   ¦   ¦       
+    ¦   ¦   +---vendor
+    ¦   ¦           _rfs.scss
+    ¦   ¦           
+    ¦   +---site
+    ¦       ¦   .eslintrc.json
+    ¦       ¦   favicon.ico
+    ¦       ¦   index.html
+    ¦       ¦   robots.txt
+    ¦       ¦   sw.js
+    ¦       ¦   
+    ¦       +---docs
+    ¦       ¦   ¦   versions.html
+    ¦       ¦   ¦   
+    ¦       ¦   +---4.3
+    ¦       ¦       ¦   browser-bugs.md
+    ¦       ¦       ¦   migration.md
+    ¦       ¦       ¦   
+    ¦       ¦       +---about
+    ¦       ¦       ¦       brand.md
+    ¦       ¦       ¦       license.md
+    ¦       ¦       ¦       overview.md
+    ¦       ¦       ¦       team.md
+    ¦       ¦       ¦       translations.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---assets
+    ¦       ¦       ¦   +---brand
+    ¦       ¦       ¦   ¦       bootstrap-outline.svg
+    ¦       ¦       ¦   ¦       bootstrap-punchout.svg
+    ¦       ¦       ¦   ¦       bootstrap-social-logo.png
+    ¦       ¦       ¦   ¦       bootstrap-social.png
+    ¦       ¦       ¦   ¦       bootstrap-solid.svg
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---css
+    ¦       ¦       ¦   ¦       docs.min.css
+    ¦       ¦       ¦   ¦       docs.min.css.map
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---img
+    ¦       ¦       ¦   ¦   ¦   bootstrap-themes.png
+    ¦       ¦       ¦   ¦   ¦   bootstrap-themes@2x.png
+    ¦       ¦       ¦   ¦   ¦   
+    ¦       ¦       ¦   ¦   +---examples
+    ¦       ¦       ¦   ¦   ¦       album.png
+    ¦       ¦       ¦   ¦   ¦       album@2x.png
+    ¦       ¦       ¦   ¦   ¦       blog.png
+    ¦       ¦       ¦   ¦   ¦       blog@2x.png
+    ¦       ¦       ¦   ¦   ¦       carousel.png
+    ¦       ¦       ¦   ¦   ¦       carousel@2x.png
+    ¦       ¦       ¦   ¦   ¦       checkout.png
+    ¦       ¦       ¦   ¦   ¦       checkout@2x.png
+    ¦       ¦       ¦   ¦   ¦       cover.png
+    ¦       ¦       ¦   ¦   ¦       cover@2x.png
+    ¦       ¦       ¦   ¦   ¦       dashboard.png
+    ¦       ¦       ¦   ¦   ¦       dashboard@2x.png
+    ¦       ¦       ¦   ¦   ¦       floating-labels.png
+    ¦       ¦       ¦   ¦   ¦       floating-labels@2x.png
+    ¦       ¦       ¦   ¦   ¦       grid.png
+    ¦       ¦       ¦   ¦   ¦       grid@2x.png
+    ¦       ¦       ¦   ¦   ¦       jumbotron.png
+    ¦       ¦       ¦   ¦   ¦       jumbotron@2x.png
+    ¦       ¦       ¦   ¦   ¦       navbar-bottom.png
+    ¦       ¦       ¦   ¦   ¦       navbar-bottom@2x.png
+    ¦       ¦       ¦   ¦   ¦       navbar-fixed.png
+    ¦       ¦       ¦   ¦   ¦       navbar-fixed@2x.png
+    ¦       ¦       ¦   ¦   ¦       navbar-static.png
+    ¦       ¦       ¦   ¦   ¦       navbar-static@2x.png
+    ¦       ¦       ¦   ¦   ¦       navbars.png
+    ¦       ¦       ¦   ¦   ¦       navbars@2x.png
+    ¦       ¦       ¦   ¦   ¦       offcanvas.png
+    ¦       ¦       ¦   ¦   ¦       offcanvas@2x.png
+    ¦       ¦       ¦   ¦   ¦       pricing.png
+    ¦       ¦       ¦   ¦   ¦       pricing@2x.png
+    ¦       ¦       ¦   ¦   ¦       product.png
+    ¦       ¦       ¦   ¦   ¦       product@2x.png
+    ¦       ¦       ¦   ¦   ¦       sign-in.png
+    ¦       ¦       ¦   ¦   ¦       sign-in@2x.png
+    ¦       ¦       ¦   ¦   ¦       starter-template.png
+    ¦       ¦       ¦   ¦   ¦       starter-template@2x.png
+    ¦       ¦       ¦   ¦   ¦       sticky-footer-navbar.png
+    ¦       ¦       ¦   ¦   ¦       sticky-footer-navbar@2x.png
+    ¦       ¦       ¦   ¦   ¦       sticky-footer.png
+    ¦       ¦       ¦   ¦   ¦       sticky-footer@2x.png
+    ¦       ¦       ¦   ¦   ¦       
+    ¦       ¦       ¦   ¦   +---favicons
+    ¦       ¦       ¦   ¦           android-chrome-192x192.png
+    ¦       ¦       ¦   ¦           android-chrome-512x512.png
+    ¦       ¦       ¦   ¦           apple-touch-icon.png
+    ¦       ¦       ¦   ¦           browserconfig.xml
+    ¦       ¦       ¦   ¦           favicon-16x16.png
+    ¦       ¦       ¦   ¦           favicon-32x32.png
+    ¦       ¦       ¦   ¦           manifest.json
+    ¦       ¦       ¦   ¦           mstile-144x144.png
+    ¦       ¦       ¦   ¦           mstile-150x150.png
+    ¦       ¦       ¦   ¦           mstile-310x150.png
+    ¦       ¦       ¦   ¦           mstile-310x310.png
+    ¦       ¦       ¦   ¦           mstile-70x70.png
+    ¦       ¦       ¦   ¦           safari-pinned-tab.svg
+    ¦       ¦       ¦   ¦           
+    ¦       ¦       ¦   +---js
+    ¦       ¦       ¦   ¦   ¦   docs.min.js
+    ¦       ¦       ¦   ¦   ¦   
+    ¦       ¦       ¦   ¦   +---src
+    ¦       ¦       ¦   ¦   ¦       application.js
+    ¦       ¦       ¦   ¦   ¦       ie-emulation-modes-warning.js
+    ¦       ¦       ¦   ¦   ¦       search.js
+    ¦       ¦       ¦   ¦   ¦       
+    ¦       ¦       ¦   ¦   +---vendor
+    ¦       ¦       ¦   ¦           anchor.min.js
+    ¦       ¦       ¦   ¦           bs-custom-file-input.min.js
+    ¦       ¦       ¦   ¦           clipboard.min.js
+    ¦       ¦       ¦   ¦           jquery-slim.min.js
+    ¦       ¦       ¦   ¦           
+    ¦       ¦       ¦   +---scss
+    ¦       ¦       ¦           docs.scss
+    ¦       ¦       ¦           _ads.scss
+    ¦       ¦       ¦           _algolia.scss
+    ¦       ¦       ¦           _anchor.scss
+    ¦       ¦       ¦           _brand.scss
+    ¦       ¦       ¦           _browser-bugs.scss
+    ¦       ¦       ¦           _buttons.scss
+    ¦       ¦       ¦           _callouts.scss
+    ¦       ¦       ¦           _clipboard-js.scss
+    ¦       ¦       ¦           _colors.scss
+    ¦       ¦       ¦           _component-examples.scss
+    ¦       ¦       ¦           _content.scss
+    ¦       ¦       ¦           _footer.scss
+    ¦       ¦       ¦           _masthead.scss
+    ¦       ¦       ¦           _nav.scss
+    ¦       ¦       ¦           _placeholder-img.scss
+    ¦       ¦       ¦           _sidebar.scss
+    ¦       ¦       ¦           _skippy.scss
+    ¦       ¦       ¦           _syntax.scss
+    ¦       ¦       ¦           _variables.scss
+    ¦       ¦       ¦           
+    ¦       ¦       +---components
+    ¦       ¦       ¦       alerts.md
+    ¦       ¦       ¦       badge.md
+    ¦       ¦       ¦       breadcrumb.md
+    ¦       ¦       ¦       button-group.md
+    ¦       ¦       ¦       buttons.md
+    ¦       ¦       ¦       card.md
+    ¦       ¦       ¦       carousel.md
+    ¦       ¦       ¦       collapse.md
+    ¦       ¦       ¦       dropdowns.md
+    ¦       ¦       ¦       forms.md
+    ¦       ¦       ¦       input-group.md
+    ¦       ¦       ¦       jumbotron.md
+    ¦       ¦       ¦       list-group.md
+    ¦       ¦       ¦       media-object.md
+    ¦       ¦       ¦       modal.md
+    ¦       ¦       ¦       navbar.md
+    ¦       ¦       ¦       navs.md
+    ¦       ¦       ¦       pagination.md
+    ¦       ¦       ¦       popovers.md
+    ¦       ¦       ¦       progress.md
+    ¦       ¦       ¦       scrollspy.md
+    ¦       ¦       ¦       spinners.md
+    ¦       ¦       ¦       toasts.md
+    ¦       ¦       ¦       tooltips.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---content
+    ¦       ¦       ¦       code.md
+    ¦       ¦       ¦       figures.md
+    ¦       ¦       ¦       images.md
+    ¦       ¦       ¦       reboot.md
+    ¦       ¦       ¦       tables.md
+    ¦       ¦       ¦       typography.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---examples
+    ¦       ¦       ¦   ¦   .stylelintrc
+    ¦       ¦       ¦   ¦   index.html
+    ¦       ¦       ¦   ¦   
+    ¦       ¦       ¦   +---album
+    ¦       ¦       ¦   ¦       album.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---blog
+    ¦       ¦       ¦   ¦       blog.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---carousel
+    ¦       ¦       ¦   ¦       carousel.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---checkout
+    ¦       ¦       ¦   ¦       form-validation.css
+    ¦       ¦       ¦   ¦       form-validation.js
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---cover
+    ¦       ¦       ¦   ¦       cover.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---dashboard
+    ¦       ¦       ¦   ¦       dashboard.css
+    ¦       ¦       ¦   ¦       dashboard.js
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---floating-labels
+    ¦       ¦       ¦   ¦       floating-labels.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---grid
+    ¦       ¦       ¦   ¦       grid.css
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---jumbotron
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       jumbotron.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---navbar-bottom
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---navbar-fixed
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       navbar-top-fixed.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---navbar-static
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       navbar-top.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---navbars
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       navbar.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---offcanvas
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       offcanvas.css
+    ¦       ¦       ¦   ¦       offcanvas.js
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---pricing
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       pricing.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---product
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       product.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---sign-in
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       signin.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---starter-template
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       starter-template.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---sticky-footer
+    ¦       ¦       ¦   ¦       index.html
+    ¦       ¦       ¦   ¦       sticky-footer.css
+    ¦       ¦       ¦   ¦       
+    ¦       ¦       ¦   +---sticky-footer-navbar
+    ¦       ¦       ¦           index.html
+    ¦       ¦       ¦           sticky-footer-navbar.css
+    ¦       ¦       ¦           
+    ¦       ¦       +---extend
+    ¦       ¦       ¦       approach.md
+    ¦       ¦       ¦       icons.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---getting-started
+    ¦       ¦       ¦       accessibility.md
+    ¦       ¦       ¦       best-practices.md
+    ¦       ¦       ¦       browsers-devices.md
+    ¦       ¦       ¦       build-tools.md
+    ¦       ¦       ¦       contents.md
+    ¦       ¦       ¦       download.md
+    ¦       ¦       ¦       introduction.md
+    ¦       ¦       ¦       javascript.md
+    ¦       ¦       ¦       theming.md
+    ¦       ¦       ¦       webpack.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---layout
+    ¦       ¦       ¦       grid.md
+    ¦       ¦       ¦       overview.md
+    ¦       ¦       ¦       utilities-for-layout.md
+    ¦       ¦       ¦       
+    ¦       ¦       +---utilities
+    ¦       ¦               borders.md
+    ¦       ¦               clearfix.md
+    ¦       ¦               close-icon.md
+    ¦       ¦               colors.md
+    ¦       ¦               display.md
+    ¦       ¦               embed.md
+    ¦       ¦               flex.md
+    ¦       ¦               float.md
+    ¦       ¦               image-replacement.md
+    ¦       ¦               overflow.md
+    ¦       ¦               position.md
+    ¦       ¦               screen-readers.md
+    ¦       ¦               shadows.md
+    ¦       ¦               sizing.md
+    ¦       ¦               spacing.md
+    ¦       ¦               stretched-link.md
+    ¦       ¦               text.md
+    ¦       ¦               vertical-align.md
+    ¦       ¦               visibility.md
+    ¦       ¦               
+    ¦       +---_data
+    ¦       ¦       breakpoints.yml
+    ¦       ¦       browser-bugs.yml
+    ¦       ¦       browser-features.yml
+    ¦       ¦       colors.yml
+    ¦       ¦       core-team.yml
+    ¦       ¦       docs-versions.yml
+    ¦       ¦       examples.yml
+    ¦       ¦       grays.yml
+    ¦       ¦       nav.yml
+    ¦       ¦       theme-colors.yml
+    ¦       ¦       translations.yml
+    ¦       ¦       
+    ¦       +---_includes
+    ¦       ¦   ¦   ads.html
+    ¦       ¦   ¦   analytics.html
+    ¦       ¦   ¦   bugify.html
+    ¦       ¦   ¦   callout-danger-async-methods.md
+    ¦       ¦   ¦   callout-info-mediaqueries-breakpoints.md
+    ¦       ¦   ¦   callout-info-prefersreducedmotion.md
+    ¦       ¦   ¦   callout-warning-color-assistive-technologies.md
+    ¦       ¦   ¦   callout.html
+    ¦       ¦   ¦   docs-navbar.html
+    ¦       ¦   ¦   docs-sidebar.html
+    ¦       ¦   ¦   example.html
+    ¦       ¦   ¦   favicons.html
+    ¦       ¦   ¦   footer.html
+    ¦       ¦   ¦   header.html
+    ¦       ¦   ¦   scripts.html
+    ¦       ¦   ¦   skippy.html
+    ¦       ¦   ¦   social.html
+    ¦       ¦   ¦   stylesheet.html
+    ¦       ¦   ¦   
+    ¦       ¦   +---icons
+    ¦       ¦           bootstrap-stack.svg
+    ¦       ¦           bootstrap.svg
+    ¦       ¦           download.svg
+    ¦       ¦           github.svg
+    ¦       ¦           import.svg
+    ¦       ¦           lightning.svg
+    ¦       ¦           menu.svg
+    ¦       ¦           opencollective.svg
+    ¦       ¦           placeholder.svg
+    ¦       ¦           slack.svg
+    ¦       ¦           twitter.svg
+    ¦       ¦           
+    ¦       +---_layouts
+    ¦               default.html
+    ¦               docs.html
+    ¦               examples.html
+    ¦               home.html
+    ¦               simple.html
+    ¦               
+    +---bootstrap-daterangepicker
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   daterangepicker.css
+    ¦   ¦   daterangepicker.js
+    ¦   ¦   demo.html
+    ¦   ¦   drp.png
+    ¦   ¦   package.js
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---example
+    ¦   ¦   +---amd
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       main.js
+    ¦   ¦   ¦       require.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---browserify
+    ¦   ¦           bundle.js
+    ¦   ¦           index.html
+    ¦   ¦           main.js
+    ¦   ¦           README.md
+    ¦   ¦           
+    ¦   +---website
+    ¦           index.html
+    ¦           website.css
+    ¦           website.js
+    ¦           
+    +---bootstrap-datetimepicker
+    ¦   ¦   bower.json
+    ¦   ¦   component.json
+    ¦   ¦   composer.json
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   LICENSE
+    ¦   ¦   mkdocs.yml
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---build
+    ¦   ¦   +---css
+    ¦   ¦   ¦       bootstrap-datetimepicker-standalone.css
+    ¦   ¦   ¦       bootstrap-datetimepicker.css
+    ¦   ¦   ¦       bootstrap-datetimepicker.min.css
+    ¦   ¦   ¦       
+    ¦   ¦   +---js
+    ¦   ¦           bootstrap-datetimepicker.min.js
+    ¦   ¦           
+    ¦   +---docs
+    ¦   ¦   ¦   ChangeLog.md
+    ¦   ¦   ¦   ContributorsGuide.md
+    ¦   ¦   ¦   Events.md
+    ¦   ¦   ¦   Extras.md
+    ¦   ¦   ¦   FAQ.md
+    ¦   ¦   ¦   Functions.md
+    ¦   ¦   ¦   index.md
+    ¦   ¦   ¦   Installing.md
+    ¦   ¦   ¦   Options.md
+    ¦   ¦   ¦   Version 4 Changelog.md
+    ¦   ¦   ¦   Version 4 Contributors guide.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---theme
+    ¦   ¦       ¦   android-chrome-144x144.png
+    ¦   ¦       ¦   android-chrome-192x192.png
+    ¦   ¦       ¦   android-chrome-36x36.png
+    ¦   ¦       ¦   android-chrome-48x48.png
+    ¦   ¦       ¦   android-chrome-72x72.png
+    ¦   ¦       ¦   android-chrome-96x96.png
+    ¦   ¦       ¦   apple-touch-icon-114x114.png
+    ¦   ¦       ¦   apple-touch-icon-120x120.png
+    ¦   ¦       ¦   apple-touch-icon-144x144.png
+    ¦   ¦       ¦   apple-touch-icon-152x152.png
+    ¦   ¦       ¦   apple-touch-icon-180x180.png
+    ¦   ¦       ¦   apple-touch-icon-57x57.png
+    ¦   ¦       ¦   apple-touch-icon-60x60.png
+    ¦   ¦       ¦   apple-touch-icon-72x72.png
+    ¦   ¦       ¦   apple-touch-icon-76x76.png
+    ¦   ¦       ¦   apple-touch-icon-precomposed.png
+    ¦   ¦       ¦   apple-touch-icon.png
+    ¦   ¦       ¦   base.html
+    ¦   ¦       ¦   browserconfig.xml
+    ¦   ¦       ¦   content.html
+    ¦   ¦       ¦   favicon-16x16.png
+    ¦   ¦       ¦   favicon-32x32.png
+    ¦   ¦       ¦   favicon-96x96.png
+    ¦   ¦       ¦   favicon.ico
+    ¦   ¦       ¦   manifest.json
+    ¦   ¦       ¦   mstile-144x144.png
+    ¦   ¦       ¦   mstile-150x150.png
+    ¦   ¦       ¦   mstile-310x150.png
+    ¦   ¦       ¦   mstile-310x310.png
+    ¦   ¦       ¦   mstile-70x70.png
+    ¦   ¦       ¦   nav.html
+    ¦   ¦       ¦   toc.html
+    ¦   ¦       ¦   
+    ¦   ¦       +---css
+    ¦   ¦       ¦       base.css
+    ¦   ¦       ¦       prettify-1.0.css
+    ¦   ¦       ¦       
+    ¦   ¦       +---js
+    ¦   ¦               base.js
+    ¦   ¦               prettify-1.0.min.js
+    ¦   ¦               
+    ¦   +---src
+    ¦   ¦   +---js
+    ¦   ¦   ¦       bootstrap-datetimepicker.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---less
+    ¦   ¦   ¦       bootstrap-datetimepicker-build.less
+    ¦   ¦   ¦       _bootstrap-datetimepicker.less
+    ¦   ¦   ¦       
+    ¦   ¦   +---nuget
+    ¦   ¦   ¦       Bootstrap.v3.Datetimepicker.CSS.nuspec
+    ¦   ¦   ¦       Bootstrap.v3.Datetimepicker.nuspec
+    ¦   ¦   ¦       install.ps1
+    ¦   ¦   ¦       NuGet.exe
+    ¦   ¦   ¦       
+    ¦   ¦   +---sass
+    ¦   ¦           bootstrap-datetimepicker-build.scss
+    ¦   ¦           _bootstrap-datetimepicker.scss
+    ¦   ¦           
+    ¦   +---tasks
+    ¦   ¦       bump_version.js
+    ¦   ¦       
+    ¦   +---test
+    ¦       ¦   publicApiSpec.js
+    ¦       ¦   timezoneDataHelper.js
+    ¦       ¦   
+    ¦       +---screen-capture
+    ¦               base.html
+    ¦               compile.js
+    ¦               index.js
+    ¦               t1.html
+    ¦               t2.html
+    ¦               t3.html
+    ¦               t4.html
+    ¦               t5.html
+    ¦               
+    +---bootstrap-progressbar
+    ¦   ¦   .bower.json
+    ¦   ¦   bootstrap-progressbar.js
+    ¦   ¦   bootstrap-progressbar.min.js
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   CONTRIBUTORS.md
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       bootstrap-progressbar-2.0.0.css
+    ¦   ¦       bootstrap-progressbar-2.0.0.min.css
+    ¦   ¦       bootstrap-progressbar-2.0.1.css
+    ¦   ¦       bootstrap-progressbar-2.0.1.min.css
+    ¦   ¦       bootstrap-progressbar-2.0.2.css
+    ¦   ¦       bootstrap-progressbar-2.0.2.min.css
+    ¦   ¦       bootstrap-progressbar-2.0.3.css
+    ¦   ¦       bootstrap-progressbar-2.0.3.min.css
+    ¦   ¦       bootstrap-progressbar-2.0.4.css
+    ¦   ¦       bootstrap-progressbar-2.0.4.min.css
+    ¦   ¦       bootstrap-progressbar-2.1.0.css
+    ¦   ¦       bootstrap-progressbar-2.1.0.min.css
+    ¦   ¦       bootstrap-progressbar-2.1.1.css
+    ¦   ¦       bootstrap-progressbar-2.1.1.min.css
+    ¦   ¦       bootstrap-progressbar-2.2.0.css
+    ¦   ¦       bootstrap-progressbar-2.2.0.min.css
+    ¦   ¦       bootstrap-progressbar-2.2.1.css
+    ¦   ¦       bootstrap-progressbar-2.2.1.min.css
+    ¦   ¦       bootstrap-progressbar-2.2.2.css
+    ¦   ¦       bootstrap-progressbar-2.2.2.min.css
+    ¦   ¦       bootstrap-progressbar-2.3.0.css
+    ¦   ¦       bootstrap-progressbar-2.3.0.min.css
+    ¦   ¦       bootstrap-progressbar-2.3.1.css
+    ¦   ¦       bootstrap-progressbar-2.3.1.min.css
+    ¦   ¦       bootstrap-progressbar-2.3.2.css
+    ¦   ¦       bootstrap-progressbar-2.3.2.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.0-rc1.css
+    ¦   ¦       bootstrap-progressbar-3.0.0-rc1.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.0-rc2.css
+    ¦   ¦       bootstrap-progressbar-3.0.0-rc2.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.0.css
+    ¦   ¦       bootstrap-progressbar-3.0.0.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.1.css
+    ¦   ¦       bootstrap-progressbar-3.0.1.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.2.css
+    ¦   ¦       bootstrap-progressbar-3.0.2.min.css
+    ¦   ¦       bootstrap-progressbar-3.0.3.css
+    ¦   ¦       bootstrap-progressbar-3.0.3.min.css
+    ¦   ¦       bootstrap-progressbar-3.1.0.css
+    ¦   ¦       bootstrap-progressbar-3.1.0.min.css
+    ¦   ¦       bootstrap-progressbar-3.1.1.css
+    ¦   ¦       bootstrap-progressbar-3.1.1.min.css
+    ¦   ¦       bootstrap-progressbar-3.2.0.css
+    ¦   ¦       bootstrap-progressbar-3.2.0.min.css
+    ¦   ¦       bootstrap-progressbar-3.3.0.css
+    ¦   ¦       bootstrap-progressbar-3.3.0.min.css
+    ¦   ¦       bootstrap-progressbar-3.3.1.css
+    ¦   ¦       bootstrap-progressbar-3.3.1.min.css
+    ¦   ¦       bootstrap-progressbar-3.3.2.css
+    ¦   ¦       bootstrap-progressbar-3.3.2.min.css
+    ¦   ¦       bootstrap-progressbar-3.3.4.css
+    ¦   ¦       bootstrap-progressbar-3.3.4.min.css
+    ¦   ¦       
+    ¦   +---less
+    ¦   ¦       bootstrap-progressbar-2.x.x.less
+    ¦   ¦       bootstrap-progressbar-3.0.0-3.1.x.less
+    ¦   ¦       bootstrap-progressbar-3.2.0.less
+    ¦   ¦       bootstrap-progressbar-3.3.0-3.x.x.less
+    ¦   ¦       
+    ¦   +---scss
+    ¦           bootstrap-progressbar-2.x.x.scss
+    ¦           bootstrap-progressbar-3.0.0-3.1.x.scss
+    ¦           bootstrap-progressbar-3.2.0.scss
+    ¦           bootstrap-progressbar-3.3.0-3.x.x.scss
+    ¦           
+    +---bootstrap-wysiwyg
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   gruntfile.js
+    ¦   ¦   gulpfile.js
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       style.css
+    ¦   ¦       
+    ¦   +---examples
+    ¦   ¦   ¦   basic.html
+    ¦   ¦   ¦   clear-formatting.html
+    ¦   ¦   ¦   events.html
+    ¦   ¦   ¦   form-post.html
+    ¦   ¦   ¦   formatblock-example.html
+    ¦   ¦   ¦   html-editor.html
+    ¦   ¦   ¦   multiple-editors.html
+    ¦   ¦   ¦   simple-toolbar.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---php
+    ¦   ¦           upload.php
+    ¦   ¦           
+    ¦   +---js
+    ¦   ¦       bootstrap-wysiwyg.min.js
+    ¦   ¦       
+    ¦   +---src
+    ¦           bootstrap-wysiwyg.js
+    ¦           
+    +---Chart.js
+    ¦   ¦   .bower.json
+    ¦   ¦   .codeclimate.yml
+    ¦   ¦   .editorconfig
+    ¦   ¦   .eslintignore
+    ¦   ¦   .eslintrc
+    ¦   ¦   .gitignore
+    ¦   ¦   .travis.yml
+    ¦   ¦   bower.json
+    ¦   ¦   composer.json
+    ¦   ¦   config.jshintrc
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   gulpfile.js
+    ¦   ¦   karma.conf.ci.js
+    ¦   ¦   karma.conf.js
+    ¦   ¦   karma.coverage.conf.js
+    ¦   ¦   LICENSE.md
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---.github
+    ¦   ¦       ISSUE_TEMPLATE.md
+    ¦   ¦       PULL_REQUEST_TEMPLATE.md
+    ¦   ¦       
+    ¦   +---dist
+    ¦   ¦       Chart.bundle.js
+    ¦   ¦       Chart.bundle.min.js
+    ¦   ¦       Chart.js
+    ¦   ¦       Chart.min.js
+    ¦   ¦       
+    ¦   +---docs
+    ¦   ¦       00-Getting-Started.md
+    ¦   ¦       01-Chart-Configuration.md
+    ¦   ¦       02-Scales.md
+    ¦   ¦       03-Line-Chart.md
+    ¦   ¦       04-Bar-Chart.md
+    ¦   ¦       05-Radar-Chart.md
+    ¦   ¦       06-Polar-Area-Chart.md
+    ¦   ¦       07-Pie-Doughnut-Chart.md
+    ¦   ¦       08-Bubble-Chart.md
+    ¦   ¦       09-Advanced.md
+    ¦   ¦       10-Notes.md
+    ¦   ¦       
+    ¦   +---samples
+    ¦   ¦   ¦   bar-horizontal.html
+    ¦   ¦   ¦   bar-multi-axis.html
+    ¦   ¦   ¦   bar-stacked.html
+    ¦   ¦   ¦   bar.html
+    ¦   ¦   ¦   bubble.html
+    ¦   ¦   ¦   combo-bar-line.html
+    ¦   ¦   ¦   data_label_combo-bar-line.html
+    ¦   ¦   ¦   different-point-sizes.html
+    ¦   ¦   ¦   doughnut.html
+    ¦   ¦   ¦   line-customTooltips.html
+    ¦   ¦   ¦   line-legend.html
+    ¦   ¦   ¦   line-logarithmic.html
+    ¦   ¦   ¦   line-multi-axis.html
+    ¦   ¦   ¦   line-skip-points.html
+    ¦   ¦   ¦   line-stacked-area.html
+    ¦   ¦   ¦   line-x-axis-filter.html
+    ¦   ¦   ¦   line.html
+    ¦   ¦   ¦   pie-customTooltips.html
+    ¦   ¦   ¦   pie.html
+    ¦   ¦   ¦   polar-area.html
+    ¦   ¦   ¦   radar-skip-points.html
+    ¦   ¦   ¦   radar.html
+    ¦   ¦   ¦   scatter-logX.html
+    ¦   ¦   ¦   scatter-multi-axis.html
+    ¦   ¦   ¦   scatter.html
+    ¦   ¦   ¦   tooltip-hooks.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---AnimationCallbacks
+    ¦   ¦   ¦       progress-bar.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---timeScale
+    ¦   ¦           combo-time-scale.html
+    ¦   ¦           line-time-point-data.html
+    ¦   ¦           line-time-scale.html
+    ¦   ¦           
+    ¦   +---src
+    ¦   ¦   ¦   chart.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---charts
+    ¦   ¦   ¦       Chart.Bar.js
+    ¦   ¦   ¦       Chart.Bubble.js
+    ¦   ¦   ¦       Chart.Doughnut.js
+    ¦   ¦   ¦       Chart.Line.js
+    ¦   ¦   ¦       Chart.PolarArea.js
+    ¦   ¦   ¦       Chart.Radar.js
+    ¦   ¦   ¦       Chart.Scatter.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---controllers
+    ¦   ¦   ¦       controller.bar.js
+    ¦   ¦   ¦       controller.bubble.js
+    ¦   ¦   ¦       controller.doughnut.js
+    ¦   ¦   ¦       controller.line.js
+    ¦   ¦   ¦       controller.polarArea.js
+    ¦   ¦   ¦       controller.radar.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---core
+    ¦   ¦   ¦       core.animation.js
+    ¦   ¦   ¦       core.controller.js
+    ¦   ¦   ¦       core.datasetController.js
+    ¦   ¦   ¦       core.element.js
+    ¦   ¦   ¦       core.helpers.js
+    ¦   ¦   ¦       core.js
+    ¦   ¦   ¦       core.layoutService.js
+    ¦   ¦   ¦       core.legend.js
+    ¦   ¦   ¦       core.plugin.js
+    ¦   ¦   ¦       core.scale.js
+    ¦   ¦   ¦       core.scaleService.js
+    ¦   ¦   ¦       core.title.js
+    ¦   ¦   ¦       core.tooltip.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---elements
+    ¦   ¦   ¦       element.arc.js
+    ¦   ¦   ¦       element.line.js
+    ¦   ¦   ¦       element.point.js
+    ¦   ¦   ¦       element.rectangle.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---scales
+    ¦   ¦           scale.category.js
+    ¦   ¦           scale.linear.js
+    ¦   ¦           scale.logarithmic.js
+    ¦   ¦           scale.radialLinear.js
+    ¦   ¦           scale.time.js
+    ¦   ¦           
+    ¦   +---test
+    ¦           controller.bar.tests.js
+    ¦           controller.bubble.tests.js
+    ¦           controller.doughnut.tests.js
+    ¦           controller.line.tests.js
+    ¦           controller.polarArea.tests.js
+    ¦           controller.radar.tests.js
+    ¦           core.element.tests.js
+    ¦           core.helpers.tests.js
+    ¦           core.layoutService.tests.js
+    ¦           core.legend.tests.js
+    ¦           core.plugin.tests.js
+    ¦           core.scaleService.tests.js
+    ¦           core.title.tests.js
+    ¦           defaultConfig.tests.js
+    ¦           element.arc.tests.js
+    ¦           element.line.tests.js
+    ¦           element.point.tests.js
+    ¦           element.rectangle.tests.js
+    ¦           mockContext.js
+    ¦           scale.category.tests.js
+    ¦           scale.linear.tests.js
+    ¦           scale.logarithmic.tests.js
+    ¦           scale.radialLinear.tests.js
+    ¦           scale.time.tests.js
+    ¦           
+    +---cropper
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       cropper.css
+    ¦   ¦       cropper.js
+    ¦   ¦       cropper.min.css
+    ¦   ¦       cropper.min.js
+    ¦   ¦       
+    ¦   +---src
+    ¦       +---img
+    ¦       ¦       bg.png
+    ¦       ¦       
+    ¦       +---js
+    ¦       ¦       bind.js
+    ¦       ¦       build.js
+    ¦       ¦       change.js
+    ¦       ¦       cropper.js
+    ¦       ¦       defaults.js
+    ¦       ¦       handlers.js
+    ¦       ¦       init.js
+    ¦       ¦       intro.js
+    ¦       ¦       methods.js
+    ¦       ¦       outro.js
+    ¦       ¦       plugin.js
+    ¦       ¦       preview.js
+    ¦       ¦       render.js
+    ¦       ¦       template.js
+    ¦       ¦       utilities.js
+    ¦       ¦       variables.js
+    ¦       ¦       
+    ¦       +---scss
+    ¦               cropper.scss
+    ¦               _main.scss
+    ¦               _mixins.scss
+    ¦               _utilities.scss
+    ¦               _variables.scss
+    ¦               
+    +---datatables.net
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           jquery.dataTables.js
+    ¦           jquery.dataTables.min.js
+    ¦           
+    +---datatables.net-bs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       dataTables.bootstrap.css
+    ¦   ¦       dataTables.bootstrap.min.css
+    ¦   ¦       
+    ¦   +---js
+    ¦           dataTables.bootstrap.js
+    ¦           dataTables.bootstrap.min.js
+    ¦           
+    +---datatables.net-buttons
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           buttons.colVis.js
+    ¦           buttons.colVis.min.js
+    ¦           buttons.flash.js
+    ¦           buttons.flash.min.js
+    ¦           buttons.html5.js
+    ¦           buttons.html5.min.js
+    ¦           buttons.print.js
+    ¦           buttons.print.min.js
+    ¦           dataTables.buttons.js
+    ¦           dataTables.buttons.min.js
+    ¦           
+    +---datatables.net-buttons-bs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       buttons.bootstrap.css
+    ¦   ¦       buttons.bootstrap.min.css
+    ¦   ¦       
+    ¦   +---js
+    ¦           buttons.bootstrap.js
+    ¦           buttons.bootstrap.min.js
+    ¦           
+    +---datatables.net-fixedheader
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           dataTables.fixedHeader.js
+    ¦           dataTables.fixedHeader.min.js
+    ¦           
+    +---datatables.net-fixedheader-bs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---css
+    ¦           fixedHeader.bootstrap.css
+    ¦           fixedHeader.bootstrap.min.css
+    ¦           
+    +---datatables.net-keytable
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           dataTables.keyTable.js
+    ¦           dataTables.keyTable.min.js
+    ¦           
+    +---datatables.net-responsive
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           dataTables.responsive.js
+    ¦           dataTables.responsive.min.js
+    ¦           
+    +---datatables.net-responsive-bs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       responsive.bootstrap.css
+    ¦   ¦       responsive.bootstrap.min.css
+    ¦   ¦       
+    ¦   +---js
+    ¦           responsive.bootstrap.js
+    ¦           
+    +---datatables.net-scroller
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---js
+    ¦           dataTables.scroller.js
+    ¦           dataTables.scroller.min.js
+    ¦           
+    +---datatables.net-scroller-bs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   License.txt
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---css
+    ¦           scroller.bootstrap.css
+    ¦           scroller.bootstrap.min.css
+    ¦           
+    +---DateJS
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   GruntFile.js
+    ¦   ¦   index.js
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---build
+    ¦   ¦   ¦   date-af-ZA.js
+    ¦   ¦   ¦   date-ar-AE.js
+    ¦   ¦   ¦   date-ar-BH.js
+    ¦   ¦   ¦   date-ar-DZ.js
+    ¦   ¦   ¦   date-ar-EG.js
+    ¦   ¦   ¦   date-ar-IQ.js
+    ¦   ¦   ¦   date-ar-JO.js
+    ¦   ¦   ¦   date-ar-KW.js
+    ¦   ¦   ¦   date-ar-LB.js
+    ¦   ¦   ¦   date-ar-LY.js
+    ¦   ¦   ¦   date-ar-MA.js
+    ¦   ¦   ¦   date-ar-OM.js
+    ¦   ¦   ¦   date-ar-QA.js
+    ¦   ¦   ¦   date-ar-SA.js
+    ¦   ¦   ¦   date-ar-SY.js
+    ¦   ¦   ¦   date-ar-TN.js
+    ¦   ¦   ¦   date-ar-YE.js
+    ¦   ¦   ¦   date-az-Cyrl-AZ.js
+    ¦   ¦   ¦   date-az-Latn-AZ.js
+    ¦   ¦   ¦   date-be-BY.js
+    ¦   ¦   ¦   date-bg-BG.js
+    ¦   ¦   ¦   date-bs-Latn-BA.js
+    ¦   ¦   ¦   date-ca-ES.js
+    ¦   ¦   ¦   date-cs-CZ.js
+    ¦   ¦   ¦   date-cy-GB.js
+    ¦   ¦   ¦   date-da-DK.js
+    ¦   ¦   ¦   date-de-AT.js
+    ¦   ¦   ¦   date-de-CH.js
+    ¦   ¦   ¦   date-de-DE.js
+    ¦   ¦   ¦   date-de-LI.js
+    ¦   ¦   ¦   date-de-LU.js
+    ¦   ¦   ¦   date-dv-MV.js
+    ¦   ¦   ¦   date-el-GR.js
+    ¦   ¦   ¦   date-en-029.js
+    ¦   ¦   ¦   date-en-AU.js
+    ¦   ¦   ¦   date-en-BZ.js
+    ¦   ¦   ¦   date-en-CA.js
+    ¦   ¦   ¦   date-en-GB.js
+    ¦   ¦   ¦   date-en-IE.js
+    ¦   ¦   ¦   date-en-JM.js
+    ¦   ¦   ¦   date-en-NZ.js
+    ¦   ¦   ¦   date-en-PH.js
+    ¦   ¦   ¦   date-en-TT.js
+    ¦   ¦   ¦   date-en-US.js
+    ¦   ¦   ¦   date-en-ZA.js
+    ¦   ¦   ¦   date-en-ZW.js
+    ¦   ¦   ¦   date-es-AR.js
+    ¦   ¦   ¦   date-es-BO.js
+    ¦   ¦   ¦   date-es-CL.js
+    ¦   ¦   ¦   date-es-CO.js
+    ¦   ¦   ¦   date-es-CR.js
+    ¦   ¦   ¦   date-es-DO.js
+    ¦   ¦   ¦   date-es-EC.js
+    ¦   ¦   ¦   date-es-ES.js
+    ¦   ¦   ¦   date-es-GT.js
+    ¦   ¦   ¦   date-es-HN.js
+    ¦   ¦   ¦   date-es-MX.js
+    ¦   ¦   ¦   date-es-NI.js
+    ¦   ¦   ¦   date-es-PA.js
+    ¦   ¦   ¦   date-es-PE.js
+    ¦   ¦   ¦   date-es-PR.js
+    ¦   ¦   ¦   date-es-PY.js
+    ¦   ¦   ¦   date-es-SV.js
+    ¦   ¦   ¦   date-es-UY.js
+    ¦   ¦   ¦   date-es-VE.js
+    ¦   ¦   ¦   date-et-EE.js
+    ¦   ¦   ¦   date-eu-ES.js
+    ¦   ¦   ¦   date-fa-IR.js
+    ¦   ¦   ¦   date-fi-FI.js
+    ¦   ¦   ¦   date-fo-FO.js
+    ¦   ¦   ¦   date-fr-BE.js
+    ¦   ¦   ¦   date-fr-CA.js
+    ¦   ¦   ¦   date-fr-CH.js
+    ¦   ¦   ¦   date-fr-FR.js
+    ¦   ¦   ¦   date-fr-LU.js
+    ¦   ¦   ¦   date-fr-MC.js
+    ¦   ¦   ¦   date-gl-ES.js
+    ¦   ¦   ¦   date-gu-IN.js
+    ¦   ¦   ¦   date-he-IL.js
+    ¦   ¦   ¦   date-hi-IN.js
+    ¦   ¦   ¦   date-hr-BA.js
+    ¦   ¦   ¦   date-hr-HR.js
+    ¦   ¦   ¦   date-hu-HU.js
+    ¦   ¦   ¦   date-hy-AM.js
+    ¦   ¦   ¦   date-id-ID.js
+    ¦   ¦   ¦   date-is-IS.js
+    ¦   ¦   ¦   date-it-CH.js
+    ¦   ¦   ¦   date-it-IT.js
+    ¦   ¦   ¦   date-ja-JP.js
+    ¦   ¦   ¦   date-ka-GE.js
+    ¦   ¦   ¦   date-kk-KZ.js
+    ¦   ¦   ¦   date-kn-IN.js
+    ¦   ¦   ¦   date-ko-KR.js
+    ¦   ¦   ¦   date-kok-IN.js
+    ¦   ¦   ¦   date-ky-KG.js
+    ¦   ¦   ¦   date-lt-LT.js
+    ¦   ¦   ¦   date-lv-LV.js
+    ¦   ¦   ¦   date-mi-NZ.js
+    ¦   ¦   ¦   date-mk-MK.js
+    ¦   ¦   ¦   date-mn-MN.js
+    ¦   ¦   ¦   date-mr-IN.js
+    ¦   ¦   ¦   date-ms-BN.js
+    ¦   ¦   ¦   date-ms-MY.js
+    ¦   ¦   ¦   date-mt-MT.js
+    ¦   ¦   ¦   date-nb-NO.js
+    ¦   ¦   ¦   date-nl-BE.js
+    ¦   ¦   ¦   date-nl-NL.js
+    ¦   ¦   ¦   date-nn-NO.js
+    ¦   ¦   ¦   date-ns-ZA.js
+    ¦   ¦   ¦   date-pa-IN.js
+    ¦   ¦   ¦   date-pl-PL.js
+    ¦   ¦   ¦   date-pt-BR.js
+    ¦   ¦   ¦   date-pt-PT.js
+    ¦   ¦   ¦   date-quz-BO.js
+    ¦   ¦   ¦   date-quz-EC.js
+    ¦   ¦   ¦   date-quz-PE.js
+    ¦   ¦   ¦   date-ro-RO.js
+    ¦   ¦   ¦   date-ru-RU.js
+    ¦   ¦   ¦   date-sa-IN.js
+    ¦   ¦   ¦   date-se-FI.js
+    ¦   ¦   ¦   date-se-NO.js
+    ¦   ¦   ¦   date-se-SE.js
+    ¦   ¦   ¦   date-sk-SK.js
+    ¦   ¦   ¦   date-sl-SI.js
+    ¦   ¦   ¦   date-sma-NO.js
+    ¦   ¦   ¦   date-sma-SE.js
+    ¦   ¦   ¦   date-smj-NO.js
+    ¦   ¦   ¦   date-smj-SE.js
+    ¦   ¦   ¦   date-smn-FI.js
+    ¦   ¦   ¦   date-sms-FI.js
+    ¦   ¦   ¦   date-sq-AL.js
+    ¦   ¦   ¦   date-sr-Cyrl-BA.js
+    ¦   ¦   ¦   date-sr-Cyrl-CS.js
+    ¦   ¦   ¦   date-sr-Latn-BA.js
+    ¦   ¦   ¦   date-sr-Latn-CS.js
+    ¦   ¦   ¦   date-sv-FI.js
+    ¦   ¦   ¦   date-sv-SE.js
+    ¦   ¦   ¦   date-sw-KE.js
+    ¦   ¦   ¦   date-syr-SY.js
+    ¦   ¦   ¦   date-ta-IN.js
+    ¦   ¦   ¦   date-te-IN.js
+    ¦   ¦   ¦   date-th-TH.js
+    ¦   ¦   ¦   date-tn-ZA.js
+    ¦   ¦   ¦   date-tr-TR.js
+    ¦   ¦   ¦   date-tt-RU.js
+    ¦   ¦   ¦   date-uk-UA.js
+    ¦   ¦   ¦   date-ur-PK.js
+    ¦   ¦   ¦   date-uz-Cyrl-UZ.js
+    ¦   ¦   ¦   date-uz-Latn-UZ.js
+    ¦   ¦   ¦   date-vi-VN.js
+    ¦   ¦   ¦   date-xh-ZA.js
+    ¦   ¦   ¦   date-zh-CN.js
+    ¦   ¦   ¦   date-zh-HK.js
+    ¦   ¦   ¦   date-zh-MO.js
+    ¦   ¦   ¦   date-zh-SG.js
+    ¦   ¦   ¦   date-zh-TW.js
+    ¦   ¦   ¦   date-zu-ZA.js
+    ¦   ¦   ¦   date.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---i18n
+    ¦   ¦   ¦       af-ZA.js
+    ¦   ¦   ¦       ar-AE.js
+    ¦   ¦   ¦       ar-BH.js
+    ¦   ¦   ¦       ar-DZ.js
+    ¦   ¦   ¦       ar-EG.js
+    ¦   ¦   ¦       ar-IQ.js
+    ¦   ¦   ¦       ar-JO.js
+    ¦   ¦   ¦       ar-KW.js
+    ¦   ¦   ¦       ar-LB.js
+    ¦   ¦   ¦       ar-LY.js
+    ¦   ¦   ¦       ar-MA.js
+    ¦   ¦   ¦       ar-OM.js
+    ¦   ¦   ¦       ar-QA.js
+    ¦   ¦   ¦       ar-SA.js
+    ¦   ¦   ¦       ar-SY.js
+    ¦   ¦   ¦       ar-TN.js
+    ¦   ¦   ¦       ar-YE.js
+    ¦   ¦   ¦       az-Cyrl-AZ.js
+    ¦   ¦   ¦       az-Latn-AZ.js
+    ¦   ¦   ¦       be-BY.js
+    ¦   ¦   ¦       bg-BG.js
+    ¦   ¦   ¦       bs-Latn-BA.js
+    ¦   ¦   ¦       ca-ES.js
+    ¦   ¦   ¦       cs-CZ.js
+    ¦   ¦   ¦       cy-GB.js
+    ¦   ¦   ¦       da-DK.js
+    ¦   ¦   ¦       de-AT.js
+    ¦   ¦   ¦       de-CH.js
+    ¦   ¦   ¦       de-DE.js
+    ¦   ¦   ¦       de-LI.js
+    ¦   ¦   ¦       de-LU.js
+    ¦   ¦   ¦       dv-MV.js
+    ¦   ¦   ¦       el-GR.js
+    ¦   ¦   ¦       en-029.js
+    ¦   ¦   ¦       en-AU.js
+    ¦   ¦   ¦       en-BZ.js
+    ¦   ¦   ¦       en-CA.js
+    ¦   ¦   ¦       en-GB.js
+    ¦   ¦   ¦       en-IE.js
+    ¦   ¦   ¦       en-JM.js
+    ¦   ¦   ¦       en-NZ.js
+    ¦   ¦   ¦       en-PH.js
+    ¦   ¦   ¦       en-TT.js
+    ¦   ¦   ¦       en-ZA.js
+    ¦   ¦   ¦       en-ZW.js
+    ¦   ¦   ¦       es-AR.js
+    ¦   ¦   ¦       es-BO.js
+    ¦   ¦   ¦       es-CL.js
+    ¦   ¦   ¦       es-CO.js
+    ¦   ¦   ¦       es-CR.js
+    ¦   ¦   ¦       es-DO.js
+    ¦   ¦   ¦       es-EC.js
+    ¦   ¦   ¦       es-ES.js
+    ¦   ¦   ¦       es-GT.js
+    ¦   ¦   ¦       es-HN.js
+    ¦   ¦   ¦       es-MX.js
+    ¦   ¦   ¦       es-NI.js
+    ¦   ¦   ¦       es-PA.js
+    ¦   ¦   ¦       es-PE.js
+    ¦   ¦   ¦       es-PR.js
+    ¦   ¦   ¦       es-PY.js
+    ¦   ¦   ¦       es-SV.js
+    ¦   ¦   ¦       es-UY.js
+    ¦   ¦   ¦       es-VE.js
+    ¦   ¦   ¦       et-EE.js
+    ¦   ¦   ¦       eu-ES.js
+    ¦   ¦   ¦       fa-IR.js
+    ¦   ¦   ¦       fi-FI.js
+    ¦   ¦   ¦       fo-FO.js
+    ¦   ¦   ¦       fr-BE.js
+    ¦   ¦   ¦       fr-CA.js
+    ¦   ¦   ¦       fr-CH.js
+    ¦   ¦   ¦       fr-FR.js
+    ¦   ¦   ¦       fr-LU.js
+    ¦   ¦   ¦       fr-MC.js
+    ¦   ¦   ¦       gl-ES.js
+    ¦   ¦   ¦       gu-IN.js
+    ¦   ¦   ¦       he-IL.js
+    ¦   ¦   ¦       hi-IN.js
+    ¦   ¦   ¦       hr-BA.js
+    ¦   ¦   ¦       hr-HR.js
+    ¦   ¦   ¦       hu-HU.js
+    ¦   ¦   ¦       hy-AM.js
+    ¦   ¦   ¦       id-ID.js
+    ¦   ¦   ¦       is-IS.js
+    ¦   ¦   ¦       it-CH.js
+    ¦   ¦   ¦       it-IT.js
+    ¦   ¦   ¦       ja-JP.js
+    ¦   ¦   ¦       ka-GE.js
+    ¦   ¦   ¦       kk-KZ.js
+    ¦   ¦   ¦       kn-IN.js
+    ¦   ¦   ¦       ko-KR.js
+    ¦   ¦   ¦       kok-IN.js
+    ¦   ¦   ¦       ky-KG.js
+    ¦   ¦   ¦       lt-LT.js
+    ¦   ¦   ¦       lv-LV.js
+    ¦   ¦   ¦       mi-NZ.js
+    ¦   ¦   ¦       mk-MK.js
+    ¦   ¦   ¦       mn-MN.js
+    ¦   ¦   ¦       mr-IN.js
+    ¦   ¦   ¦       ms-BN.js
+    ¦   ¦   ¦       ms-MY.js
+    ¦   ¦   ¦       mt-MT.js
+    ¦   ¦   ¦       nb-NO.js
+    ¦   ¦   ¦       nl-BE.js
+    ¦   ¦   ¦       nl-NL.js
+    ¦   ¦   ¦       nn-NO.js
+    ¦   ¦   ¦       ns-ZA.js
+    ¦   ¦   ¦       pa-IN.js
+    ¦   ¦   ¦       pl-PL.js
+    ¦   ¦   ¦       pt-BR.js
+    ¦   ¦   ¦       pt-PT.js
+    ¦   ¦   ¦       quz-BO.js
+    ¦   ¦   ¦       quz-EC.js
+    ¦   ¦   ¦       quz-PE.js
+    ¦   ¦   ¦       ro-RO.js
+    ¦   ¦   ¦       ru-RU.js
+    ¦   ¦   ¦       sa-IN.js
+    ¦   ¦   ¦       se-FI.js
+    ¦   ¦   ¦       se-NO.js
+    ¦   ¦   ¦       se-SE.js
+    ¦   ¦   ¦       sk-SK.js
+    ¦   ¦   ¦       sl-SI.js
+    ¦   ¦   ¦       sma-NO.js
+    ¦   ¦   ¦       sma-SE.js
+    ¦   ¦   ¦       smj-NO.js
+    ¦   ¦   ¦       smj-SE.js
+    ¦   ¦   ¦       smn-FI.js
+    ¦   ¦   ¦       sms-FI.js
+    ¦   ¦   ¦       sq-AL.js
+    ¦   ¦   ¦       sr-Cyrl-BA.js
+    ¦   ¦   ¦       sr-Cyrl-CS.js
+    ¦   ¦   ¦       sr-Latn-BA.js
+    ¦   ¦   ¦       sr-Latn-CS.js
+    ¦   ¦   ¦       sv-FI.js
+    ¦   ¦   ¦       sv-SE.js
+    ¦   ¦   ¦       sw-KE.js
+    ¦   ¦   ¦       syr-SY.js
+    ¦   ¦   ¦       ta-IN.js
+    ¦   ¦   ¦       te-IN.js
+    ¦   ¦   ¦       th-TH.js
+    ¦   ¦   ¦       tn-ZA.js
+    ¦   ¦   ¦       tr-TR.js
+    ¦   ¦   ¦       tt-RU.js
+    ¦   ¦   ¦       uk-UA.js
+    ¦   ¦   ¦       ur-PK.js
+    ¦   ¦   ¦       uz-Cyrl-UZ.js
+    ¦   ¦   ¦       uz-Latn-UZ.js
+    ¦   ¦   ¦       vi-VN.js
+    ¦   ¦   ¦       xh-ZA.js
+    ¦   ¦   ¦       zh-CN.js
+    ¦   ¦   ¦       zh-HK.js
+    ¦   ¦   ¦       zh-MO.js
+    ¦   ¦   ¦       zh-SG.js
+    ¦   ¦   ¦       zh-TW.js
+    ¦   ¦   ¦       zu-ZA.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---production
+    ¦   ¦       ¦   date-af-ZA.min.js
+    ¦   ¦       ¦   date-ar-AE.min.js
+    ¦   ¦       ¦   date-ar-BH.min.js
+    ¦   ¦       ¦   date-ar-DZ.min.js
+    ¦   ¦       ¦   date-ar-EG.min.js
+    ¦   ¦       ¦   date-ar-IQ.min.js
+    ¦   ¦       ¦   date-ar-JO.min.js
+    ¦   ¦       ¦   date-ar-KW.min.js
+    ¦   ¦       ¦   date-ar-LB.min.js
+    ¦   ¦       ¦   date-ar-LY.min.js
+    ¦   ¦       ¦   date-ar-MA.min.js
+    ¦   ¦       ¦   date-ar-OM.min.js
+    ¦   ¦       ¦   date-ar-QA.min.js
+    ¦   ¦       ¦   date-ar-SA.min.js
+    ¦   ¦       ¦   date-ar-SY.min.js
+    ¦   ¦       ¦   date-ar-TN.min.js
+    ¦   ¦       ¦   date-ar-YE.min.js
+    ¦   ¦       ¦   date-az-Cyrl-AZ.min.js
+    ¦   ¦       ¦   date-az-Latn-AZ.min.js
+    ¦   ¦       ¦   date-be-BY.min.js
+    ¦   ¦       ¦   date-bg-BG.min.js
+    ¦   ¦       ¦   date-bs-Latn-BA.min.js
+    ¦   ¦       ¦   date-ca-ES.min.js
+    ¦   ¦       ¦   date-cs-CZ.min.js
+    ¦   ¦       ¦   date-cy-GB.min.js
+    ¦   ¦       ¦   date-da-DK.min.js
+    ¦   ¦       ¦   date-de-AT.min.js
+    ¦   ¦       ¦   date-de-CH.min.js
+    ¦   ¦       ¦   date-de-DE.min.js
+    ¦   ¦       ¦   date-de-LI.min.js
+    ¦   ¦       ¦   date-de-LU.min.js
+    ¦   ¦       ¦   date-dv-MV.min.js
+    ¦   ¦       ¦   date-el-GR.min.js
+    ¦   ¦       ¦   date-en-029.min.js
+    ¦   ¦       ¦   date-en-AU.min.js
+    ¦   ¦       ¦   date-en-BZ.min.js
+    ¦   ¦       ¦   date-en-CA.min.js
+    ¦   ¦       ¦   date-en-GB.min.js
+    ¦   ¦       ¦   date-en-IE.min.js
+    ¦   ¦       ¦   date-en-JM.min.js
+    ¦   ¦       ¦   date-en-NZ.min.js
+    ¦   ¦       ¦   date-en-PH.min.js
+    ¦   ¦       ¦   date-en-TT.min.js
+    ¦   ¦       ¦   date-en-US.min.js
+    ¦   ¦       ¦   date-en-ZA.min.js
+    ¦   ¦       ¦   date-en-ZW.min.js
+    ¦   ¦       ¦   date-es-AR.min.js
+    ¦   ¦       ¦   date-es-BO.min.js
+    ¦   ¦       ¦   date-es-CL.min.js
+    ¦   ¦       ¦   date-es-CO.min.js
+    ¦   ¦       ¦   date-es-CR.min.js
+    ¦   ¦       ¦   date-es-DO.min.js
+    ¦   ¦       ¦   date-es-EC.min.js
+    ¦   ¦       ¦   date-es-ES.min.js
+    ¦   ¦       ¦   date-es-GT.min.js
+    ¦   ¦       ¦   date-es-HN.min.js
+    ¦   ¦       ¦   date-es-MX.min.js
+    ¦   ¦       ¦   date-es-NI.min.js
+    ¦   ¦       ¦   date-es-PA.min.js
+    ¦   ¦       ¦   date-es-PE.min.js
+    ¦   ¦       ¦   date-es-PR.min.js
+    ¦   ¦       ¦   date-es-PY.min.js
+    ¦   ¦       ¦   date-es-SV.min.js
+    ¦   ¦       ¦   date-es-UY.min.js
+    ¦   ¦       ¦   date-es-VE.min.js
+    ¦   ¦       ¦   date-et-EE.min.js
+    ¦   ¦       ¦   date-eu-ES.min.js
+    ¦   ¦       ¦   date-fa-IR.min.js
+    ¦   ¦       ¦   date-fi-FI.min.js
+    ¦   ¦       ¦   date-fo-FO.min.js
+    ¦   ¦       ¦   date-fr-BE.min.js
+    ¦   ¦       ¦   date-fr-CA.min.js
+    ¦   ¦       ¦   date-fr-CH.min.js
+    ¦   ¦       ¦   date-fr-FR.min.js
+    ¦   ¦       ¦   date-fr-LU.min.js
+    ¦   ¦       ¦   date-fr-MC.min.js
+    ¦   ¦       ¦   date-gl-ES.min.js
+    ¦   ¦       ¦   date-gu-IN.min.js
+    ¦   ¦       ¦   date-he-IL.min.js
+    ¦   ¦       ¦   date-hi-IN.min.js
+    ¦   ¦       ¦   date-hr-BA.min.js
+    ¦   ¦       ¦   date-hr-HR.min.js
+    ¦   ¦       ¦   date-hu-HU.min.js
+    ¦   ¦       ¦   date-hy-AM.min.js
+    ¦   ¦       ¦   date-id-ID.min.js
+    ¦   ¦       ¦   date-is-IS.min.js
+    ¦   ¦       ¦   date-it-CH.min.js
+    ¦   ¦       ¦   date-it-IT.min.js
+    ¦   ¦       ¦   date-ja-JP.min.js
+    ¦   ¦       ¦   date-ka-GE.min.js
+    ¦   ¦       ¦   date-kk-KZ.min.js
+    ¦   ¦       ¦   date-kn-IN.min.js
+    ¦   ¦       ¦   date-ko-KR.min.js
+    ¦   ¦       ¦   date-kok-IN.min.js
+    ¦   ¦       ¦   date-ky-KG.min.js
+    ¦   ¦       ¦   date-lt-LT.min.js
+    ¦   ¦       ¦   date-lv-LV.min.js
+    ¦   ¦       ¦   date-mi-NZ.min.js
+    ¦   ¦       ¦   date-mk-MK.min.js
+    ¦   ¦       ¦   date-mn-MN.min.js
+    ¦   ¦       ¦   date-mr-IN.min.js
+    ¦   ¦       ¦   date-ms-BN.min.js
+    ¦   ¦       ¦   date-ms-MY.min.js
+    ¦   ¦       ¦   date-mt-MT.min.js
+    ¦   ¦       ¦   date-nb-NO.min.js
+    ¦   ¦       ¦   date-nl-BE.min.js
+    ¦   ¦       ¦   date-nl-NL.min.js
+    ¦   ¦       ¦   date-nn-NO.min.js
+    ¦   ¦       ¦   date-ns-ZA.min.js
+    ¦   ¦       ¦   date-pa-IN.min.js
+    ¦   ¦       ¦   date-pl-PL.min.js
+    ¦   ¦       ¦   date-pt-BR.min.js
+    ¦   ¦       ¦   date-pt-PT.min.js
+    ¦   ¦       ¦   date-quz-BO.min.js
+    ¦   ¦       ¦   date-quz-EC.min.js
+    ¦   ¦       ¦   date-quz-PE.min.js
+    ¦   ¦       ¦   date-ro-RO.min.js
+    ¦   ¦       ¦   date-ru-RU.min.js
+    ¦   ¦       ¦   date-sa-IN.min.js
+    ¦   ¦       ¦   date-se-FI.min.js
+    ¦   ¦       ¦   date-se-NO.min.js
+    ¦   ¦       ¦   date-se-SE.min.js
+    ¦   ¦       ¦   date-sk-SK.min.js
+    ¦   ¦       ¦   date-sl-SI.min.js
+    ¦   ¦       ¦   date-sma-NO.min.js
+    ¦   ¦       ¦   date-sma-SE.min.js
+    ¦   ¦       ¦   date-smj-NO.min.js
+    ¦   ¦       ¦   date-smj-SE.min.js
+    ¦   ¦       ¦   date-smn-FI.min.js
+    ¦   ¦       ¦   date-sms-FI.min.js
+    ¦   ¦       ¦   date-sq-AL.min.js
+    ¦   ¦       ¦   date-sr-Cyrl-BA.min.js
+    ¦   ¦       ¦   date-sr-Cyrl-CS.min.js
+    ¦   ¦       ¦   date-sr-Latn-BA.min.js
+    ¦   ¦       ¦   date-sr-Latn-CS.min.js
+    ¦   ¦       ¦   date-sv-FI.min.js
+    ¦   ¦       ¦   date-sv-SE.min.js
+    ¦   ¦       ¦   date-sw-KE.min.js
+    ¦   ¦       ¦   date-syr-SY.min.js
+    ¦   ¦       ¦   date-ta-IN.min.js
+    ¦   ¦       ¦   date-te-IN.min.js
+    ¦   ¦       ¦   date-th-TH.min.js
+    ¦   ¦       ¦   date-tn-ZA.min.js
+    ¦   ¦       ¦   date-tr-TR.min.js
+    ¦   ¦       ¦   date-tt-RU.min.js
+    ¦   ¦       ¦   date-uk-UA.min.js
+    ¦   ¦       ¦   date-ur-PK.min.js
+    ¦   ¦       ¦   date-uz-Cyrl-UZ.min.js
+    ¦   ¦       ¦   date-uz-Latn-UZ.min.js
+    ¦   ¦       ¦   date-vi-VN.min.js
+    ¦   ¦       ¦   date-xh-ZA.min.js
+    ¦   ¦       ¦   date-zh-CN.min.js
+    ¦   ¦       ¦   date-zh-HK.min.js
+    ¦   ¦       ¦   date-zh-MO.min.js
+    ¦   ¦       ¦   date-zh-SG.min.js
+    ¦   ¦       ¦   date-zh-TW.min.js
+    ¦   ¦       ¦   date-zu-ZA.min.js
+    ¦   ¦       ¦   date.min.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---i18n
+    ¦   ¦               af-ZA.js
+    ¦   ¦               ar-AE.js
+    ¦   ¦               ar-BH.js
+    ¦   ¦               ar-DZ.js
+    ¦   ¦               ar-EG.js
+    ¦   ¦               ar-IQ.js
+    ¦   ¦               ar-JO.js
+    ¦   ¦               ar-KW.js
+    ¦   ¦               ar-LB.js
+    ¦   ¦               ar-LY.js
+    ¦   ¦               ar-MA.js
+    ¦   ¦               ar-OM.js
+    ¦   ¦               ar-QA.js
+    ¦   ¦               ar-SA.js
+    ¦   ¦               ar-SY.js
+    ¦   ¦               ar-TN.js
+    ¦   ¦               ar-YE.js
+    ¦   ¦               az-Cyrl-AZ.js
+    ¦   ¦               az-Latn-AZ.js
+    ¦   ¦               be-BY.js
+    ¦   ¦               bg-BG.js
+    ¦   ¦               bs-Latn-BA.js
+    ¦   ¦               ca-ES.js
+    ¦   ¦               cs-CZ.js
+    ¦   ¦               cy-GB.js
+    ¦   ¦               da-DK.js
+    ¦   ¦               de-AT.js
+    ¦   ¦               de-CH.js
+    ¦   ¦               de-DE.js
+    ¦   ¦               de-LI.js
+    ¦   ¦               de-LU.js
+    ¦   ¦               dv-MV.js
+    ¦   ¦               el-GR.js
+    ¦   ¦               en-029.js
+    ¦   ¦               en-AU.js
+    ¦   ¦               en-BZ.js
+    ¦   ¦               en-CA.js
+    ¦   ¦               en-GB.js
+    ¦   ¦               en-IE.js
+    ¦   ¦               en-JM.js
+    ¦   ¦               en-NZ.js
+    ¦   ¦               en-PH.js
+    ¦   ¦               en-TT.js
+    ¦   ¦               en-ZA.js
+    ¦   ¦               en-ZW.js
+    ¦   ¦               es-AR.js
+    ¦   ¦               es-BO.js
+    ¦   ¦               es-CL.js
+    ¦   ¦               es-CO.js
+    ¦   ¦               es-CR.js
+    ¦   ¦               es-DO.js
+    ¦   ¦               es-EC.js
+    ¦   ¦               es-ES.js
+    ¦   ¦               es-GT.js
+    ¦   ¦               es-HN.js
+    ¦   ¦               es-MX.js
+    ¦   ¦               es-NI.js
+    ¦   ¦               es-PA.js
+    ¦   ¦               es-PE.js
+    ¦   ¦               es-PR.js
+    ¦   ¦               es-PY.js
+    ¦   ¦               es-SV.js
+    ¦   ¦               es-UY.js
+    ¦   ¦               es-VE.js
+    ¦   ¦               et-EE.js
+    ¦   ¦               eu-ES.js
+    ¦   ¦               fa-IR.js
+    ¦   ¦               fi-FI.js
+    ¦   ¦               fo-FO.js
+    ¦   ¦               fr-BE.js
+    ¦   ¦               fr-CA.js
+    ¦   ¦               fr-CH.js
+    ¦   ¦               fr-FR.js
+    ¦   ¦               fr-LU.js
+    ¦   ¦               fr-MC.js
+    ¦   ¦               gl-ES.js
+    ¦   ¦               gu-IN.js
+    ¦   ¦               he-IL.js
+    ¦   ¦               hi-IN.js
+    ¦   ¦               hr-BA.js
+    ¦   ¦               hr-HR.js
+    ¦   ¦               hu-HU.js
+    ¦   ¦               hy-AM.js
+    ¦   ¦               id-ID.js
+    ¦   ¦               is-IS.js
+    ¦   ¦               it-CH.js
+    ¦   ¦               it-IT.js
+    ¦   ¦               ja-JP.js
+    ¦   ¦               ka-GE.js
+    ¦   ¦               kk-KZ.js
+    ¦   ¦               kn-IN.js
+    ¦   ¦               ko-KR.js
+    ¦   ¦               kok-IN.js
+    ¦   ¦               ky-KG.js
+    ¦   ¦               lt-LT.js
+    ¦   ¦               lv-LV.js
+    ¦   ¦               mi-NZ.js
+    ¦   ¦               mk-MK.js
+    ¦   ¦               mn-MN.js
+    ¦   ¦               mr-IN.js
+    ¦   ¦               ms-BN.js
+    ¦   ¦               ms-MY.js
+    ¦   ¦               mt-MT.js
+    ¦   ¦               nb-NO.js
+    ¦   ¦               nl-BE.js
+    ¦   ¦               nl-NL.js
+    ¦   ¦               nn-NO.js
+    ¦   ¦               ns-ZA.js
+    ¦   ¦               pa-IN.js
+    ¦   ¦               pl-PL.js
+    ¦   ¦               pt-BR.js
+    ¦   ¦               pt-PT.js
+    ¦   ¦               quz-BO.js
+    ¦   ¦               quz-EC.js
+    ¦   ¦               quz-PE.js
+    ¦   ¦               ro-RO.js
+    ¦   ¦               ru-RU.js
+    ¦   ¦               sa-IN.js
+    ¦   ¦               se-FI.js
+    ¦   ¦               se-NO.js
+    ¦   ¦               se-SE.js
+    ¦   ¦               sk-SK.js
+    ¦   ¦               sl-SI.js
+    ¦   ¦               sma-NO.js
+    ¦   ¦               sma-SE.js
+    ¦   ¦               smj-NO.js
+    ¦   ¦               smj-SE.js
+    ¦   ¦               smn-FI.js
+    ¦   ¦               sms-FI.js
+    ¦   ¦               sq-AL.js
+    ¦   ¦               sr-Cyrl-BA.js
+    ¦   ¦               sr-Cyrl-CS.js
+    ¦   ¦               sr-Latn-BA.js
+    ¦   ¦               sr-Latn-CS.js
+    ¦   ¦               sv-FI.js
+    ¦   ¦               sv-SE.js
+    ¦   ¦               sw-KE.js
+    ¦   ¦               syr-SY.js
+    ¦   ¦               ta-IN.js
+    ¦   ¦               te-IN.js
+    ¦   ¦               th-TH.js
+    ¦   ¦               tn-ZA.js
+    ¦   ¦               tr-TR.js
+    ¦   ¦               tt-RU.js
+    ¦   ¦               uk-UA.js
+    ¦   ¦               ur-PK.js
+    ¦   ¦               uz-Cyrl-UZ.js
+    ¦   ¦               uz-Latn-UZ.js
+    ¦   ¦               vi-VN.js
+    ¦   ¦               xh-ZA.js
+    ¦   ¦               zh-CN.js
+    ¦   ¦               zh-HK.js
+    ¦   ¦               zh-MO.js
+    ¦   ¦               zh-SG.js
+    ¦   ¦               zh-TW.js
+    ¦   ¦               zu-ZA.js
+    ¦   ¦               
+    ¦   +---reports
+    ¦   ¦   ¦   coverage.json
+    ¦   ¦   ¦   lcov.info
+    ¦   ¦   ¦   
+    ¦   ¦   +---lcov-report
+    ¦   ¦       ¦   index.html
+    ¦   ¦       ¦   prettify.css
+    ¦   ¦       ¦   prettify.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---core
+    ¦   ¦               core-prototypes.js.html
+    ¦   ¦               core.js.html
+    ¦   ¦               extras.js.html
+    ¦   ¦               format_parser.js.html
+    ¦   ¦               i18n.js.html
+    ¦   ¦               index.html
+    ¦   ¦               parser.js.html
+    ¦   ¦               parsing_grammar.js.html
+    ¦   ¦               parsing_operators.js.html
+    ¦   ¦               parsing_translator.js.html
+    ¦   ¦               sugarpak.js.html
+    ¦   ¦               time_period.js.html
+    ¦   ¦               time_span.js.html
+    ¦   ¦               
+    ¦   +---src
+    ¦       ¦   i18n-template.js
+    ¦       ¦   
+    ¦       +---core
+    ¦       ¦       core-prototypes.js
+    ¦       ¦       core.js
+    ¦       ¦       extras.js
+    ¦       ¦       format_parser.js
+    ¦       ¦       i18n.js
+    ¦       ¦       parser.js
+    ¦       ¦       parsing_grammar.js
+    ¦       ¦       parsing_operators.js
+    ¦       ¦       parsing_translator.js
+    ¦       ¦       sugarpak.js
+    ¦       ¦       time_period.js
+    ¦       ¦       time_span.js
+    ¦       ¦       
+    ¦       +---i18n
+    ¦               af-ZA.js
+    ¦               ar-AE.js
+    ¦               ar-BH.js
+    ¦               ar-DZ.js
+    ¦               ar-EG.js
+    ¦               ar-IQ.js
+    ¦               ar-JO.js
+    ¦               ar-KW.js
+    ¦               ar-LB.js
+    ¦               ar-LY.js
+    ¦               ar-MA.js
+    ¦               ar-OM.js
+    ¦               ar-QA.js
+    ¦               ar-SA.js
+    ¦               ar-SY.js
+    ¦               ar-TN.js
+    ¦               ar-YE.js
+    ¦               az-Cyrl-AZ.js
+    ¦               az-Latn-AZ.js
+    ¦               be-BY.js
+    ¦               bg-BG.js
+    ¦               bs-Latn-BA.js
+    ¦               ca-ES.js
+    ¦               cs-CZ.js
+    ¦               cy-GB.js
+    ¦               da-DK.js
+    ¦               de-AT.js
+    ¦               de-CH.js
+    ¦               de-DE.js
+    ¦               de-LI.js
+    ¦               de-LU.js
+    ¦               dv-MV.js
+    ¦               el-GR.js
+    ¦               en-029.js
+    ¦               en-AU.js
+    ¦               en-BZ.js
+    ¦               en-CA.js
+    ¦               en-GB.js
+    ¦               en-IE.js
+    ¦               en-JM.js
+    ¦               en-NZ.js
+    ¦               en-PH.js
+    ¦               en-TT.js
+    ¦               en-ZA.js
+    ¦               en-ZW.js
+    ¦               es-AR.js
+    ¦               es-BO.js
+    ¦               es-CL.js
+    ¦               es-CO.js
+    ¦               es-CR.js
+    ¦               es-DO.js
+    ¦               es-EC.js
+    ¦               es-ES.js
+    ¦               es-GT.js
+    ¦               es-HN.js
+    ¦               es-MX.js
+    ¦               es-NI.js
+    ¦               es-PA.js
+    ¦               es-PE.js
+    ¦               es-PR.js
+    ¦               es-PY.js
+    ¦               es-SV.js
+    ¦               es-UY.js
+    ¦               es-VE.js
+    ¦               et-EE.js
+    ¦               eu-ES.js
+    ¦               fa-IR.js
+    ¦               fi-FI.js
+    ¦               fo-FO.js
+    ¦               fr-BE.js
+    ¦               fr-CA.js
+    ¦               fr-CH.js
+    ¦               fr-FR.js
+    ¦               fr-LU.js
+    ¦               fr-MC.js
+    ¦               gl-ES.js
+    ¦               gu-IN.js
+    ¦               he-IL.js
+    ¦               hi-IN.js
+    ¦               hr-BA.js
+    ¦               hr-HR.js
+    ¦               hu-HU.js
+    ¦               hy-AM.js
+    ¦               id-ID.js
+    ¦               is-IS.js
+    ¦               it-CH.js
+    ¦               it-IT.js
+    ¦               ja-JP.js
+    ¦               ka-GE.js
+    ¦               kk-KZ.js
+    ¦               kn-IN.js
+    ¦               ko-KR.js
+    ¦               kok-IN.js
+    ¦               ky-KG.js
+    ¦               lt-LT.js
+    ¦               lv-LV.js
+    ¦               mi-NZ.js
+    ¦               mk-MK.js
+    ¦               mn-MN.js
+    ¦               mr-IN.js
+    ¦               ms-BN.js
+    ¦               ms-MY.js
+    ¦               mt-MT.js
+    ¦               nb-NO.js
+    ¦               nl-BE.js
+    ¦               nl-NL.js
+    ¦               nn-NO.js
+    ¦               ns-ZA.js
+    ¦               pa-IN.js
+    ¦               pl-PL.js
+    ¦               pt-BR.js
+    ¦               pt-PT.js
+    ¦               quz-BO.js
+    ¦               quz-EC.js
+    ¦               quz-PE.js
+    ¦               ro-RO.js
+    ¦               ru-RU.js
+    ¦               sa-IN.js
+    ¦               se-FI.js
+    ¦               se-NO.js
+    ¦               se-SE.js
+    ¦               sk-SK.js
+    ¦               sl-SI.js
+    ¦               sma-NO.js
+    ¦               sma-SE.js
+    ¦               smj-NO.js
+    ¦               smj-SE.js
+    ¦               smn-FI.js
+    ¦               sms-FI.js
+    ¦               sq-AL.js
+    ¦               sr-Cyrl-BA.js
+    ¦               sr-Cyrl-CS.js
+    ¦               sr-Latn-BA.js
+    ¦               sr-Latn-CS.js
+    ¦               sv-FI.js
+    ¦               sv-SE.js
+    ¦               sw-KE.js
+    ¦               syr-SY.js
+    ¦               ta-IN.js
+    ¦               te-IN.js
+    ¦               th-TH.js
+    ¦               tn-ZA.js
+    ¦               tr-TR.js
+    ¦               tt-RU.js
+    ¦               uk-UA.js
+    ¦               ur-PK.js
+    ¦               uz-Cyrl-UZ.js
+    ¦               uz-Latn-UZ.js
+    ¦               vi-VN.js
+    ¦               xh-ZA.js
+    ¦               zh-CN.js
+    ¦               zh-HK.js
+    ¦               zh-MO.js
+    ¦               zh-SG.js
+    ¦               zh-TW.js
+    ¦               zu-ZA.js
+    ¦               
+    +---devbridge-autocomplete
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   devbridge-autocomplete.jquery.json
+    ¦   ¦   gruntfile.js
+    ¦   ¦   index.htm
+    ¦   ¦   license.txt
+    ¦   ¦   package.json
+    ¦   ¦   readme.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jquery.autocomplete.js
+    ¦   ¦       jquery.autocomplete.min.js
+    ¦   ¦       license.txt
+    ¦   ¦       
+    ¦   +---src
+    ¦           jquery.autocomplete.d.ts
+    ¦           jquery.autocomplete.js
+    ¦           
+    +---dropzone
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   
+    ¦   +---dist
+    ¦       ¦   basic.css
+    ¦       ¦   dropzone-amd-module.js
+    ¦       ¦   dropzone.css
+    ¦       ¦   dropzone.js
+    ¦       ¦   readme.md
+    ¦       ¦   
+    ¦       +---min
+    ¦               basic.min.css
+    ¦               dropzone-amd-module.min.js
+    ¦               dropzone.min.css
+    ¦               dropzone.min.js
+    ¦               
+    +---echarts
+    ¦   ¦   .bower.json
+    ¦   ¦   .editorconfig
+    ¦   ¦   .gitignore
+    ¦   ¦   .jshintrc
+    ¦   ¦   .npmignore
+    ¦   ¦   index.common.js
+    ¦   ¦   index.js
+    ¦   ¦   index.simple.js
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   webpack.config.js
+    ¦   ¦   
+    ¦   +---.github
+    ¦   ¦       CONTRIBUTING.md
+    ¦   ¦       ISSUE_TEMPLATE.md
+    ¦   ¦       
+    ¦   +---asset
+    ¦   ¦       logo.png
+    ¦   ¦       
+    ¦   +---build
+    ¦   ¦       amd2common.js
+    ¦   ¦       build.sh
+    ¦   ¦       mangleString.js
+    ¦   ¦       optimize.js
+    ¦   ¦       
+    ¦   +---dist
+    ¦   ¦   ¦   echarts.common.js
+    ¦   ¦   ¦   echarts.common.min.js
+    ¦   ¦   ¦   echarts.js
+    ¦   ¦   ¦   echarts.min.js
+    ¦   ¦   ¦   echarts.simple.js
+    ¦   ¦   ¦   echarts.simple.min.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---extension
+    ¦   ¦           bmap.js
+    ¦   ¦           bmap.min.js
+    ¦   ¦           dataTool.js
+    ¦   ¦           dataTool.min.js
+    ¦   ¦           
+    ¦   +---extension
+    ¦   ¦   ¦   echarts.js
+    ¦   ¦   ¦   webpack.config.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---bmap
+    ¦   ¦   ¦       bmap.js
+    ¦   ¦   ¦       BMapCoordSys.js
+    ¦   ¦   ¦       BMapModel.js
+    ¦   ¦   ¦       BMapView.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---dataTool
+    ¦   ¦           gexf.js
+    ¦   ¦           index.js
+    ¦   ¦           prepareBoxplotData.js
+    ¦   ¦           quantile.js
+    ¦   ¦           
+    ¦   +---map
+    ¦   ¦   +---js
+    ¦   ¦   ¦   ¦   china-contour.js
+    ¦   ¦   ¦   ¦   china.js
+    ¦   ¦   ¦   ¦   world.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---province
+    ¦   ¦   ¦           anhui.js
+    ¦   ¦   ¦           aomen.js
+    ¦   ¦   ¦           beijing.js
+    ¦   ¦   ¦           chongqing.js
+    ¦   ¦   ¦           fujian.js
+    ¦   ¦   ¦           gansu.js
+    ¦   ¦   ¦           guangdong.js
+    ¦   ¦   ¦           guangxi.js
+    ¦   ¦   ¦           guizhou.js
+    ¦   ¦   ¦           hainan.js
+    ¦   ¦   ¦           hebei.js
+    ¦   ¦   ¦           heilongjiang.js
+    ¦   ¦   ¦           henan.js
+    ¦   ¦   ¦           hubei.js
+    ¦   ¦   ¦           hunan.js
+    ¦   ¦   ¦           jiangsu.js
+    ¦   ¦   ¦           jiangxi.js
+    ¦   ¦   ¦           jilin.js
+    ¦   ¦   ¦           liaoning.js
+    ¦   ¦   ¦           neimenggu.js
+    ¦   ¦   ¦           ningxia.js
+    ¦   ¦   ¦           qinghai.js
+    ¦   ¦   ¦           shandong.js
+    ¦   ¦   ¦           shanghai.js
+    ¦   ¦   ¦           shanxi.js
+    ¦   ¦   ¦           shanxi1.js
+    ¦   ¦   ¦           sichuan.js
+    ¦   ¦   ¦           tianjin.js
+    ¦   ¦   ¦           xianggang.js
+    ¦   ¦   ¦           xinjiang.js
+    ¦   ¦   ¦           xizang.js
+    ¦   ¦   ¦           yunnan.js
+    ¦   ¦   ¦           zhejiang.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---json
+    ¦   ¦       ¦   china-contour.json
+    ¦   ¦       ¦   china.json
+    ¦   ¦       ¦   world.json
+    ¦   ¦       ¦   
+    ¦   ¦       +---province
+    ¦   ¦               anhui.json
+    ¦   ¦               aomen.json
+    ¦   ¦               beijing.json
+    ¦   ¦               chongqing.json
+    ¦   ¦               fujian.json
+    ¦   ¦               gansu.json
+    ¦   ¦               guangdong.json
+    ¦   ¦               guangxi.json
+    ¦   ¦               guizhou.json
+    ¦   ¦               hainan.json
+    ¦   ¦               hebei.json
+    ¦   ¦               heilongjiang.json
+    ¦   ¦               henan.json
+    ¦   ¦               hubei.json
+    ¦   ¦               hunan.json
+    ¦   ¦               jiangsu.json
+    ¦   ¦               jiangxi.json
+    ¦   ¦               jilin.json
+    ¦   ¦               liaoning.json
+    ¦   ¦               neimenggu.json
+    ¦   ¦               ningxia.json
+    ¦   ¦               qinghai.json
+    ¦   ¦               shandong.json
+    ¦   ¦               shanghai.json
+    ¦   ¦               shanxi.json
+    ¦   ¦               shanxi1.json
+    ¦   ¦               sichuan.json
+    ¦   ¦               tianjin.json
+    ¦   ¦               xianggang.json
+    ¦   ¦               xinjiang.json
+    ¦   ¦               xizang.json
+    ¦   ¦               yunnan.json
+    ¦   ¦               zhejiang.json
+    ¦   ¦               
+    ¦   +---src
+    ¦   ¦   ¦   CoordinateSystem.js
+    ¦   ¦   ¦   echarts.js
+    ¦   ¦   ¦   ExtensionAPI.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---action
+    ¦   ¦   ¦       createDataSelectAction.js
+    ¦   ¦   ¦       geoRoam.js
+    ¦   ¦   ¦       roamHelper.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---chart
+    ¦   ¦   ¦   ¦   bar.js
+    ¦   ¦   ¦   ¦   boxplot.js
+    ¦   ¦   ¦   ¦   candlestick.js
+    ¦   ¦   ¦   ¦   chord.js
+    ¦   ¦   ¦   ¦   effectScatter.js
+    ¦   ¦   ¦   ¦   funnel.js
+    ¦   ¦   ¦   ¦   gauge.js
+    ¦   ¦   ¦   ¦   graph.js
+    ¦   ¦   ¦   ¦   heatmap.js
+    ¦   ¦   ¦   ¦   line.js
+    ¦   ¦   ¦   ¦   lines.js
+    ¦   ¦   ¦   ¦   map.js
+    ¦   ¦   ¦   ¦   parallel.js
+    ¦   ¦   ¦   ¦   pie.js
+    ¦   ¦   ¦   ¦   radar.js
+    ¦   ¦   ¦   ¦   sankey.js
+    ¦   ¦   ¦   ¦   scatter.js
+    ¦   ¦   ¦   ¦   themeRiver.js
+    ¦   ¦   ¦   ¦   treemap.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---bar
+    ¦   ¦   ¦   ¦       barItemStyle.js
+    ¦   ¦   ¦   ¦       BarSeries.js
+    ¦   ¦   ¦   ¦       BarView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---boxplot
+    ¦   ¦   ¦   ¦       boxplotLayout.js
+    ¦   ¦   ¦   ¦       BoxplotSeries.js
+    ¦   ¦   ¦   ¦       BoxplotView.js
+    ¦   ¦   ¦   ¦       boxplotVisual.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---candlestick
+    ¦   ¦   ¦   ¦       candlestickLayout.js
+    ¦   ¦   ¦   ¦       CandlestickSeries.js
+    ¦   ¦   ¦   ¦       CandlestickView.js
+    ¦   ¦   ¦   ¦       candlestickVisual.js
+    ¦   ¦   ¦   ¦       preprocessor.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---chord
+    ¦   ¦   ¦   ¦       chordCircularLayout.js
+    ¦   ¦   ¦   ¦       ChordSeries.js
+    ¦   ¦   ¦   ¦       ChordView.js
+    ¦   ¦   ¦   ¦       Ribbon.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---effectScatter
+    ¦   ¦   ¦   ¦       EffectScatterSeries.js
+    ¦   ¦   ¦   ¦       EffectScatterView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---funnel
+    ¦   ¦   ¦   ¦       funnelLayout.js
+    ¦   ¦   ¦   ¦       FunnelSeries.js
+    ¦   ¦   ¦   ¦       FunnelView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---gauge
+    ¦   ¦   ¦   ¦       GaugeSeries.js
+    ¦   ¦   ¦   ¦       GaugeView.js
+    ¦   ¦   ¦   ¦       PointerPath.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---graph
+    ¦   ¦   ¦   ¦       adjustEdge.js
+    ¦   ¦   ¦   ¦       backwardCompat.js
+    ¦   ¦   ¦   ¦       categoryFilter.js
+    ¦   ¦   ¦   ¦       categoryVisual.js
+    ¦   ¦   ¦   ¦       circularLayout.js
+    ¦   ¦   ¦   ¦       circularLayoutHelper.js
+    ¦   ¦   ¦   ¦       createView.js
+    ¦   ¦   ¦   ¦       edgeVisual.js
+    ¦   ¦   ¦   ¦       forceHelper.js
+    ¦   ¦   ¦   ¦       forceLayout.js
+    ¦   ¦   ¦   ¦       GraphSeries.js
+    ¦   ¦   ¦   ¦       GraphView.js
+    ¦   ¦   ¦   ¦       roamAction.js
+    ¦   ¦   ¦   ¦       simpleLayout.js
+    ¦   ¦   ¦   ¦       simpleLayoutEdge.js
+    ¦   ¦   ¦   ¦       simpleLayoutHelper.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---heatmap
+    ¦   ¦   ¦   ¦       HeatmapLayer.js
+    ¦   ¦   ¦   ¦       HeatmapSeries.js
+    ¦   ¦   ¦   ¦       HeatmapView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---helper
+    ¦   ¦   ¦   ¦       createGraphFromNodeEdge.js
+    ¦   ¦   ¦   ¦       createGraphFromNodeMatrix.js
+    ¦   ¦   ¦   ¦       createListFromArray.js
+    ¦   ¦   ¦   ¦       EffectLine.js
+    ¦   ¦   ¦   ¦       EffectSymbol.js
+    ¦   ¦   ¦   ¦       LargeSymbolDraw.js
+    ¦   ¦   ¦   ¦       Line.js
+    ¦   ¦   ¦   ¦       LineDraw.js
+    ¦   ¦   ¦   ¦       LinePath.js
+    ¦   ¦   ¦   ¦       Symbol.js
+    ¦   ¦   ¦   ¦       SymbolDraw.js
+    ¦   ¦   ¦   ¦       whiskerBoxCommon.js
+    ¦   ¦   ¦   ¦       WhiskerBoxDraw.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---line
+    ¦   ¦   ¦   ¦       lineAnimationDiff.js
+    ¦   ¦   ¦   ¦       LineSeries.js
+    ¦   ¦   ¦   ¦       LineView.js
+    ¦   ¦   ¦   ¦       poly.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---lines
+    ¦   ¦   ¦   ¦       linesLayout.js
+    ¦   ¦   ¦   ¦       LinesSeries.js
+    ¦   ¦   ¦   ¦       LinesView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---map
+    ¦   ¦   ¦   ¦       backwardCompat.js
+    ¦   ¦   ¦   ¦       mapDataStatistic.js
+    ¦   ¦   ¦   ¦       MapSeries.js
+    ¦   ¦   ¦   ¦       mapSymbolLayout.js
+    ¦   ¦   ¦   ¦       MapView.js
+    ¦   ¦   ¦   ¦       mapVisual.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---parallel
+    ¦   ¦   ¦   ¦       ParallelSeries.js
+    ¦   ¦   ¦   ¦       ParallelView.js
+    ¦   ¦   ¦   ¦       parallelVisual.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---pie
+    ¦   ¦   ¦   ¦       labelLayout.js
+    ¦   ¦   ¦   ¦       pieLayout.js
+    ¦   ¦   ¦   ¦       PieSeries.js
+    ¦   ¦   ¦   ¦       PieView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---radar
+    ¦   ¦   ¦   ¦       backwardCompat.js
+    ¦   ¦   ¦   ¦       radarLayout.js
+    ¦   ¦   ¦   ¦       RadarSeries.js
+    ¦   ¦   ¦   ¦       RadarView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---sankey
+    ¦   ¦   ¦   ¦       sankeyLayout.js
+    ¦   ¦   ¦   ¦       SankeySeries.js
+    ¦   ¦   ¦   ¦       SankeyView.js
+    ¦   ¦   ¦   ¦       sankeyVisual.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---scatter
+    ¦   ¦   ¦   ¦       ScatterSeries.js
+    ¦   ¦   ¦   ¦       ScatterView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---themeRiver
+    ¦   ¦   ¦   ¦       themeRiverLayout.js
+    ¦   ¦   ¦   ¦       ThemeRiverSeries.js
+    ¦   ¦   ¦   ¦       ThemeRiverView.js
+    ¦   ¦   ¦   ¦       themeRiverVisual.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---treemap
+    ¦   ¦   ¦           Breadcrumb.js
+    ¦   ¦   ¦           helper.js
+    ¦   ¦   ¦           treemapAction.js
+    ¦   ¦   ¦           treemapLayout.js
+    ¦   ¦   ¦           TreemapSeries.js
+    ¦   ¦   ¦           TreemapView.js
+    ¦   ¦   ¦           treemapVisual.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---component
+    ¦   ¦   ¦   ¦   angleAxis.js
+    ¦   ¦   ¦   ¦   axis.js
+    ¦   ¦   ¦   ¦   dataZoom.js
+    ¦   ¦   ¦   ¦   dataZoomInside.js
+    ¦   ¦   ¦   ¦   dataZoomSelect.js
+    ¦   ¦   ¦   ¦   geo.js
+    ¦   ¦   ¦   ¦   grid.js
+    ¦   ¦   ¦   ¦   legend.js
+    ¦   ¦   ¦   ¦   markLine.js
+    ¦   ¦   ¦   ¦   markPoint.js
+    ¦   ¦   ¦   ¦   parallel.js
+    ¦   ¦   ¦   ¦   parallelAxis.js
+    ¦   ¦   ¦   ¦   polar.js
+    ¦   ¦   ¦   ¦   radar.js
+    ¦   ¦   ¦   ¦   radiusAxis.js
+    ¦   ¦   ¦   ¦   single.js
+    ¦   ¦   ¦   ¦   singleAxis.js
+    ¦   ¦   ¦   ¦   timeline.js
+    ¦   ¦   ¦   ¦   title.js
+    ¦   ¦   ¦   ¦   toolbox.js
+    ¦   ¦   ¦   ¦   tooltip.js
+    ¦   ¦   ¦   ¦   visualMap.js
+    ¦   ¦   ¦   ¦   visualMapContinuous.js
+    ¦   ¦   ¦   ¦   visualMapPiecewise.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---axis
+    ¦   ¦   ¦   ¦       AngleAxisView.js
+    ¦   ¦   ¦   ¦       AxisBuilder.js
+    ¦   ¦   ¦   ¦       AxisView.js
+    ¦   ¦   ¦   ¦       parallelAxisAction.js
+    ¦   ¦   ¦   ¦       ParallelAxisView.js
+    ¦   ¦   ¦   ¦       RadiusAxisView.js
+    ¦   ¦   ¦   ¦       SingleAxisView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---dataZoom
+    ¦   ¦   ¦   ¦       AxisProxy.js
+    ¦   ¦   ¦   ¦       dataZoomAction.js
+    ¦   ¦   ¦   ¦       DataZoomModel.js
+    ¦   ¦   ¦   ¦       dataZoomProcessor.js
+    ¦   ¦   ¦   ¦       DataZoomView.js
+    ¦   ¦   ¦   ¦       history.js
+    ¦   ¦   ¦   ¦       InsideZoomModel.js
+    ¦   ¦   ¦   ¦       InsideZoomView.js
+    ¦   ¦   ¦   ¦       roams.js
+    ¦   ¦   ¦   ¦       SelectZoomModel.js
+    ¦   ¦   ¦   ¦       SelectZoomView.js
+    ¦   ¦   ¦   ¦       SliderZoomModel.js
+    ¦   ¦   ¦   ¦       SliderZoomView.js
+    ¦   ¦   ¦   ¦       typeDefaulter.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---geo
+    ¦   ¦   ¦   ¦       GeoView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---helper
+    ¦   ¦   ¦   ¦       interactionMutex.js
+    ¦   ¦   ¦   ¦       listComponent.js
+    ¦   ¦   ¦   ¦       MapDraw.js
+    ¦   ¦   ¦   ¦       RoamController.js
+    ¦   ¦   ¦   ¦       selectableMixin.js
+    ¦   ¦   ¦   ¦       SelectController.js
+    ¦   ¦   ¦   ¦       sliderMove.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---legend
+    ¦   ¦   ¦   ¦       legendAction.js
+    ¦   ¦   ¦   ¦       legendFilter.js
+    ¦   ¦   ¦   ¦       LegendModel.js
+    ¦   ¦   ¦   ¦       LegendView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---marker
+    ¦   ¦   ¦   ¦       markerHelper.js
+    ¦   ¦   ¦   ¦       MarkLineModel.js
+    ¦   ¦   ¦   ¦       MarkLineView.js
+    ¦   ¦   ¦   ¦       MarkPointModel.js
+    ¦   ¦   ¦   ¦       MarkPointView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---radar
+    ¦   ¦   ¦   ¦       RadarView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---timeline
+    ¦   ¦   ¦   ¦       preprocessor.js
+    ¦   ¦   ¦   ¦       SliderTimelineModel.js
+    ¦   ¦   ¦   ¦       SliderTimelineView.js
+    ¦   ¦   ¦   ¦       timelineAction.js
+    ¦   ¦   ¦   ¦       TimelineAxis.js
+    ¦   ¦   ¦   ¦       TimelineModel.js
+    ¦   ¦   ¦   ¦       TimelineView.js
+    ¦   ¦   ¦   ¦       typeDefaulter.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---toolbox
+    ¦   ¦   ¦   ¦   ¦   featureManager.js
+    ¦   ¦   ¦   ¦   ¦   ToolboxModel.js
+    ¦   ¦   ¦   ¦   ¦   ToolboxView.js
+    ¦   ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   ¦   +---feature
+    ¦   ¦   ¦   ¦           DataView.js
+    ¦   ¦   ¦   ¦           DataZoom.js
+    ¦   ¦   ¦   ¦           MagicType.js
+    ¦   ¦   ¦   ¦           Restore.js
+    ¦   ¦   ¦   ¦           SaveAsImage.js
+    ¦   ¦   ¦   ¦           
+    ¦   ¦   ¦   +---tooltip
+    ¦   ¦   ¦   ¦       TooltipContent.js
+    ¦   ¦   ¦   ¦       TooltipModel.js
+    ¦   ¦   ¦   ¦       TooltipView.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---visualMap
+    ¦   ¦   ¦           ContinuousModel.js
+    ¦   ¦   ¦           ContinuousView.js
+    ¦   ¦   ¦           helper.js
+    ¦   ¦   ¦           PiecewiseModel.js
+    ¦   ¦   ¦           PiecewiseView.js
+    ¦   ¦   ¦           preprocessor.js
+    ¦   ¦   ¦           typeDefaulter.js
+    ¦   ¦   ¦           visualCoding.js
+    ¦   ¦   ¦           visualMapAction.js
+    ¦   ¦   ¦           VisualMapModel.js
+    ¦   ¦   ¦           VisualMapView.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---coord
+    ¦   ¦   ¦   ¦   Axis.js
+    ¦   ¦   ¦   ¦   axisDefault.js
+    ¦   ¦   ¦   ¦   axisHelper.js
+    ¦   ¦   ¦   ¦   axisModelCommonMixin.js
+    ¦   ¦   ¦   ¦   axisModelCreator.js
+    ¦   ¦   ¦   ¦   View.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---cartesian
+    ¦   ¦   ¦   ¦       Axis2D.js
+    ¦   ¦   ¦   ¦       axisLabelInterval.js
+    ¦   ¦   ¦   ¦       AxisModel.js
+    ¦   ¦   ¦   ¦       Cartesian.js
+    ¦   ¦   ¦   ¦       Cartesian2D.js
+    ¦   ¦   ¦   ¦       Grid.js
+    ¦   ¦   ¦   ¦       GridModel.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---geo
+    ¦   ¦   ¦   ¦   ¦   Geo.js
+    ¦   ¦   ¦   ¦   ¦   geoCreator.js
+    ¦   ¦   ¦   ¦   ¦   GeoModel.js
+    ¦   ¦   ¦   ¦   ¦   parseGeoJson.js
+    ¦   ¦   ¦   ¦   ¦   Region.js
+    ¦   ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   ¦   +---fix
+    ¦   ¦   ¦   ¦           geoCoord.js
+    ¦   ¦   ¦   ¦           nanhai.js
+    ¦   ¦   ¦   ¦           textCoord.js
+    ¦   ¦   ¦   ¦           
+    ¦   ¦   ¦   +---parallel
+    ¦   ¦   ¦   ¦       AxisModel.js
+    ¦   ¦   ¦   ¦       Parallel.js
+    ¦   ¦   ¦   ¦       ParallelAxis.js
+    ¦   ¦   ¦   ¦       parallelCreator.js
+    ¦   ¦   ¦   ¦       ParallelModel.js
+    ¦   ¦   ¦   ¦       parallelPreprocessor.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---polar
+    ¦   ¦   ¦   ¦       AngleAxis.js
+    ¦   ¦   ¦   ¦       AxisModel.js
+    ¦   ¦   ¦   ¦       Polar.js
+    ¦   ¦   ¦   ¦       polarCreator.js
+    ¦   ¦   ¦   ¦       PolarModel.js
+    ¦   ¦   ¦   ¦       RadiusAxis.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---radar
+    ¦   ¦   ¦   ¦       IndicatorAxis.js
+    ¦   ¦   ¦   ¦       Radar.js
+    ¦   ¦   ¦   ¦       RadarModel.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---single
+    ¦   ¦   ¦           AxisModel.js
+    ¦   ¦   ¦           Single.js
+    ¦   ¦   ¦           SingleAxis.js
+    ¦   ¦   ¦           singleCreator.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---data
+    ¦   ¦   ¦   ¦   DataDiffer.js
+    ¦   ¦   ¦   ¦   Graph.js
+    ¦   ¦   ¦   ¦   List.js
+    ¦   ¦   ¦   ¦   Tree.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---helper
+    ¦   ¦   ¦           completeDimensions.js
+    ¦   ¦   ¦           linkList.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---layout
+    ¦   ¦   ¦       barGrid.js
+    ¦   ¦   ¦       points.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---loading
+    ¦   ¦   ¦       default.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---model
+    ¦   ¦   ¦   ¦   Component.js
+    ¦   ¦   ¦   ¦   Global.js
+    ¦   ¦   ¦   ¦   globalDefault.js
+    ¦   ¦   ¦   ¦   Model.js
+    ¦   ¦   ¦   ¦   OptionManager.js
+    ¦   ¦   ¦   ¦   Series.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---mixin
+    ¦   ¦   ¦           areaStyle.js
+    ¦   ¦   ¦           boxLayout.js
+    ¦   ¦   ¦           itemStyle.js
+    ¦   ¦   ¦           lineStyle.js
+    ¦   ¦   ¦           makeStyleMapper.js
+    ¦   ¦   ¦           textStyle.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---preprocessor
+    ¦   ¦   ¦   ¦   backwardCompat.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---helper
+    ¦   ¦   ¦           compatStyle.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---processor
+    ¦   ¦   ¦       dataFilter.js
+    ¦   ¦   ¦       dataSample.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---scale
+    ¦   ¦   ¦       Interval.js
+    ¦   ¦   ¦       Log.js
+    ¦   ¦   ¦       Ordinal.js
+    ¦   ¦   ¦       Scale.js
+    ¦   ¦   ¦       Time.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---util
+    ¦   ¦   ¦   ¦   animation.js
+    ¦   ¦   ¦   ¦   clazz.js
+    ¦   ¦   ¦   ¦   component.js
+    ¦   ¦   ¦   ¦   format.js
+    ¦   ¦   ¦   ¦   graphic.js
+    ¦   ¦   ¦   ¦   KDTree.js
+    ¦   ¦   ¦   ¦   layout.js
+    ¦   ¦   ¦   ¦   model.js
+    ¦   ¦   ¦   ¦   number.js
+    ¦   ¦   ¦   ¦   quickSelect.js
+    ¦   ¦   ¦   ¦   symbol.js
+    ¦   ¦   ¦   ¦   throttle.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---array
+    ¦   ¦   ¦           nest.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---view
+    ¦   ¦   ¦       Chart.js
+    ¦   ¦   ¦       Component.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---visual
+    ¦   ¦           dataColor.js
+    ¦   ¦           seriesColor.js
+    ¦   ¦           symbol.js
+    ¦   ¦           visualDefault.js
+    ¦   ¦           VisualMapping.js
+    ¦   ¦           
+    ¦   +---test
+    ¦   ¦   ¦   area.html
+    ¦   ¦   ¦   area2.html
+    ¦   ¦   ¦   axes.html
+    ¦   ¦   ¦   axis.html
+    ¦   ¦   ¦   bar-large.html
+    ¦   ¦   ¦   bar.html
+    ¦   ¦   ¦   bar2.html
+    ¦   ¦   ¦   bmap.html
+    ¦   ¦   ¦   boxplot-multi.html
+    ¦   ¦   ¦   boxplot.html
+    ¦   ¦   ¦   candlestick.html
+    ¦   ¦   ¦   candlestickConnect.html
+    ¦   ¦   ¦   chord.html
+    ¦   ¦   ¦   color-mix-aqi.html
+    ¦   ¦   ¦   config.js
+    ¦   ¦   ¦   connect.html
+    ¦   ¦   ¦   connect2.html
+    ¦   ¦   ¦   dataView.html
+    ¦   ¦   ¦   dataZoom-axes.html
+    ¦   ¦   ¦   dataZoom-axis-type.html
+    ¦   ¦   ¦   dataZoom-cartesian-h.html
+    ¦   ¦   ¦   dataZoom-cartesian-v.html
+    ¦   ¦   ¦   dataZoom-dataShadow.html
+    ¦   ¦   ¦   dataZoom-dataShadow0.html
+    ¦   ¦   ¦   dataZoom-dataShadow1.html
+    ¦   ¦   ¦   dataZoom-dataShadow2.html
+    ¦   ¦   ¦   dataZoom-dynamic.html
+    ¦   ¦   ¦   dataZoom-rainfall-connect.html
+    ¦   ¦   ¦   dataZoom-rainfall-inside.html
+    ¦   ¦   ¦   dataZoom-rainfall.html
+    ¦   ¦   ¦   dataZoom-scatter-category.html
+    ¦   ¦   ¦   dataZoom-scatter-hv-polar.html
+    ¦   ¦   ¦   dataZoom-scatter-hv.html
+    ¦   ¦   ¦   dataZoom-scatter-toolbox.html
+    ¦   ¦   ¦   dataZoomHighPrecision.html
+    ¦   ¦   ¦   diff.html
+    ¦   ¦   ¦   dynamicData.html
+    ¦   ¦   ¦   effectScatter.html
+    ¦   ¦   ¦   esl.js
+    ¦   ¦   ¦   force.html
+    ¦   ¦   ¦   force2.html
+    ¦   ¦   ¦   force3.html
+    ¦   ¦   ¦   funnel.html
+    ¦   ¦   ¦   gauge.html
+    ¦   ¦   ¦   geoLine.html
+    ¦   ¦   ¦   geoScatter.html
+    ¦   ¦   ¦   getOption.html
+    ¦   ¦   ¦   graph-grid.html
+    ¦   ¦   ¦   graph-simple.html
+    ¦   ¦   ¦   graph.html
+    ¦   ¦   ¦   heatmap-map.html
+    ¦   ¦   ¦   heatmap.html
+    ¦   ¦   ¦   ie8.html
+    ¦   ¦   ¦   largeLine.html
+    ¦   ¦   ¦   line.html
+    ¦   ¦   ¦   loading.html
+    ¦   ¦   ¦   logScale.html
+    ¦   ¦   ¦   map-contour.html
+    ¦   ¦   ¦   map.html
+    ¦   ¦   ¦   mapWorld.html
+    ¦   ¦   ¦   markLine.html
+    ¦   ¦   ¦   markPoint.html
+    ¦   ¦   ¦   masterPainterColorChoice.html
+    ¦   ¦   ¦   media-dataZoom.html
+    ¦   ¦   ¦   media-finance.html
+    ¦   ¦   ¦   media-pie.html
+    ¦   ¦   ¦   mix.html
+    ¦   ¦   ¦   mobileBench.html
+    ¦   ¦   ¦   multipleGrid.html
+    ¦   ¦   ¦   parallel-aqi.html
+    ¦   ¦   ¦   pie.html
+    ¦   ¦   ¦   pie2.html
+    ¦   ¦   ¦   pie3.html
+    ¦   ¦   ¦   pieDynamic.html
+    ¦   ¦   ¦   polarLine.html
+    ¦   ¦   ¦   polarLine2.html
+    ¦   ¦   ¦   polarScatter.html
+    ¦   ¦   ¦   punchCard.html
+    ¦   ¦   ¦   radar.html
+    ¦   ¦   ¦   radar2.html
+    ¦   ¦   ¦   radar3.html
+    ¦   ¦   ¦   radar4.html
+    ¦   ¦   ¦   README.md
+    ¦   ¦   ¦   reset.css
+    ¦   ¦   ¦   roseType.html
+    ¦   ¦   ¦   sankey.html
+    ¦   ¦   ¦   scale-integer.html
+    ¦   ¦   ¦   scatter.html
+    ¦   ¦   ¦   selectedMode.html
+    ¦   ¦   ¦   showTip.html
+    ¦   ¦   ¦   symbol.html
+    ¦   ¦   ¦   theme.html
+    ¦   ¦   ¦   themeRiver.html
+    ¦   ¦   ¦   timeline-finance.html
+    ¦   ¦   ¦   timeline-layout.html
+    ¦   ¦   ¦   timeScale.html
+    ¦   ¦   ¦   tooltip.html
+    ¦   ¦   ¦   treemap-disk.html
+    ¦   ¦   ¦   treemap-obama.html
+    ¦   ¦   ¦   treemap-option.html
+    ¦   ¦   ¦   treemap-option2.html
+    ¦   ¦   ¦   treemap-simple.html
+    ¦   ¦   ¦   visualMap-categories.html
+    ¦   ¦   ¦   visualMap-continuous.html
+    ¦   ¦   ¦   visualMap-layout.html
+    ¦   ¦   ¦   visualMap-opacity.html
+    ¦   ¦   ¦   visualMap-pieces.html
+    ¦   ¦   ¦   visualMap-scatter-colorAndSymbol.html
+    ¦   ¦   ¦   visualMap-scatter-symbolSize.html
+    ¦   ¦   ¦   webkit-dep.html
+    ¦   ¦   ¦   worldPopulationBubble.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---data
+    ¦   ¦   ¦   ¦   disk.tree.js
+    ¦   ¦   ¦   ¦   energy.json
+    ¦   ¦   ¦   ¦   les-miserables.gexf
+    ¦   ¦   ¦   ¦   masterPainterColorChoice.json
+    ¦   ¦   ¦   ¦   Michelson-Morley.json.js
+    ¦   ¦   ¦   ¦   obama_budget_proposal_2012.tree.js
+    ¦   ¦   ¦   ¦   option-view.json
+    ¦   ¦   ¦   ¦   option-view2.json
+    ¦   ¦   ¦   ¦   product.json
+    ¦   ¦   ¦   ¦   rainfall.json.js
+    ¦   ¦   ¦   ¦   security-sh-2013.json.js
+    ¦   ¦   ¦   ¦   timelineGDP.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---aqi
+    ¦   ¦   ¦           BJdata.js
+    ¦   ¦   ¦           GZdata.js
+    ¦   ¦   ¦           processAQI.js
+    ¦   ¦   ¦           SHdata.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---lib
+    ¦   ¦   ¦       dat.gui.min.js
+    ¦   ¦   ¦       draggable.js
+    ¦   ¦   ¦       facePrint.js
+    ¦   ¦   ¦       jquery.min.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---ut
+    ¦   ¦       ¦   .jshintrc
+    ¦   ¦       ¦   config.js
+    ¦   ¦       ¦   configure
+    ¦   ¦       ¦   MIT.LICENSE
+    ¦   ¦       ¦   ui.html
+    ¦   ¦       ¦   ut.html
+    ¦   ¦       ¦   ut.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---core
+    ¦   ¦       ¦       uiHelper.js
+    ¦   ¦       ¦       utHelper.js
+    ¦   ¦       ¦       
+    ¦   ¦       +---lib
+    ¦   ¦       ¦   ¦   canteen.js
+    ¦   ¦       ¦   ¦   imagediff.js
+    ¦   ¦       ¦   ¦   
+    ¦   ¦       ¦   +---jasmine-2.3.4
+    ¦   ¦       ¦           boot.js
+    ¦   ¦       ¦           console.js
+    ¦   ¦       ¦           jasmine-html.js
+    ¦   ¦       ¦           jasmine.css
+    ¦   ¦       ¦           jasmine.js
+    ¦   ¦       ¦           jasmine_favicon.png
+    ¦   ¦       ¦           
+    ¦   ¦       +---spec
+    ¦   ¦           +---component
+    ¦   ¦           ¦   +---visualMap
+    ¦   ¦           ¦           setOption.js
+    ¦   ¦           ¦           
+    ¦   ¦           +---data
+    ¦   ¦           ¦       List.js
+    ¦   ¦           ¦       
+    ¦   ¦           +---model
+    ¦   ¦           ¦       Component.js
+    ¦   ¦           ¦       Global.js
+    ¦   ¦           ¦       timelineOptions.js
+    ¦   ¦           ¦       
+    ¦   ¦           +---ui
+    ¦   ¦           ¦       config.js
+    ¦   ¦           ¦       legend.js
+    ¦   ¦           ¦       title.js
+    ¦   ¦           ¦       title.subtextStyle.js
+    ¦   ¦           ¦       title.textStyle.js
+    ¦   ¦           ¦       
+    ¦   ¦           +---util
+    ¦   ¦                   graphic.js
+    ¦   ¦                   model.js
+    ¦   ¦                   number.js
+    ¦   ¦                   
+    ¦   +---theme
+    ¦       ¦   dark.js
+    ¦       ¦   infographic.js
+    ¦       ¦   macarons.js
+    ¦       ¦   roma.js
+    ¦       ¦   shine.js
+    ¦       ¦   vintage.js
+    ¦       ¦   
+    ¦       +---tool
+    ¦           ¦   thumb.js
+    ¦           ¦   
+    ¦           +---option
+    ¦                   area.js
+    ¦                   bar.js
+    ¦                   graph.js
+    ¦                   map.js
+    ¦                   pie.js
+    ¦                   scatter.js
+    ¦                   
+    +---eve
+    ¦       .bower.json
+    ¦       component.json
+    ¦       e.html
+    ¦       eve.js
+    ¦       LICENSE
+    ¦       package.json
+    ¦       README.md
+    ¦       
+    +---fastclick
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   LICENSE
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---lib
+    ¦           fastclick.js
+    ¦           
+    +---Flot
+    ¦   ¦   .bower.json
+    ¦   ¦   .dont-break.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .npmignore
+    ¦   ¦   .travis.yml
+    ¦   ¦   API.md
+    ¦   ¦   build.js
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   component.json
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   excanvas.js
+    ¦   ¦   excanvas.min.js
+    ¦   ¦   FAQ.md
+    ¦   ¦   flot-2.1.3.tgz
+    ¦   ¦   flot.jquery.json
+    ¦   ¦   gulpfile.js
+    ¦   ¦   jquery.colorhelpers.js
+    ¦   ¦   jquery.event.drag.LICENSE.txt
+    ¦   ¦   jquery.flot.canvas.js
+    ¦   ¦   jquery.flot.categories.js
+    ¦   ¦   jquery.flot.crosshair.js
+    ¦   ¦   jquery.flot.errorbars.js
+    ¦   ¦   jquery.flot.fillbetween.js
+    ¦   ¦   jquery.flot.image.js
+    ¦   ¦   jquery.flot.js
+    ¦   ¦   jquery.flot.navigate.js
+    ¦   ¦   jquery.flot.pie.js
+    ¦   ¦   jquery.flot.resize.js
+    ¦   ¦   jquery.flot.selection.js
+    ¦   ¦   jquery.flot.stack.js
+    ¦   ¦   jquery.flot.symbol.js
+    ¦   ¦   jquery.flot.threshold.js
+    ¦   ¦   jquery.flot.time.js
+    ¦   ¦   jquery.js
+    ¦   ¦   jquery.mousewheel.LICENSE.txt
+    ¦   ¦   karma.conf.js
+    ¦   ¦   legend.css
+    ¦   ¦   LICENSE.txt
+    ¦   ¦   Makefile
+    ¦   ¦   NEWS.md
+    ¦   ¦   package-lock.json
+    ¦   ¦   package.json
+    ¦   ¦   PLUGINS.md
+    ¦   ¦   README.md
+    ¦   ¦   update_docs.js
+    ¦   ¦   
+    ¦   +---.circleci
+    ¦   ¦       config.yml
+    ¦   ¦       
+    ¦   +---docs
+    ¦   ¦       absRelTime.md
+    ¦   ¦       API.md
+    ¦   ¦       browser.md
+    ¦   ¦       canvaswrapper.md
+    ¦   ¦       composeImages.md
+    ¦   ¦       drawSeries.md
+    ¦   ¦       hover.md
+    ¦   ¦       interactions.md
+    ¦   ¦       logaxis.md
+    ¦   ¦       navigate.md
+    ¦   ¦       PLUGINS.md
+    ¦   ¦       
+    ¦   +---examples
+    ¦   ¦   ¦   background.png
+    ¦   ¦   ¦   examples.css
+    ¦   ¦   ¦   index.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---ajax
+    ¦   ¦   ¦       data-eu-gdp-growth-1.json
+    ¦   ¦   ¦       data-eu-gdp-growth-2.json
+    ¦   ¦   ¦       data-eu-gdp-growth-3.json
+    ¦   ¦   ¦       data-eu-gdp-growth-4.json
+    ¦   ¦   ¦       data-eu-gdp-growth-5.json
+    ¦   ¦   ¦       data-eu-gdp-growth.json
+    ¦   ¦   ¦       data-japan-gdp-growth.json
+    ¦   ¦   ¦       data-usa-gdp-growth.json
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---annotating
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-autoscaling
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-interacting
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-labels
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-multiple
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-tickLabels
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-time
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---axes-time-zones
+    ¦   ¦   ¦   ¦   date.js
+    ¦   ¦   ¦   ¦   index.html
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---tz
+    ¦   ¦   ¦           africa
+    ¦   ¦   ¦           antarctica
+    ¦   ¦   ¦           asia
+    ¦   ¦   ¦           australasia
+    ¦   ¦   ¦           backward
+    ¦   ¦   ¦           etcetera
+    ¦   ¦   ¦           europe
+    ¦   ¦   ¦           factory
+    ¦   ¦   ¦           iso3166.tab
+    ¦   ¦   ¦           leapseconds
+    ¦   ¦   ¦           northamerica
+    ¦   ¦   ¦           pacificnew
+    ¦   ¦   ¦           solar87
+    ¦   ¦   ¦           solar88
+    ¦   ¦   ¦           solar89
+    ¦   ¦   ¦           southamerica
+    ¦   ¦   ¦           systemv
+    ¦   ¦   ¦           yearistype.sh
+    ¦   ¦   ¦           zone.tab
+    ¦   ¦   ¦           
+    ¦   ¦   +---basic-options
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---basic-usage
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---canvas
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---categories
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---fill-types
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---image
+    ¦   ¦   ¦       hs-2004-27-a-large-web.jpg
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---interacting
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---log-scale
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---navigate
+    ¦   ¦   ¦       arrow-down.gif
+    ¦   ¦   ¦       arrow-left.gif
+    ¦   ¦   ¦       arrow-right.gif
+    ¦   ¦   ¦       arrow-up.gif
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---navigateTouch
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---percentiles
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---plot-legend
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---realtime
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---resize
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---selection
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---series-errorbars
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---series-pie
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---series-toggle
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---series-types
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---shared
+    ¦   ¦   ¦   +---jquery-ui
+    ¦   ¦   ¦           jquery-ui.min.css
+    ¦   ¦   ¦           jquery-ui.min.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---stacking
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---symbols
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---threshold
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---tracking
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---visitors
+    ¦   ¦   ¦       index.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---zooming
+    ¦   ¦           index.html
+    ¦   ¦           
+    ¦   +---lib
+    ¦   ¦       globalize.culture.en-US.js
+    ¦   ¦       globalize.js
+    ¦   ¦       jquery.event.drag.js
+    ¦   ¦       jquery.mousewheel.js
+    ¦   ¦       
+    ¦   +---source
+    ¦   ¦       jquery.canvaswrapper.js
+    ¦   ¦       jquery.colorhelpers.js
+    ¦   ¦       jquery.flot.axislabels.js
+    ¦   ¦       jquery.flot.browser.js
+    ¦   ¦       jquery.flot.categories.js
+    ¦   ¦       jquery.flot.composeImages.js
+    ¦   ¦       jquery.flot.crosshair.js
+    ¦   ¦       jquery.flot.drawSeries.js
+    ¦   ¦       jquery.flot.errorbars.js
+    ¦   ¦       jquery.flot.fillbetween.js
+    ¦   ¦       jquery.flot.flatdata.js
+    ¦   ¦       jquery.flot.hover.js
+    ¦   ¦       jquery.flot.image.js
+    ¦   ¦       jquery.flot.js
+    ¦   ¦       jquery.flot.legend.js
+    ¦   ¦       jquery.flot.logaxis.js
+    ¦   ¦       jquery.flot.navigate.js
+    ¦   ¦       jquery.flot.pie.js
+    ¦   ¦       jquery.flot.resize.js
+    ¦   ¦       jquery.flot.saturated.js
+    ¦   ¦       jquery.flot.selection.js
+    ¦   ¦       jquery.flot.stack.js
+    ¦   ¦       jquery.flot.symbol.js
+    ¦   ¦       jquery.flot.threshold.js
+    ¦   ¦       jquery.flot.time.js
+    ¦   ¦       jquery.flot.touch.js
+    ¦   ¦       jquery.flot.touchNavigate.js
+    ¦   ¦       jquery.flot.uiConstants.js
+    ¦   ¦       jquery.js
+    ¦   ¦       
+    ¦   +---tests
+    ¦           jquery.flot-drawSeries.Test.js
+    ¦           jquery.flot-precision.Test.js
+    ¦           jquery.flot.axislabels.Test.js
+    ¦           jquery.flot.canvaswrapper.Test.js
+    ¦           jquery.flot.colorhelpers.Test.js
+    ¦           jquery.flot.composeImages.Test.js
+    ¦           jquery.flot.errorbars.Test.js
+    ¦           jquery.flot.fillbetween.Test.js
+    ¦           jquery.flot.flatdata.Test.js
+    ¦           jquery.flot.hover.Test.js
+    ¦           jquery.flot.invertedaxis.Test.js
+    ¦           jquery.flot.largeNumbers.Test.js
+    ¦           jquery.flot.legend.Test.js
+    ¦           jquery.flot.logaxis.Test.js
+    ¦           jquery.flot.navigate-interaction.Test.js
+    ¦           jquery.flot.navigate.Test.js
+    ¦           jquery.flot.stack.Test.js
+    ¦           jquery.flot.symbol.Test.js
+    ¦           jquery.flot.Test.js
+    ¦           jquery.flot.time.Test.js
+    ¦           jquery.flot.touch.Test.js
+    ¦           jquery.flot.touchNavigate.Test.js
+    ¦           svgstyle.css
+    ¦           
+    +---flot-spline
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   
+    ¦   +---js
+    ¦           jquery.flot.spline.js
+    ¦           jquery.flot.spline.min.js
+    ¦           
+    +---flot.curvedlines
+    ¦       .bower.json
+    ¦       bower.json
+    ¦       curvedLines.js
+    ¦       
+    +---flot.orderbars
+    ¦   ¦   .bower.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---examples
+    ¦   ¦   ¦   index.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---js
+    ¦   ¦       ¦   main.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---flot
+    ¦   ¦       ¦       flot.js
+    ¦   ¦       ¦       stack.js
+    ¦   ¦       ¦       
+    ¦   ¦       +---vendor
+    ¦   ¦               jquery-1.9.1.min.js
+    ¦   ¦               
+    ¦   +---js
+    ¦           jquery.flot.orderBars.js
+    ¦           
+    +---font-awesome
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .npmignore
+    ¦   ¦   bower.json
+    ¦   ¦   HELP-US-OUT.txt
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       font-awesome.css
+    ¦   ¦       font-awesome.css.map
+    ¦   ¦       font-awesome.min.css
+    ¦   ¦       
+    ¦   +---fonts
+    ¦   ¦       fontawesome-webfont.eot
+    ¦   ¦       fontawesome-webfont.svg
+    ¦   ¦       fontawesome-webfont.ttf
+    ¦   ¦       fontawesome-webfont.woff
+    ¦   ¦       fontawesome-webfont.woff2
+    ¦   ¦       FontAwesome.otf
+    ¦   ¦       
+    ¦   +---less
+    ¦   ¦       animated.less
+    ¦   ¦       bordered-pulled.less
+    ¦   ¦       core.less
+    ¦   ¦       fixed-width.less
+    ¦   ¦       font-awesome.less
+    ¦   ¦       icons.less
+    ¦   ¦       larger.less
+    ¦   ¦       list.less
+    ¦   ¦       mixins.less
+    ¦   ¦       path.less
+    ¦   ¦       rotated-flipped.less
+    ¦   ¦       screen-reader.less
+    ¦   ¦       stacked.less
+    ¦   ¦       variables.less
+    ¦   ¦       
+    ¦   +---scss
+    ¦           font-awesome.scss
+    ¦           _animated.scss
+    ¦           _bordered-pulled.scss
+    ¦           _core.scss
+    ¦           _fixed-width.scss
+    ¦           _icons.scss
+    ¦           _larger.scss
+    ¦           _list.scss
+    ¦           _mixins.scss
+    ¦           _path.scss
+    ¦           _rotated-flipped.scss
+    ¦           _screen-reader.scss
+    ¦           _stacked.scss
+    ¦           _variables.scss
+    ¦           
+    +---fontawesome
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .npmignore
+    ¦   ¦   bower.json
+    ¦   ¦   HELP-US-OUT.txt
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       font-awesome.css
+    ¦   ¦       font-awesome.css.map
+    ¦   ¦       font-awesome.min.css
+    ¦   ¦       
+    ¦   +---fonts
+    ¦   ¦       fontawesome-webfont.eot
+    ¦   ¦       fontawesome-webfont.svg
+    ¦   ¦       fontawesome-webfont.ttf
+    ¦   ¦       fontawesome-webfont.woff
+    ¦   ¦       fontawesome-webfont.woff2
+    ¦   ¦       FontAwesome.otf
+    ¦   ¦       
+    ¦   +---less
+    ¦   ¦       animated.less
+    ¦   ¦       bordered-pulled.less
+    ¦   ¦       core.less
+    ¦   ¦       fixed-width.less
+    ¦   ¦       font-awesome.less
+    ¦   ¦       icons.less
+    ¦   ¦       larger.less
+    ¦   ¦       list.less
+    ¦   ¦       mixins.less
+    ¦   ¦       path.less
+    ¦   ¦       rotated-flipped.less
+    ¦   ¦       stacked.less
+    ¦   ¦       variables.less
+    ¦   ¦       
+    ¦   +---scss
+    ¦           font-awesome.scss
+    ¦           _animated.scss
+    ¦           _bordered-pulled.scss
+    ¦           _core.scss
+    ¦           _fixed-width.scss
+    ¦           _icons.scss
+    ¦           _larger.scss
+    ¦           _list.scss
+    ¦           _mixins.scss
+    ¦           _path.scss
+    ¦           _rotated-flipped.scss
+    ¦           _stacked.scss
+    ¦           _variables.scss
+    ¦           
+    +---fullcalendar
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   LICENSE.txt
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦       ¦   fullcalendar.css
+    ¦       ¦   fullcalendar.js
+    ¦       ¦   fullcalendar.min.css
+    ¦       ¦   fullcalendar.min.js
+    ¦       ¦   fullcalendar.print.css
+    ¦       ¦   gcal.js
+    ¦       ¦   lang-all.js
+    ¦       ¦   
+    ¦       +---lang
+    ¦               ar-ma.js
+    ¦               ar-sa.js
+    ¦               ar-tn.js
+    ¦               ar.js
+    ¦               bg.js
+    ¦               ca.js
+    ¦               cs.js
+    ¦               da.js
+    ¦               de-at.js
+    ¦               de.js
+    ¦               el.js
+    ¦               en-au.js
+    ¦               en-ca.js
+    ¦               en-gb.js
+    ¦               en-ie.js
+    ¦               en-nz.js
+    ¦               es.js
+    ¦               fa.js
+    ¦               fi.js
+    ¦               fr-ca.js
+    ¦               fr-ch.js
+    ¦               fr.js
+    ¦               he.js
+    ¦               hi.js
+    ¦               hr.js
+    ¦               hu.js
+    ¦               id.js
+    ¦               is.js
+    ¦               it.js
+    ¦               ja.js
+    ¦               ko.js
+    ¦               lt.js
+    ¦               lv.js
+    ¦               nb.js
+    ¦               nl.js
+    ¦               pl.js
+    ¦               pt-br.js
+    ¦               pt.js
+    ¦               ro.js
+    ¦               ru.js
+    ¦               sk.js
+    ¦               sl.js
+    ¦               sr-cyrl.js
+    ¦               sr.js
+    ¦               sv.js
+    ¦               th.js
+    ¦               tr.js
+    ¦               uk.js
+    ¦               vi.js
+    ¦               zh-cn.js
+    ¦               zh-tw.js
+    ¦               
+    +---gauge.js
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   favicon.ico
+    ¦   ¦   index.html
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---assets
+    ¦   ¦   ¦   arrow.gif
+    ¦   ¦   ¦   bg.png
+    ¦   ¦   ¦   bootstrap.min.css
+    ¦   ¦   ¦   browsers.png
+    ¦   ¦   ¦   cross.gif
+    ¦   ¦   ¦   crosshair.gif
+    ¦   ¦   ¦   excanvas.compiled.js
+    ¦   ¦   ¦   github.gif
+    ¦   ¦   ¦   hs.png
+    ¦   ¦   ¦   hv.png
+    ¦   ¦   ¦   jscolor.js
+    ¦   ¦   ¦   main.css
+    ¦   ¦   ¦   prettify.css
+    ¦   ¦   ¦   prettify.js
+    ¦   ¦   ¦   preview.jpg
+    ¦   ¦   ¦   ribbon.png
+    ¦   ¦   ¦   strike.png
+    ¦   ¦   ¦   
+    ¦   ¦   +---fd-slider
+    ¦   ¦           fd-slider-tooltip.css
+    ¦   ¦           fd-slider.css
+    ¦   ¦           fd-slider.js
+    ¦   ¦           
+    ¦   +---dist
+    ¦           gauge.coffee
+    ¦           gauge.js
+    ¦           gauge.min.js
+    ¦           
+    +---google-code-prettify
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGES.html
+    ¦   ¦   COPYING
+    ¦   ¦   README-zh-Hans.html
+    ¦   ¦   README.html
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---bin
+    ¦   ¦       prettify.min.css
+    ¦   ¦       prettify.min.js
+    ¦   ¦       run_prettify.min.js
+    ¦   ¦       
+    ¦   +---examples
+    ¦   ¦       quine.html
+    ¦   ¦       
+    ¦   +---src
+    ¦   ¦       lang-apollo.js
+    ¦   ¦       lang-basic.js
+    ¦   ¦       lang-clj.js
+    ¦   ¦       lang-css.js
+    ¦   ¦       lang-dart.js
+    ¦   ¦       lang-erlang.js
+    ¦   ¦       lang-go.js
+    ¦   ¦       lang-hs.js
+    ¦   ¦       lang-lisp.js
+    ¦   ¦       lang-llvm.js
+    ¦   ¦       lang-lua.js
+    ¦   ¦       lang-matlab.js
+    ¦   ¦       lang-ml.js
+    ¦   ¦       lang-mumps.js
+    ¦   ¦       lang-n.js
+    ¦   ¦       lang-pascal.js
+    ¦   ¦       lang-proto.js
+    ¦   ¦       lang-r.js
+    ¦   ¦       lang-rd.js
+    ¦   ¦       lang-scala.js
+    ¦   ¦       lang-sql.js
+    ¦   ¦       lang-tcl.js
+    ¦   ¦       lang-tex.js
+    ¦   ¦       lang-vb.js
+    ¦   ¦       lang-vhdl.js
+    ¦   ¦       lang-wiki.js
+    ¦   ¦       lang-xq.js
+    ¦   ¦       lang-yaml.js
+    ¦   ¦       prettify.css
+    ¦   ¦       prettify.js
+    ¦   ¦       run_prettify.js
+    ¦   ¦       
+    ¦   +---styles
+    ¦           demo.html
+    ¦           desert.css
+    ¦           doxy.css
+    ¦           index.html
+    ¦           sons-of-obsidian.css
+    ¦           sunburst.css
+    ¦           
+    +---iCheck
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   icheck.jquery.json
+    ¦   ¦   icheck.js
+    ¦   ¦   icheck.min.js
+    ¦   ¦   
+    ¦   +---skins
+    ¦       ¦   all.css
+    ¦       ¦   
+    ¦       +---flat
+    ¦       ¦       aero.css
+    ¦       ¦       aero.png
+    ¦       ¦       aero@2x.png
+    ¦       ¦       blue.css
+    ¦       ¦       blue.png
+    ¦       ¦       blue@2x.png
+    ¦       ¦       flat.css
+    ¦       ¦       flat.png
+    ¦       ¦       flat@2x.png
+    ¦       ¦       green.css
+    ¦       ¦       green.png
+    ¦       ¦       green@2x.png
+    ¦       ¦       grey.css
+    ¦       ¦       grey.png
+    ¦       ¦       grey@2x.png
+    ¦       ¦       orange.css
+    ¦       ¦       orange.png
+    ¦       ¦       orange@2x.png
+    ¦       ¦       pink.css
+    ¦       ¦       pink.png
+    ¦       ¦       pink@2x.png
+    ¦       ¦       purple.css
+    ¦       ¦       purple.png
+    ¦       ¦       purple@2x.png
+    ¦       ¦       red.css
+    ¦       ¦       red.png
+    ¦       ¦       red@2x.png
+    ¦       ¦       yellow.css
+    ¦       ¦       yellow.png
+    ¦       ¦       yellow@2x.png
+    ¦       ¦       _all.css
+    ¦       ¦       
+    ¦       +---futurico
+    ¦       ¦       futurico.css
+    ¦       ¦       futurico.png
+    ¦       ¦       futurico@2x.png
+    ¦       ¦       
+    ¦       +---line
+    ¦       ¦       aero.css
+    ¦       ¦       blue.css
+    ¦       ¦       green.css
+    ¦       ¦       grey.css
+    ¦       ¦       line.css
+    ¦       ¦       line.png
+    ¦       ¦       line@2x.png
+    ¦       ¦       orange.css
+    ¦       ¦       pink.css
+    ¦       ¦       purple.css
+    ¦       ¦       red.css
+    ¦       ¦       yellow.css
+    ¦       ¦       _all.css
+    ¦       ¦       
+    ¦       +---minimal
+    ¦       ¦       aero.css
+    ¦       ¦       aero.png
+    ¦       ¦       aero@2x.png
+    ¦       ¦       blue.css
+    ¦       ¦       blue.png
+    ¦       ¦       blue@2x.png
+    ¦       ¦       green.css
+    ¦       ¦       green.png
+    ¦       ¦       green@2x.png
+    ¦       ¦       grey.css
+    ¦       ¦       grey.png
+    ¦       ¦       grey@2x.png
+    ¦       ¦       minimal.css
+    ¦       ¦       minimal.png
+    ¦       ¦       minimal@2x.png
+    ¦       ¦       orange.css
+    ¦       ¦       orange.png
+    ¦       ¦       orange@2x.png
+    ¦       ¦       pink.css
+    ¦       ¦       pink.png
+    ¦       ¦       pink@2x.png
+    ¦       ¦       purple.css
+    ¦       ¦       purple.png
+    ¦       ¦       purple@2x.png
+    ¦       ¦       red.css
+    ¦       ¦       red.png
+    ¦       ¦       red@2x.png
+    ¦       ¦       yellow.css
+    ¦       ¦       yellow.png
+    ¦       ¦       yellow@2x.png
+    ¦       ¦       _all.css
+    ¦       ¦       
+    ¦       +---polaris
+    ¦       ¦       polaris.css
+    ¦       ¦       polaris.png
+    ¦       ¦       polaris@2x.png
+    ¦       ¦       
+    ¦       +---square
+    ¦               aero.css
+    ¦               aero.png
+    ¦               aero@2x.png
+    ¦               blue.css
+    ¦               blue.png
+    ¦               blue@2x.png
+    ¦               green.css
+    ¦               green.png
+    ¦               green@2x.png
+    ¦               grey.css
+    ¦               grey.png
+    ¦               grey@2x.png
+    ¦               orange.css
+    ¦               orange.png
+    ¦               orange@2x.png
+    ¦               pink.css
+    ¦               pink.png
+    ¦               pink@2x.png
+    ¦               purple.css
+    ¦               purple.png
+    ¦               purple@2x.png
+    ¦               red.css
+    ¦               red.png
+    ¦               red@2x.png
+    ¦               square.css
+    ¦               square.png
+    ¦               square@2x.png
+    ¦               yellow.css
+    ¦               yellow.png
+    ¦               yellow@2x.png
+    ¦               _all.css
+    ¦               
+    +---ion.rangeSlider
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .npmignore
+    ¦   ¦   bower.json
+    ¦   ¦   history.md
+    ¦   ¦   index.md
+    ¦   ¦   package.json
+    ¦   ¦   readme.md
+    ¦   ¦   readme.ru.md
+    ¦   ¦   
+    ¦   +---css
+    ¦   ¦       ion.rangeSlider.css
+    ¦   ¦       ion.rangeSlider.skinFlat.css
+    ¦   ¦       ion.rangeSlider.skinHTML5.css
+    ¦   ¦       ion.rangeSlider.skinModern.css
+    ¦   ¦       ion.rangeSlider.skinNice.css
+    ¦   ¦       ion.rangeSlider.skinSimple.css
+    ¦   ¦       normalize.css
+    ¦   ¦       
+    ¦   +---img
+    ¦   ¦       sprite-skin-flat.png
+    ¦   ¦       sprite-skin-modern.png
+    ¦   ¦       sprite-skin-nice.png
+    ¦   ¦       sprite-skin-simple.png
+    ¦   ¦       
+    ¦   +---js
+    ¦   ¦       ion.rangeSlider.js
+    ¦   ¦       ion.rangeSlider.min.js
+    ¦   ¦       
+    ¦   +---_tmp
+    ¦           logo-ion-range-slider.png
+    ¦           
+    +---jquery
+    ¦   ¦   .bower.json
+    ¦   ¦   AUTHORS.txt
+    ¦   ¦   bower.json
+    ¦   ¦   LICENSE.txt
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jquery.js
+    ¦   ¦       jquery.min.js
+    ¦   ¦       jquery.min.map
+    ¦   ¦       
+    ¦   +---external
+    ¦   ¦   +---sizzle
+    ¦   ¦       ¦   LICENSE.txt
+    ¦   ¦       ¦   
+    ¦   ¦       +---dist
+    ¦   ¦               sizzle.js
+    ¦   ¦               sizzle.min.js
+    ¦   ¦               sizzle.min.map
+    ¦   ¦               
+    ¦   +---src
+    ¦       ¦   .jshintrc
+    ¦       ¦   ajax.js
+    ¦       ¦   attributes.js
+    ¦       ¦   callbacks.js
+    ¦       ¦   core.js
+    ¦       ¦   css.js
+    ¦       ¦   data.js
+    ¦       ¦   deferred.js
+    ¦       ¦   deprecated.js
+    ¦       ¦   dimensions.js
+    ¦       ¦   effects.js
+    ¦       ¦   event.js
+    ¦       ¦   intro.js
+    ¦       ¦   jquery.js
+    ¦       ¦   manipulation.js
+    ¦       ¦   offset.js
+    ¦       ¦   outro.js
+    ¦       ¦   queue.js
+    ¦       ¦   selector-native.js
+    ¦       ¦   selector-sizzle.js
+    ¦       ¦   selector.js
+    ¦       ¦   serialize.js
+    ¦       ¦   traversing.js
+    ¦       ¦   wrap.js
+    ¦       ¦   
+    ¦       +---ajax
+    ¦       ¦   ¦   jsonp.js
+    ¦       ¦   ¦   load.js
+    ¦       ¦   ¦   parseJSON.js
+    ¦       ¦   ¦   parseXML.js
+    ¦       ¦   ¦   script.js
+    ¦       ¦   ¦   xhr.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           location.js
+    ¦       ¦           nonce.js
+    ¦       ¦           rquery.js
+    ¦       ¦           
+    ¦       +---attributes
+    ¦       ¦       attr.js
+    ¦       ¦       classes.js
+    ¦       ¦       prop.js
+    ¦       ¦       support.js
+    ¦       ¦       val.js
+    ¦       ¦       
+    ¦       +---core
+    ¦       ¦   ¦   access.js
+    ¦       ¦   ¦   init.js
+    ¦       ¦   ¦   parseHTML.js
+    ¦       ¦   ¦   ready.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           rsingleTag.js
+    ¦       ¦           
+    ¦       +---css
+    ¦       ¦   ¦   addGetHookIf.js
+    ¦       ¦   ¦   adjustCSS.js
+    ¦       ¦   ¦   curCSS.js
+    ¦       ¦   ¦   defaultDisplay.js
+    ¦       ¦   ¦   hiddenVisibleSelectors.js
+    ¦       ¦   ¦   showHide.js
+    ¦       ¦   ¦   support.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           cssExpand.js
+    ¦       ¦           getStyles.js
+    ¦       ¦           isHidden.js
+    ¦       ¦           rmargin.js
+    ¦       ¦           rnumnonpx.js
+    ¦       ¦           swap.js
+    ¦       ¦           
+    ¦       +---data
+    ¦       ¦   ¦   Data.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           acceptData.js
+    ¦       ¦           dataPriv.js
+    ¦       ¦           dataUser.js
+    ¦       ¦           
+    ¦       +---effects
+    ¦       ¦       animatedSelector.js
+    ¦       ¦       Tween.js
+    ¦       ¦       
+    ¦       +---event
+    ¦       ¦       ajax.js
+    ¦       ¦       alias.js
+    ¦       ¦       focusin.js
+    ¦       ¦       support.js
+    ¦       ¦       trigger.js
+    ¦       ¦       
+    ¦       +---exports
+    ¦       ¦       amd.js
+    ¦       ¦       global.js
+    ¦       ¦       
+    ¦       +---manipulation
+    ¦       ¦   ¦   buildFragment.js
+    ¦       ¦   ¦   getAll.js
+    ¦       ¦   ¦   setGlobalEval.js
+    ¦       ¦   ¦   support.js
+    ¦       ¦   ¦   wrapMap.js
+    ¦       ¦   ¦   _evalUrl.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           rcheckableType.js
+    ¦       ¦           rscriptType.js
+    ¦       ¦           rtagName.js
+    ¦       ¦           
+    ¦       +---queue
+    ¦       ¦       delay.js
+    ¦       ¦       
+    ¦       +---traversing
+    ¦       ¦   ¦   findFilter.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---var
+    ¦       ¦           dir.js
+    ¦       ¦           rneedsContext.js
+    ¦       ¦           siblings.js
+    ¦       ¦           
+    ¦       +---var
+    ¦               arr.js
+    ¦               class2type.js
+    ¦               concat.js
+    ¦               document.js
+    ¦               documentElement.js
+    ¦               hasOwn.js
+    ¦               indexOf.js
+    ¦               pnum.js
+    ¦               push.js
+    ¦               rcssNum.js
+    ¦               rnotwhite.js
+    ¦               slice.js
+    ¦               support.js
+    ¦               toString.js
+    ¦               
+    +---jquery-knob
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   bower.json
+    ¦   ¦   excanvas.js
+    ¦   ¦   index.html
+    ¦   ¦   knob.jquery.json
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   secretplan.jpg
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jquery.knob.min.js
+    ¦   ¦       
+    ¦   +---js
+    ¦           jquery.knob.js
+    ¦           
+    +---jquery-mousewheel
+    ¦       .bower.json
+    ¦       bower.json
+    ¦       ChangeLog.md
+    ¦       jquery.mousewheel.js
+    ¦       jquery.mousewheel.min.js
+    ¦       LICENSE.txt
+    ¦       README.md
+    ¦       
+    +---jQuery-Smart-Wizard
+    ¦   ¦   .bower.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---images
+    ¦   ¦       loader.gif
+    ¦   ¦       
+    ¦   +---js
+    ¦   ¦       jquery-1.4.2.min.js
+    ¦   ¦       jquery.smartWizard.js
+    ¦   ¦       
+    ¦   +---styles
+    ¦           demo_style.css
+    ¦           smart_wizard.css
+    ¦           smart_wizard_vertical.css
+    ¦           
+    +---jquery-sparkline
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   Changelog.txt
+    ¦   ¦   Makefile
+    ¦   ¦   minheader.txt
+    ¦   ¦   README.md
+    ¦   ¦   sparkline.jquery.json
+    ¦   ¦   version.txt
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jquery.sparkline.js
+    ¦   ¦       jquery.sparkline.min.js
+    ¦   ¦       
+    ¦   +---src
+    ¦           base.js
+    ¦           chart-bar.js
+    ¦           chart-box.js
+    ¦           chart-bullet.js
+    ¦           chart-discrete.js
+    ¦           chart-line.js
+    ¦           chart-pie.js
+    ¦           chart-tristate.js
+    ¦           defaults.js
+    ¦           footer.js
+    ¦           header.js
+    ¦           interact.js
+    ¦           rangemap.js
+    ¦           simpledraw.js
+    ¦           utils.js
+    ¦           vcanvas-base.js
+    ¦           vcanvas-canvas.js
+    ¦           vcanvas-vml.js
+    ¦           
+    +---jquery.easy-pie-chart
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .travis.yml
+    ¦   ¦   bower.json
+    ¦   ¦   changelog.md
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   karma.conf.coffee
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       angular.easypiechart.js
+    ¦   ¦       angular.easypiechart.min.js
+    ¦   ¦       easypiechart.js
+    ¦   ¦       easypiechart.min.js
+    ¦   ¦       jquery.easypiechart.js
+    ¦   ¦       jquery.easypiechart.min.js
+    ¦   ¦       
+    ¦   +---docs
+    ¦   ¦       bagdes.md
+    ¦   ¦       browser-support.md
+    ¦   ¦       callbacks.md
+    ¦   ¦       credits.md
+    ¦   ¦       features.md
+    ¦   ¦       get-started.md
+    ¦   ¦       options.md
+    ¦   ¦       plugin-api.md
+    ¦   ¦       README.tmpl.md
+    ¦   ¦       test.md
+    ¦   ¦       
+    ¦   +---src
+    ¦   ¦   ¦   angular.directive.js
+    ¦   ¦   ¦   easypiechart.js
+    ¦   ¦   ¦   jquery.plugin.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---renderer
+    ¦   ¦           canvas.js
+    ¦   ¦           
+    ¦   +---test
+    ¦       +---polyfills
+    ¦       ¦       bind.js
+    ¦       ¦       
+    ¦       +---unit
+    ¦               angular.directive.js
+    ¦               jquery.js
+    ¦               
+    +---jquery.hotkeys
+    ¦       .bower.json
+    ¦       bower.json
+    ¦       jquery.hotkeys.js
+    ¦       README.md
+    ¦       
+    +---jquery.inputmask
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦   ¦   jquery.inputmask.bundle.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---inputmask
+    ¦   ¦   ¦       inputmask.date.extensions.js
+    ¦   ¦   ¦       inputmask.dependencyLib.jquery.js
+    ¦   ¦   ¦       inputmask.extensions.js
+    ¦   ¦   ¦       inputmask.js
+    ¦   ¦   ¦       inputmask.numeric.extensions.js
+    ¦   ¦   ¦       inputmask.phone.extensions.js
+    ¦   ¦   ¦       inputmask.regex.extensions.js
+    ¦   ¦   ¦       jquery.inputmask.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---min
+    ¦   ¦       ¦   jquery.inputmask.bundle.min.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---inputmask
+    ¦   ¦               inputmask.date.extensions.min.js
+    ¦   ¦               inputmask.dependencyLib.jquery.min.js
+    ¦   ¦               inputmask.extensions.min.js
+    ¦   ¦               inputmask.min.js
+    ¦   ¦               inputmask.numeric.extensions.min.js
+    ¦   ¦               inputmask.phone.extensions.min.js
+    ¦   ¦               inputmask.regex.extensions.min.js
+    ¦   ¦               jquery.inputmask.min.js
+    ¦   ¦               
+    ¦   +---extra
+    ¦       +---bindings
+    ¦       ¦       inputmask.binding.js
+    ¦       ¦       
+    ¦       +---dependencyLibs
+    ¦       ¦       inputmask.dependencyLib.jqlite.js
+    ¦       ¦       inputmask.dependencyLib.js
+    ¦       ¦       
+    ¦       +---phone-codes
+    ¦               phone-be.js
+    ¦               phone-codes.js
+    ¦               phone-nl.js
+    ¦               phone-ru.js
+    ¦               phone-uk.js
+    ¦               
+    +---jquery.tagsinput
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jquery.tagsinput.min.css
+    ¦   ¦       
+    ¦   +---grunt-tasks
+    ¦   ¦   ¦   assets_production.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---options
+    ¦   ¦           cssmin.js
+    ¦   ¦           uglify.js
+    ¦   ¦           
+    ¦   +---src
+    ¦           jquery.tagsinput.css
+    ¦           jquery.tagsinput.js
+    ¦           
+    +---jqvmap
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   gruntfile.js
+    ¦   ¦   LICENSE
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   REGIONS.md
+    ¦   ¦   
+    ¦   +---create
+    ¦   ¦   ¦   jqvmap.py
+    ¦   ¦   ¦   README.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---config
+    ¦   ¦           continent.json
+    ¦   ¦           new-york.json
+    ¦   ¦           syria.json
+    ¦   ¦           
+    ¦   +---dist
+    ¦   ¦   ¦   jquery.vmap.js
+    ¦   ¦   ¦   jquery.vmap.min.js
+    ¦   ¦   ¦   jqvmap.css
+    ¦   ¦   ¦   jqvmap.min.css
+    ¦   ¦   ¦   
+    ¦   ¦   +---maps
+    ¦   ¦       ¦   jquery.vmap.algeria.js
+    ¦   ¦       ¦   jquery.vmap.argentina.js
+    ¦   ¦       ¦   jquery.vmap.brazil.js
+    ¦   ¦       ¦   jquery.vmap.canada.js
+    ¦   ¦       ¦   jquery.vmap.europe.js
+    ¦   ¦       ¦   jquery.vmap.france.js
+    ¦   ¦       ¦   jquery.vmap.germany.js
+    ¦   ¦       ¦   jquery.vmap.greece.js
+    ¦   ¦       ¦   jquery.vmap.iran.js
+    ¦   ¦       ¦   jquery.vmap.iraq.js
+    ¦   ¦       ¦   jquery.vmap.russia.js
+    ¦   ¦       ¦   jquery.vmap.tunisia.js
+    ¦   ¦       ¦   jquery.vmap.turkey.js
+    ¦   ¦       ¦   jquery.vmap.usa.js
+    ¦   ¦       ¦   jquery.vmap.world.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---continents
+    ¦   ¦               jquery.vmap.africa.js
+    ¦   ¦               jquery.vmap.asia.js
+    ¦   ¦               jquery.vmap.australia.js
+    ¦   ¦               jquery.vmap.europe.js
+    ¦   ¦               jquery.vmap.north-america.js
+    ¦   ¦               jquery.vmap.south-america.js
+    ¦   ¦               
+    ¦   +---examples
+    ¦   ¦   ¦   algeria.html
+    ¦   ¦   ¦   argentina.html
+    ¦   ¦   ¦   brazil.html
+    ¦   ¦   ¦   continents.html
+    ¦   ¦   ¦   europe.html
+    ¦   ¦   ¦   france.html
+    ¦   ¦   ¦   germany.html
+    ¦   ¦   ¦   greece.html
+    ¦   ¦   ¦   inactive_regions.html
+    ¦   ¦   ¦   iran.html
+    ¦   ¦   ¦   iraq.html
+    ¦   ¦   ¦   labels.html
+    ¦   ¦   ¦   mobile.html
+    ¦   ¦   ¦   multi.html
+    ¦   ¦   ¦   pins.html
+    ¦   ¦   ¦   pins_custom.html
+    ¦   ¦   ¦   responsive.html
+    ¦   ¦   ¦   russia.html
+    ¦   ¦   ¦   touch_detect.html
+    ¦   ¦   ¦   tunisia.html
+    ¦   ¦   ¦   turkey.html
+    ¦   ¦   ¦   usa.html
+    ¦   ¦   ¦   world.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---images
+    ¦   ¦   ¦   ¦   background.png
+    ¦   ¦   ¦   ¦   flag.png
+    ¦   ¦   ¦   ¦   globe.png
+    ¦   ¦   ¦   ¦   thumb.jpg
+    ¦   ¦   ¦   ¦   tip.png
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---marker
+    ¦   ¦   ¦           black.png
+    ¦   ¦   ¦           blue.png
+    ¦   ¦   ¦           green.png
+    ¦   ¦   ¦           grey.png
+    ¦   ¦   ¦           orange.png
+    ¦   ¦   ¦           purple.png
+    ¦   ¦   ¦           red.png
+    ¦   ¦   ¦           white.png
+    ¦   ¦   ¦           yellow.png
+    ¦   ¦   ¦           
+    ¦   ¦   +---js
+    ¦   ¦           jquery.vmap.sampledata.js
+    ¦   ¦           
+    ¦   +---grunt
+    ¦   ¦       bump.js
+    ¦   ¦       changelog.js
+    ¦   ¦       clean.js
+    ¦   ¦       concat.js
+    ¦   ¦       index.js
+    ¦   ¦       qunit.js
+    ¦   ¦       shell.js
+    ¦   ¦       uglify.js
+    ¦   ¦       
+    ¦   +---src
+    ¦       ¦   Base.js
+    ¦       ¦   ColorScale.js
+    ¦       ¦   JQVMap.js
+    ¦       ¦   VectorCanvas.js
+    ¦       ¦   
+    ¦       +---ColorScale
+    ¦       ¦       arrayToRgb.js
+    ¦       ¦       getColor.js
+    ¦       ¦       rgbToArray.js
+    ¦       ¦       setColors.js
+    ¦       ¦       setMax.js
+    ¦       ¦       setMin.js
+    ¦       ¦       setNormalizeFunction.js
+    ¦       ¦       vectorAdd.js
+    ¦       ¦       vectorLength.js
+    ¦       ¦       vectorMult.js
+    ¦       ¦       vectorSubtract.js
+    ¦       ¦       vectorToNum.js
+    ¦       ¦       
+    ¦       +---JQVMap
+    ¦       ¦       applyTransform.js
+    ¦       ¦       bindZoomButtons.js
+    ¦       ¦       deselect.js
+    ¦       ¦       getCountryId.js
+    ¦       ¦       getPin.js
+    ¦       ¦       getPinId.js
+    ¦       ¦       getPins.js
+    ¦       ¦       highlight.js
+    ¦       ¦       isSelected.js
+    ¦       ¦       makeDraggable.js
+    ¦       ¦       placePins.js
+    ¦       ¦       positionPins.js
+    ¦       ¦       removePin.js
+    ¦       ¦       removePins.js
+    ¦       ¦       reset.js
+    ¦       ¦       resize.js
+    ¦       ¦       select.js
+    ¦       ¦       selectIndex.js
+    ¦       ¦       setBackgroundColor.js
+    ¦       ¦       setColors.js
+    ¦       ¦       setNormalizeFunction.js
+    ¦       ¦       setScale.js
+    ¦       ¦       setScaleColors.js
+    ¦       ¦       setValues.js
+    ¦       ¦       unhighlight.js
+    ¦       ¦       zoomIn.js
+    ¦       ¦       zoomOut.js
+    ¦       ¦       
+    ¦       +---VectorCanvas
+    ¦               applyTransformParams.js
+    ¦               createGroup.js
+    ¦               createPath.js
+    ¦               pathSvgToVml.js
+    ¦               setSize.js
+    ¦               
+    +---jszip
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGES.md
+    ¦   ¦   component.json
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   index.html
+    ¦   ¦   LICENSE.markdown
+    ¦   ¦   package.json
+    ¦   ¦   README.markdown
+    ¦   ¦   _config.yml
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       jszip.js
+    ¦   ¦       jszip.min.js
+    ¦   ¦       
+    ¦   +---docs
+    ¦   ¦       APPNOTE.TXT
+    ¦   ¦       references.txt
+    ¦   ¦       ZIP spec.txt
+    ¦   ¦       
+    ¦   +---documentation
+    ¦   ¦   ¦   api_jszip.md
+    ¦   ¦   ¦   api_zipobject.md
+    ¦   ¦   ¦   contributing.md
+    ¦   ¦   ¦   examples.md
+    ¦   ¦   ¦   faq.md
+    ¦   ¦   ¦   limitations.md
+    ¦   ¦   ¦   upgrade_guide.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---api_jszip
+    ¦   ¦   ¦       constructor.md
+    ¦   ¦   ¦       constructor_load.md
+    ¦   ¦   ¦       file_data.md
+    ¦   ¦   ¦       file_name.md
+    ¦   ¦   ¦       file_regex.md
+    ¦   ¦   ¦       filter.md
+    ¦   ¦   ¦       folder_data.md
+    ¦   ¦   ¦       folder_regex.md
+    ¦   ¦   ¦       generate.md
+    ¦   ¦   ¦       load.md
+    ¦   ¦   ¦       remove.md
+    ¦   ¦   ¦       support.md
+    ¦   ¦   ¦       
+    ¦   ¦   +---css
+    ¦   ¦   ¦       main.css
+    ¦   ¦   ¦       pygments.css
+    ¦   ¦   ¦       
+    ¦   ¦   +---examples
+    ¦   ¦   ¦       download-zip-file.html
+    ¦   ¦   ¦       downloader.html
+    ¦   ¦   ¦       downloader.js
+    ¦   ¦   ¦       get-binary-files-ajax.html
+    ¦   ¦   ¦       read-local-file-api.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---howto
+    ¦   ¦   ¦       read_zip.md
+    ¦   ¦   ¦       write_zip.md
+    ¦   ¦   ¦       
+    ¦   ¦   +---_layouts
+    ¦   ¦           default.html
+    ¦   ¦           
+    ¦   +---lib
+    ¦   ¦       arrayReader.js
+    ¦   ¦       base64.js
+    ¦   ¦       compressedObject.js
+    ¦   ¦       compressions.js
+    ¦   ¦       crc32.js
+    ¦   ¦       dataReader.js
+    ¦   ¦       defaults.js
+    ¦   ¦       deprecatedPublicUtils.js
+    ¦   ¦       flate.js
+    ¦   ¦       index.js
+    ¦   ¦       license_header.js
+    ¦   ¦       load.js
+    ¦   ¦       nodeBuffer.js
+    ¦   ¦       nodeBufferReader.js
+    ¦   ¦       object.js
+    ¦   ¦       signature.js
+    ¦   ¦       stringReader.js
+    ¦   ¦       stringWriter.js
+    ¦   ¦       support.js
+    ¦   ¦       uint8ArrayReader.js
+    ¦   ¦       uint8ArrayWriter.js
+    ¦   ¦       utf8.js
+    ¦   ¦       utils.js
+    ¦   ¦       zipEntries.js
+    ¦   ¦       zipEntry.js
+    ¦   ¦       
+    ¦   +---vendor
+    ¦           FileSaver.js
+    ¦           
+    +---malihu-custom-scrollbar-plugin
+    ¦       .bower.json
+    ¦       bower.json
+    ¦       jquery.mCustomScrollbar.concat.min.js
+    ¦       jquery.mCustomScrollbar.css
+    ¦       jquery.mCustomScrollbar.js
+    ¦       jquery.mCustomScrollbar.min.css
+    ¦       mCSB_buttons.png
+    ¦       
+    +---mjolnic-bootstrap-colorpicker
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   LICENSE
+    ¦   ¦   README.md
+    ¦   ¦   serve.js
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦   +---css
+    ¦   ¦   ¦       bootstrap-colorpicker.css
+    ¦   ¦   ¦       bootstrap-colorpicker.css.map
+    ¦   ¦   ¦       bootstrap-colorpicker.min.css
+    ¦   ¦   ¦       bootstrap-colorpicker.min.css.map
+    ¦   ¦   ¦       
+    ¦   ¦   +---img
+    ¦   ¦   ¦   +---bootstrap-colorpicker
+    ¦   ¦   ¦           alpha-horizontal.png
+    ¦   ¦   ¦           alpha.png
+    ¦   ¦   ¦           hue-horizontal.png
+    ¦   ¦   ¦           hue.png
+    ¦   ¦   ¦           saturation.png
+    ¦   ¦   ¦           
+    ¦   ¦   +---js
+    ¦   ¦           bootstrap-colorpicker.js
+    ¦   ¦           bootstrap-colorpicker.min.js
+    ¦   ¦           
+    ¦   +---docs
+    ¦   ¦   ¦   layout.hbs
+    ¦   ¦   ¦   
+    ¦   ¦   +---assets
+    ¦   ¦   ¦       main.css
+    ¦   ¦   ¦       
+    ¦   ¦   +---helpers
+    ¦   ¦   ¦   +---code
+    ¦   ¦   ¦           index.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---includes
+    ¦   ¦   ¦   ¦   api.hbs
+    ¦   ¦   ¦   ¦   example.hbs
+    ¦   ¦   ¦   ¦   examples.hbs
+    ¦   ¦   ¦   ¦   social.hbs
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---examples
+    ¦   ¦   ¦           01_basic.hbs
+    ¦   ¦   ¦           02_component.hbs
+    ¦   ¦   ¦           03_component_options.hbs
+    ¦   ¦   ¦           04_events.hbs
+    ¦   ¦   ¦           05_transparent.hbs
+    ¦   ¦   ¦           06_horizontal.hbs
+    ¦   ¦   ¦           07_inline.hbs
+    ¦   ¦   ¦           08_palette.hbs
+    ¦   ¦   ¦           09_size.hbs
+    ¦   ¦   ¦           10_disabled.hbs
+    ¦   ¦   ¦           11_modal.hbs
+    ¦   ¦   ¦           
+    ¦   ¦   +---pages
+    ¦   ¦           index.hbs
+    ¦   ¦           
+    ¦   +---src
+    ¦       +---js
+    ¦       ¦       colorpicker-color.js
+    ¦       ¦       colorpicker-component.js
+    ¦       ¦       colorpicker-defaults.js
+    ¦       ¦       colorpicker-plugin-wrapper.js
+    ¦       ¦       
+    ¦       +---less
+    ¦               colorpicker.less
+    ¦               
+    +---mocha
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   History.md
+    ¦   ¦   LICENSE
+    ¦   ¦   mocha.css
+    ¦   ¦   mocha.js
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---media
+    ¦           logo.svg
+    ¦           
+    +---moment
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   LICENSE
+    ¦   ¦   moment.d.ts
+    ¦   ¦   moment.js
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---locale
+    ¦   ¦       af.js
+    ¦   ¦       ar-ma.js
+    ¦   ¦       ar-sa.js
+    ¦   ¦       ar-tn.js
+    ¦   ¦       ar.js
+    ¦   ¦       az.js
+    ¦   ¦       be.js
+    ¦   ¦       bg.js
+    ¦   ¦       bn.js
+    ¦   ¦       bo.js
+    ¦   ¦       br.js
+    ¦   ¦       bs.js
+    ¦   ¦       ca.js
+    ¦   ¦       cs.js
+    ¦   ¦       cv.js
+    ¦   ¦       cy.js
+    ¦   ¦       da.js
+    ¦   ¦       de-at.js
+    ¦   ¦       de.js
+    ¦   ¦       dv.js
+    ¦   ¦       el.js
+    ¦   ¦       en-au.js
+    ¦   ¦       en-ca.js
+    ¦   ¦       en-gb.js
+    ¦   ¦       en-ie.js
+    ¦   ¦       en-nz.js
+    ¦   ¦       eo.js
+    ¦   ¦       es.js
+    ¦   ¦       et.js
+    ¦   ¦       eu.js
+    ¦   ¦       fa.js
+    ¦   ¦       fi.js
+    ¦   ¦       fo.js
+    ¦   ¦       fr-ca.js
+    ¦   ¦       fr-ch.js
+    ¦   ¦       fr.js
+    ¦   ¦       fy.js
+    ¦   ¦       gd.js
+    ¦   ¦       gl.js
+    ¦   ¦       he.js
+    ¦   ¦       hi.js
+    ¦   ¦       hr.js
+    ¦   ¦       hu.js
+    ¦   ¦       hy-am.js
+    ¦   ¦       id.js
+    ¦   ¦       is.js
+    ¦   ¦       it.js
+    ¦   ¦       ja.js
+    ¦   ¦       jv.js
+    ¦   ¦       ka.js
+    ¦   ¦       kk.js
+    ¦   ¦       km.js
+    ¦   ¦       ko.js
+    ¦   ¦       ky.js
+    ¦   ¦       lb.js
+    ¦   ¦       lo.js
+    ¦   ¦       lt.js
+    ¦   ¦       lv.js
+    ¦   ¦       me.js
+    ¦   ¦       mk.js
+    ¦   ¦       ml.js
+    ¦   ¦       mr.js
+    ¦   ¦       ms-my.js
+    ¦   ¦       ms.js
+    ¦   ¦       my.js
+    ¦   ¦       nb.js
+    ¦   ¦       ne.js
+    ¦   ¦       nl.js
+    ¦   ¦       nn.js
+    ¦   ¦       pa-in.js
+    ¦   ¦       pl.js
+    ¦   ¦       pt-br.js
+    ¦   ¦       pt.js
+    ¦   ¦       ro.js
+    ¦   ¦       ru.js
+    ¦   ¦       se.js
+    ¦   ¦       si.js
+    ¦   ¦       sk.js
+    ¦   ¦       sl.js
+    ¦   ¦       sq.js
+    ¦   ¦       sr-cyrl.js
+    ¦   ¦       sr.js
+    ¦   ¦       ss.js
+    ¦   ¦       sv.js
+    ¦   ¦       sw.js
+    ¦   ¦       ta.js
+    ¦   ¦       te.js
+    ¦   ¦       th.js
+    ¦   ¦       tl-ph.js
+    ¦   ¦       tlh.js
+    ¦   ¦       tr.js
+    ¦   ¦       tzl.js
+    ¦   ¦       tzm-latn.js
+    ¦   ¦       tzm.js
+    ¦   ¦       uk.js
+    ¦   ¦       uz.js
+    ¦   ¦       vi.js
+    ¦   ¦       x-pseudo.js
+    ¦   ¦       zh-cn.js
+    ¦   ¦       zh-tw.js
+    ¦   ¦       
+    ¦   +---min
+    ¦   ¦       locales.js
+    ¦   ¦       locales.min.js
+    ¦   ¦       moment-with-locales.js
+    ¦   ¦       moment-with-locales.min.js
+    ¦   ¦       moment.min.js
+    ¦   ¦       tests.js
+    ¦   ¦       
+    ¦   +---src
+    ¦   ¦   ¦   moment.js
+    ¦   ¦   ¦   
+    ¦   ¦   +---lib
+    ¦   ¦   ¦   +---create
+    ¦   ¦   ¦   ¦       check-overflow.js
+    ¦   ¦   ¦   ¦       date-from-array.js
+    ¦   ¦   ¦   ¦       from-anything.js
+    ¦   ¦   ¦   ¦       from-array.js
+    ¦   ¦   ¦   ¦       from-object.js
+    ¦   ¦   ¦   ¦       from-string-and-array.js
+    ¦   ¦   ¦   ¦       from-string-and-format.js
+    ¦   ¦   ¦   ¦       from-string.js
+    ¦   ¦   ¦   ¦       local.js
+    ¦   ¦   ¦   ¦       parsing-flags.js
+    ¦   ¦   ¦   ¦       utc.js
+    ¦   ¦   ¦   ¦       valid.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---duration
+    ¦   ¦   ¦   ¦       abs.js
+    ¦   ¦   ¦   ¦       add-subtract.js
+    ¦   ¦   ¦   ¦       as.js
+    ¦   ¦   ¦   ¦       bubble.js
+    ¦   ¦   ¦   ¦       constructor.js
+    ¦   ¦   ¦   ¦       create.js
+    ¦   ¦   ¦   ¦       duration.js
+    ¦   ¦   ¦   ¦       get.js
+    ¦   ¦   ¦   ¦       humanize.js
+    ¦   ¦   ¦   ¦       iso-string.js
+    ¦   ¦   ¦   ¦       prototype.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---format
+    ¦   ¦   ¦   ¦       format.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---locale
+    ¦   ¦   ¦   ¦       calendar.js
+    ¦   ¦   ¦   ¦       constructor.js
+    ¦   ¦   ¦   ¦       en.js
+    ¦   ¦   ¦   ¦       formats.js
+    ¦   ¦   ¦   ¦       invalid.js
+    ¦   ¦   ¦   ¦       lists.js
+    ¦   ¦   ¦   ¦       locale.js
+    ¦   ¦   ¦   ¦       locales.js
+    ¦   ¦   ¦   ¦       ordinal.js
+    ¦   ¦   ¦   ¦       pre-post-format.js
+    ¦   ¦   ¦   ¦       prototype.js
+    ¦   ¦   ¦   ¦       relative.js
+    ¦   ¦   ¦   ¦       set.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---moment
+    ¦   ¦   ¦   ¦       add-subtract.js
+    ¦   ¦   ¦   ¦       calendar.js
+    ¦   ¦   ¦   ¦       clone.js
+    ¦   ¦   ¦   ¦       compare.js
+    ¦   ¦   ¦   ¦       constructor.js
+    ¦   ¦   ¦   ¦       creation-data.js
+    ¦   ¦   ¦   ¦       diff.js
+    ¦   ¦   ¦   ¦       format.js
+    ¦   ¦   ¦   ¦       from.js
+    ¦   ¦   ¦   ¦       get-set.js
+    ¦   ¦   ¦   ¦       locale.js
+    ¦   ¦   ¦   ¦       min-max.js
+    ¦   ¦   ¦   ¦       moment.js
+    ¦   ¦   ¦   ¦       now.js
+    ¦   ¦   ¦   ¦       prototype.js
+    ¦   ¦   ¦   ¦       start-end-of.js
+    ¦   ¦   ¦   ¦       to-type.js
+    ¦   ¦   ¦   ¦       to.js
+    ¦   ¦   ¦   ¦       valid.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---parse
+    ¦   ¦   ¦   ¦       regex.js
+    ¦   ¦   ¦   ¦       token.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---units
+    ¦   ¦   ¦   ¦       aliases.js
+    ¦   ¦   ¦   ¦       constants.js
+    ¦   ¦   ¦   ¦       day-of-month.js
+    ¦   ¦   ¦   ¦       day-of-week.js
+    ¦   ¦   ¦   ¦       day-of-year.js
+    ¦   ¦   ¦   ¦       hour.js
+    ¦   ¦   ¦   ¦       millisecond.js
+    ¦   ¦   ¦   ¦       minute.js
+    ¦   ¦   ¦   ¦       month.js
+    ¦   ¦   ¦   ¦       offset.js
+    ¦   ¦   ¦   ¦       quarter.js
+    ¦   ¦   ¦   ¦       second.js
+    ¦   ¦   ¦   ¦       timestamp.js
+    ¦   ¦   ¦   ¦       timezone.js
+    ¦   ¦   ¦   ¦       units.js
+    ¦   ¦   ¦   ¦       week-calendar-utils.js
+    ¦   ¦   ¦   ¦       week-year.js
+    ¦   ¦   ¦   ¦       week.js
+    ¦   ¦   ¦   ¦       year.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---utils
+    ¦   ¦   ¦           abs-ceil.js
+    ¦   ¦   ¦           abs-floor.js
+    ¦   ¦   ¦           abs-round.js
+    ¦   ¦   ¦           compare-arrays.js
+    ¦   ¦   ¦           defaults.js
+    ¦   ¦   ¦           deprecate.js
+    ¦   ¦   ¦           extend.js
+    ¦   ¦   ¦           has-own-prop.js
+    ¦   ¦   ¦           hooks.js
+    ¦   ¦   ¦           index-of.js
+    ¦   ¦   ¦           is-array.js
+    ¦   ¦   ¦           is-date.js
+    ¦   ¦   ¦           is-function.js
+    ¦   ¦   ¦           is-object.js
+    ¦   ¦   ¦           is-undefined.js
+    ¦   ¦   ¦           keys.js
+    ¦   ¦   ¦           map.js
+    ¦   ¦   ¦           some.js
+    ¦   ¦   ¦           to-int.js
+    ¦   ¦   ¦           zero-fill.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---locale
+    ¦   ¦           af.js
+    ¦   ¦           ar-ma.js
+    ¦   ¦           ar-sa.js
+    ¦   ¦           ar-tn.js
+    ¦   ¦           ar.js
+    ¦   ¦           az.js
+    ¦   ¦           be.js
+    ¦   ¦           bg.js
+    ¦   ¦           bn.js
+    ¦   ¦           bo.js
+    ¦   ¦           br.js
+    ¦   ¦           bs.js
+    ¦   ¦           ca.js
+    ¦   ¦           cs.js
+    ¦   ¦           cv.js
+    ¦   ¦           cy.js
+    ¦   ¦           da.js
+    ¦   ¦           de-at.js
+    ¦   ¦           de.js
+    ¦   ¦           dv.js
+    ¦   ¦           el.js
+    ¦   ¦           en-au.js
+    ¦   ¦           en-ca.js
+    ¦   ¦           en-gb.js
+    ¦   ¦           en-ie.js
+    ¦   ¦           en-nz.js
+    ¦   ¦           eo.js
+    ¦   ¦           es.js
+    ¦   ¦           et.js
+    ¦   ¦           eu.js
+    ¦   ¦           fa.js
+    ¦   ¦           fi.js
+    ¦   ¦           fo.js
+    ¦   ¦           fr-ca.js
+    ¦   ¦           fr-ch.js
+    ¦   ¦           fr.js
+    ¦   ¦           fy.js
+    ¦   ¦           gd.js
+    ¦   ¦           gl.js
+    ¦   ¦           he.js
+    ¦   ¦           hi.js
+    ¦   ¦           hr.js
+    ¦   ¦           hu.js
+    ¦   ¦           hy-am.js
+    ¦   ¦           id.js
+    ¦   ¦           is.js
+    ¦   ¦           it.js
+    ¦   ¦           ja.js
+    ¦   ¦           jv.js
+    ¦   ¦           ka.js
+    ¦   ¦           kk.js
+    ¦   ¦           km.js
+    ¦   ¦           ko.js
+    ¦   ¦           ky.js
+    ¦   ¦           lb.js
+    ¦   ¦           lo.js
+    ¦   ¦           lt.js
+    ¦   ¦           lv.js
+    ¦   ¦           me.js
+    ¦   ¦           mk.js
+    ¦   ¦           ml.js
+    ¦   ¦           mr.js
+    ¦   ¦           ms-my.js
+    ¦   ¦           ms.js
+    ¦   ¦           my.js
+    ¦   ¦           nb.js
+    ¦   ¦           ne.js
+    ¦   ¦           nl.js
+    ¦   ¦           nn.js
+    ¦   ¦           pa-in.js
+    ¦   ¦           pl.js
+    ¦   ¦           pt-br.js
+    ¦   ¦           pt.js
+    ¦   ¦           ro.js
+    ¦   ¦           ru.js
+    ¦   ¦           se.js
+    ¦   ¦           si.js
+    ¦   ¦           sk.js
+    ¦   ¦           sl.js
+    ¦   ¦           sq.js
+    ¦   ¦           sr-cyrl.js
+    ¦   ¦           sr.js
+    ¦   ¦           ss.js
+    ¦   ¦           sv.js
+    ¦   ¦           sw.js
+    ¦   ¦           ta.js
+    ¦   ¦           te.js
+    ¦   ¦           th.js
+    ¦   ¦           tl-ph.js
+    ¦   ¦           tlh.js
+    ¦   ¦           tr.js
+    ¦   ¦           tzl.js
+    ¦   ¦           tzm-latn.js
+    ¦   ¦           tzm.js
+    ¦   ¦           uk.js
+    ¦   ¦           uz.js
+    ¦   ¦           vi.js
+    ¦   ¦           x-pseudo.js
+    ¦   ¦           zh-cn.js
+    ¦   ¦           zh-tw.js
+    ¦   ¦           
+    ¦   +---templates
+    ¦           amd-named.js
+    ¦           amd.js
+    ¦           default.js
+    ¦           globals.js
+    ¦           locale-header.js
+    ¦           test-header.js
+    ¦           
+    +---morris.js
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   .travis.yml
+    ¦   ¦   bower.json
+    ¦   ¦   bower.travis.json
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   morris.css
+    ¦   ¦   morris.js
+    ¦   ¦   morris.min.js
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---examples
+    ¦   ¦   ¦   area-as-line.html
+    ¦   ¦   ¦   area.html
+    ¦   ¦   ¦   bar-colors.html
+    ¦   ¦   ¦   bar-no-axes.html
+    ¦   ¦   ¦   bar.html
+    ¦   ¦   ¦   days.html
+    ¦   ¦   ¦   decimal-custom-hover.html
+    ¦   ¦   ¦   diagonal-xlabels-bar.html
+    ¦   ¦   ¦   diagonal-xlabels.html
+    ¦   ¦   ¦   donut-colors.html
+    ¦   ¦   ¦   donut-formatter.html
+    ¦   ¦   ¦   donut.html
+    ¦   ¦   ¦   dst.html
+    ¦   ¦   ¦   events.html
+    ¦   ¦   ¦   goals.html
+    ¦   ¦   ¦   months-no-smooth.html
+    ¦   ¦   ¦   negative.html
+    ¦   ¦   ¦   no-grid.html
+    ¦   ¦   ¦   non-continuous.html
+    ¦   ¦   ¦   non-date.html
+    ¦   ¦   ¦   quarters.html
+    ¦   ¦   ¦   resize.html
+    ¦   ¦   ¦   stacked_bars.html
+    ¦   ¦   ¦   timestamps.html
+    ¦   ¦   ¦   updating.html
+    ¦   ¦   ¦   weeks.html
+    ¦   ¦   ¦   years.html
+    ¦   ¦   ¦   _template.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---lib
+    ¦   ¦           example.css
+    ¦   ¦           example.js
+    ¦   ¦           
+    ¦   +---less
+    ¦   ¦       morris.core.less
+    ¦   ¦       
+    ¦   +---lib
+    ¦   ¦       morris.area.coffee
+    ¦   ¦       morris.bar.coffee
+    ¦   ¦       morris.coffee
+    ¦   ¦       morris.donut.coffee
+    ¦   ¦       morris.grid.coffee
+    ¦   ¦       morris.hover.coffee
+    ¦   ¦       morris.line.coffee
+    ¦   ¦       
+    ¦   +---spec
+    ¦       ¦   specs.html
+    ¦       ¦   
+    ¦       +---lib
+    ¦       ¦   ¦   commas_spec.coffee
+    ¦       ¦   ¦   hover_spec.coffee
+    ¦       ¦   ¦   label_series_spec.coffee
+    ¦       ¦   ¦   pad_spec.coffee
+    ¦       ¦   ¦   parse_time_spec.coffee
+    ¦       ¦   ¦   
+    ¦       ¦   +---area
+    ¦       ¦   ¦       area_spec.coffee
+    ¦       ¦   ¦       
+    ¦       ¦   +---bar
+    ¦       ¦   ¦       bar_spec.coffee
+    ¦       ¦   ¦       colours.coffee
+    ¦       ¦   ¦       
+    ¦       ¦   +---donut
+    ¦       ¦   ¦       donut_spec.coffee
+    ¦       ¦   ¦       
+    ¦       ¦   +---grid
+    ¦       ¦   ¦       auto_grid_lines_spec.coffee
+    ¦       ¦   ¦       set_data_spec.coffee
+    ¦       ¦   ¦       y_label_format_spec.coffee
+    ¦       ¦   ¦       
+    ¦       ¦   +---line
+    ¦       ¦           line_spec.coffee
+    ¦       ¦           
+    ¦       +---support
+    ¦       ¦       placeholder.coffee
+    ¦       ¦       
+    ¦       +---viz
+    ¦           ¦   examples.js
+    ¦           ¦   run.sh
+    ¦           ¦   test.html
+    ¦           ¦   visual_specs.js
+    ¦           ¦   
+    ¦           +---exemplary
+    ¦                   area0.png
+    ¦                   bar0.png
+    ¦                   line0.png
+    ¦                   stacked_bar0.png
+    ¦                   
+    +---normalize-css
+    ¦       .bower.json
+    ¦       .editorconfig
+    ¦       .gitignore
+    ¦       .travis.yml
+    ¦       bower.json
+    ¦       LICENSE.md
+    ¦       normalize.css
+    ¦       
+    +---nprogress
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   component.json
+    ¦   ¦   History.md
+    ¦   ¦   index.html
+    ¦   ¦   License.md
+    ¦   ¦   Notes.md
+    ¦   ¦   nprogress.css
+    ¦   ¦   nprogress.js
+    ¦   ¦   Readme.md
+    ¦   ¦   
+    ¦   +---support
+    ¦           extras.css
+    ¦           style.css
+    ¦           
+    +---parsleyjs
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CNAME
+    ¦   ¦   gulpfile.babel.js
+    ¦   ¦   LICENSE
+    ¦   ¦   
+    ¦   +---bower_components
+    ¦   ¦   +---bootstrap
+    ¦   ¦   ¦   ¦   bower.json
+    ¦   ¦   ¦   ¦   DOCS-LICENSE
+    ¦   ¦   ¦   ¦   LICENSE
+    ¦   ¦   ¦   ¦   LICENSE-MIT
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---dist
+    ¦   ¦   ¦   ¦   +---css
+    ¦   ¦   ¦   ¦   ¦       bootstrap-theme.css
+    ¦   ¦   ¦   ¦   ¦       bootstrap-theme.min.css
+    ¦   ¦   ¦   ¦   ¦       bootstrap.css
+    ¦   ¦   ¦   ¦   ¦       bootstrap.min.css
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---fonts
+    ¦   ¦   ¦   ¦   ¦       glyphicons-halflings-regular.eot
+    ¦   ¦   ¦   ¦   ¦       glyphicons-halflings-regular.svg
+    ¦   ¦   ¦   ¦   ¦       glyphicons-halflings-regular.ttf
+    ¦   ¦   ¦   ¦   ¦       glyphicons-halflings-regular.woff
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---js
+    ¦   ¦   ¦   ¦           bootstrap.js
+    ¦   ¦   ¦   ¦           bootstrap.min.js
+    ¦   ¦   ¦   ¦           
+    ¦   ¦   ¦   +---js
+    ¦   ¦   ¦   ¦       affix.js
+    ¦   ¦   ¦   ¦       alert.js
+    ¦   ¦   ¦   ¦       button.js
+    ¦   ¦   ¦   ¦       carousel.js
+    ¦   ¦   ¦   ¦       collapse.js
+    ¦   ¦   ¦   ¦       dropdown.js
+    ¦   ¦   ¦   ¦       modal.js
+    ¦   ¦   ¦   ¦       popover.js
+    ¦   ¦   ¦   ¦       scrollspy.js
+    ¦   ¦   ¦   ¦       tab.js
+    ¦   ¦   ¦   ¦       tooltip.js
+    ¦   ¦   ¦   ¦       transition.js
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---less
+    ¦   ¦   ¦           alerts.less
+    ¦   ¦   ¦           badges.less
+    ¦   ¦   ¦           bootstrap.less
+    ¦   ¦   ¦           breadcrumbs.less
+    ¦   ¦   ¦           button-groups.less
+    ¦   ¦   ¦           buttons.less
+    ¦   ¦   ¦           carousel.less
+    ¦   ¦   ¦           close.less
+    ¦   ¦   ¦           code.less
+    ¦   ¦   ¦           component-animations.less
+    ¦   ¦   ¦           dropdowns.less
+    ¦   ¦   ¦           forms.less
+    ¦   ¦   ¦           glyphicons.less
+    ¦   ¦   ¦           grid.less
+    ¦   ¦   ¦           input-groups.less
+    ¦   ¦   ¦           jumbotron.less
+    ¦   ¦   ¦           labels.less
+    ¦   ¦   ¦           list-group.less
+    ¦   ¦   ¦           media.less
+    ¦   ¦   ¦           mixins.less
+    ¦   ¦   ¦           modals.less
+    ¦   ¦   ¦           navbar.less
+    ¦   ¦   ¦           navs.less
+    ¦   ¦   ¦           normalize.less
+    ¦   ¦   ¦           pager.less
+    ¦   ¦   ¦           pagination.less
+    ¦   ¦   ¦           panels.less
+    ¦   ¦   ¦           popovers.less
+    ¦   ¦   ¦           print.less
+    ¦   ¦   ¦           progress-bars.less
+    ¦   ¦   ¦           responsive-utilities.less
+    ¦   ¦   ¦           scaffolding.less
+    ¦   ¦   ¦           tables.less
+    ¦   ¦   ¦           theme.less
+    ¦   ¦   ¦           thumbnails.less
+    ¦   ¦   ¦           tooltip.less
+    ¦   ¦   ¦           type.less
+    ¦   ¦   ¦           utilities.less
+    ¦   ¦   ¦           variables.less
+    ¦   ¦   ¦           wells.less
+    ¦   ¦   ¦           
+    ¦   ¦   +---expect.js
+    ¦   ¦   ¦   ¦   index.js
+    ¦   ¦   ¦   ¦   Makefile
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---support
+    ¦   ¦   ¦           jquery.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---jquery
+    ¦   ¦   ¦   ¦   bower.json
+    ¦   ¦   ¦   ¦   MIT-LICENSE.txt
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---dist
+    ¦   ¦   ¦   ¦       jquery.js
+    ¦   ¦   ¦   ¦       jquery.min.js
+    ¦   ¦   ¦   ¦       jquery.min.map
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---src
+    ¦   ¦   ¦       ¦   ajax.js
+    ¦   ¦   ¦       ¦   attributes.js
+    ¦   ¦   ¦       ¦   callbacks.js
+    ¦   ¦   ¦       ¦   core.js
+    ¦   ¦   ¦       ¦   css.js
+    ¦   ¦   ¦       ¦   data.js
+    ¦   ¦   ¦       ¦   deferred.js
+    ¦   ¦   ¦       ¦   deprecated.js
+    ¦   ¦   ¦       ¦   dimensions.js
+    ¦   ¦   ¦       ¦   effects.js
+    ¦   ¦   ¦       ¦   event.js
+    ¦   ¦   ¦       ¦   intro.js
+    ¦   ¦   ¦       ¦   jquery.js
+    ¦   ¦   ¦       ¦   manipulation.js
+    ¦   ¦   ¦       ¦   offset.js
+    ¦   ¦   ¦       ¦   outro.js
+    ¦   ¦   ¦       ¦   queue.js
+    ¦   ¦   ¦       ¦   selector-native.js
+    ¦   ¦   ¦       ¦   selector-sizzle.js
+    ¦   ¦   ¦       ¦   selector.js
+    ¦   ¦   ¦       ¦   serialize.js
+    ¦   ¦   ¦       ¦   traversing.js
+    ¦   ¦   ¦       ¦   wrap.js
+    ¦   ¦   ¦       ¦   
+    ¦   ¦   ¦       +---ajax
+    ¦   ¦   ¦       ¦   ¦   jsonp.js
+    ¦   ¦   ¦       ¦   ¦   load.js
+    ¦   ¦   ¦       ¦   ¦   parseJSON.js
+    ¦   ¦   ¦       ¦   ¦   parseXML.js
+    ¦   ¦   ¦       ¦   ¦   script.js
+    ¦   ¦   ¦       ¦   ¦   xhr.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           nonce.js
+    ¦   ¦   ¦       ¦           rquery.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---attributes
+    ¦   ¦   ¦       ¦       attr.js
+    ¦   ¦   ¦       ¦       classes.js
+    ¦   ¦   ¦       ¦       prop.js
+    ¦   ¦   ¦       ¦       support.js
+    ¦   ¦   ¦       ¦       val.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---core
+    ¦   ¦   ¦       ¦   ¦   access.js
+    ¦   ¦   ¦       ¦   ¦   init.js
+    ¦   ¦   ¦       ¦   ¦   parseHTML.js
+    ¦   ¦   ¦       ¦   ¦   ready.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           rsingleTag.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---css
+    ¦   ¦   ¦       ¦   ¦   addGetHookIf.js
+    ¦   ¦   ¦       ¦   ¦   curCSS.js
+    ¦   ¦   ¦       ¦   ¦   defaultDisplay.js
+    ¦   ¦   ¦       ¦   ¦   hiddenVisibleSelectors.js
+    ¦   ¦   ¦       ¦   ¦   support.js
+    ¦   ¦   ¦       ¦   ¦   swap.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           cssExpand.js
+    ¦   ¦   ¦       ¦           getStyles.js
+    ¦   ¦   ¦       ¦           isHidden.js
+    ¦   ¦   ¦       ¦           rmargin.js
+    ¦   ¦   ¦       ¦           rnumnonpx.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---data
+    ¦   ¦   ¦       ¦   ¦   accepts.js
+    ¦   ¦   ¦       ¦   ¦   Data.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           data_priv.js
+    ¦   ¦   ¦       ¦           data_user.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---effects
+    ¦   ¦   ¦       ¦       animatedSelector.js
+    ¦   ¦   ¦       ¦       Tween.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---event
+    ¦   ¦   ¦       ¦       ajax.js
+    ¦   ¦   ¦       ¦       alias.js
+    ¦   ¦   ¦       ¦       support.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---exports
+    ¦   ¦   ¦       ¦       amd.js
+    ¦   ¦   ¦       ¦       global.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---manipulation
+    ¦   ¦   ¦       ¦   ¦   support.js
+    ¦   ¦   ¦       ¦   ¦   _evalUrl.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           rcheckableType.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---queue
+    ¦   ¦   ¦       ¦       delay.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---sizzle
+    ¦   ¦   ¦       ¦   +---dist
+    ¦   ¦   ¦       ¦           sizzle.js
+    ¦   ¦   ¦       ¦           sizzle.min.js
+    ¦   ¦   ¦       ¦           sizzle.min.map
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---traversing
+    ¦   ¦   ¦       ¦   ¦   findFilter.js
+    ¦   ¦   ¦       ¦   ¦   
+    ¦   ¦   ¦       ¦   +---var
+    ¦   ¦   ¦       ¦           rneedsContext.js
+    ¦   ¦   ¦       ¦           
+    ¦   ¦   ¦       +---var
+    ¦   ¦   ¦               arr.js
+    ¦   ¦   ¦               class2type.js
+    ¦   ¦   ¦               concat.js
+    ¦   ¦   ¦               hasOwn.js
+    ¦   ¦   ¦               indexOf.js
+    ¦   ¦   ¦               pnum.js
+    ¦   ¦   ¦               push.js
+    ¦   ¦   ¦               rnotwhite.js
+    ¦   ¦   ¦               slice.js
+    ¦   ¦   ¦               strundefined.js
+    ¦   ¦   ¦               support.js
+    ¦   ¦   ¦               toString.js
+    ¦   ¦   ¦               
+    ¦   ¦   +---mocha
+    ¦   ¦   ¦   ¦   bower.json
+    ¦   ¦   ¦   ¦   LICENSE
+    ¦   ¦   ¦   ¦   mocha.css
+    ¦   ¦   ¦   ¦   mocha.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---media
+    ¦   ¦   ¦   ¦       logo.svg
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---scripts
+    ¦   ¦   ¦           ensure-compatible-npm.sh
+    ¦   ¦   ¦           
+    ¦   ¦   +---sinonjs
+    ¦   ¦   ¦       bower.json
+    ¦   ¦   ¦       sinon.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---uwidget
+    ¦   ¦           bower.json
+    ¦   ¦           LICENSE
+    ¦   ¦           uwidget.css
+    ¦   ¦           uwidget.js
+    ¦   ¦           uwidget.less
+    ¦   ¦           
+    ¦   +---dist
+    ¦   ¦   ¦   parsley.js
+    ¦   ¦   ¦   parsley.js.map
+    ¦   ¦   ¦   parsley.min.js
+    ¦   ¦   ¦   parsley.min.js.map
+    ¦   ¦   ¦   
+    ¦   ¦   +---i18n
+    ¦   ¦           al.js
+    ¦   ¦           ar.js
+    ¦   ¦           bg.js
+    ¦   ¦           ca.js
+    ¦   ¦           cs.extra.js
+    ¦   ¦           cs.js
+    ¦   ¦           da.js
+    ¦   ¦           de.extra.js
+    ¦   ¦           de.js
+    ¦   ¦           el.extra.js
+    ¦   ¦           el.js
+    ¦   ¦           en.extra.js
+    ¦   ¦           en.js
+    ¦   ¦           es.js
+    ¦   ¦           fa.js
+    ¦   ¦           fi.extra.js
+    ¦   ¦           fi.js
+    ¦   ¦           fr.extra.js
+    ¦   ¦           fr.js
+    ¦   ¦           he.extra.js
+    ¦   ¦           he.js
+    ¦   ¦           hr.extra.js
+    ¦   ¦           hr.js
+    ¦   ¦           id.extra.js
+    ¦   ¦           id.js
+    ¦   ¦           it.extra.js
+    ¦   ¦           it.js
+    ¦   ¦           ja.js
+    ¦   ¦           ko.js
+    ¦   ¦           lt.js
+    ¦   ¦           lv.extra.js
+    ¦   ¦           lv.js
+    ¦   ¦           ms.extra.js
+    ¦   ¦           ms.js
+    ¦   ¦           nl.extra.js
+    ¦   ¦           nl.js
+    ¦   ¦           no.js
+    ¦   ¦           pl.js
+    ¦   ¦           pt-br.js
+    ¦   ¦           pt-pt.js
+    ¦   ¦           ro.extra.js
+    ¦   ¦           ro.js
+    ¦   ¦           ru.extra.js
+    ¦   ¦           ru.js
+    ¦   ¦           sq.js
+    ¦   ¦           sv.extra.js
+    ¦   ¦           sv.js
+    ¦   ¦           th.js
+    ¦   ¦           tr.js
+    ¦   ¦           uk.extra.js
+    ¦   ¦           uk.js
+    ¦   ¦           zh_cn.extra.js
+    ¦   ¦           zh_cn.js
+    ¦   ¦           zh_tw.js
+    ¦   ¦           
+    ¦   +---src
+    ¦       ¦   header.js
+    ¦       ¦   parsley.css
+    ¦       ¦   parsley.js
+    ¦       ¦   
+    ¦       +---extra
+    ¦       ¦   +---plugin
+    ¦       ¦   ¦       bind.js
+    ¦       ¦   ¦       
+    ¦       ¦   +---validator
+    ¦       ¦           comparison.js
+    ¦       ¦           dateiso.js
+    ¦       ¦           luhn.js
+    ¦       ¦           notequalto.js
+    ¦       ¦           words.js
+    ¦       ¦           
+    ¦       +---i18n
+    ¦       ¦       al.js
+    ¦       ¦       ar.js
+    ¦       ¦       bg.js
+    ¦       ¦       ca.js
+    ¦       ¦       cs.extra.js
+    ¦       ¦       cs.js
+    ¦       ¦       da.js
+    ¦       ¦       de.extra.js
+    ¦       ¦       de.js
+    ¦       ¦       el.extra.js
+    ¦       ¦       el.js
+    ¦       ¦       en.extra.js
+    ¦       ¦       en.js
+    ¦       ¦       es.js
+    ¦       ¦       fa.js
+    ¦       ¦       fi.extra.js
+    ¦       ¦       fi.js
+    ¦       ¦       fr.extra.js
+    ¦       ¦       fr.js
+    ¦       ¦       he.extra.js
+    ¦       ¦       he.js
+    ¦       ¦       hr.extra.js
+    ¦       ¦       hr.js
+    ¦       ¦       id.extra.js
+    ¦       ¦       id.js
+    ¦       ¦       it.extra.js
+    ¦       ¦       it.js
+    ¦       ¦       ja.js
+    ¦       ¦       ko.js
+    ¦       ¦       lt.js
+    ¦       ¦       lv.extra.js
+    ¦       ¦       lv.js
+    ¦       ¦       ms.extra.js
+    ¦       ¦       ms.js
+    ¦       ¦       nl.extra.js
+    ¦       ¦       nl.js
+    ¦       ¦       no.js
+    ¦       ¦       pl.js
+    ¦       ¦       pt-br.js
+    ¦       ¦       pt-pt.js
+    ¦       ¦       ro.extra.js
+    ¦       ¦       ro.js
+    ¦       ¦       ru.extra.js
+    ¦       ¦       ru.js
+    ¦       ¦       sq.js
+    ¦       ¦       sv.extra.js
+    ¦       ¦       sv.js
+    ¦       ¦       th.js
+    ¦       ¦       tr.js
+    ¦       ¦       uk.extra.js
+    ¦       ¦       uk.js
+    ¦       ¦       zh_cn.extra.js
+    ¦       ¦       zh_cn.js
+    ¦       ¦       zh_tw.js
+    ¦       ¦       
+    ¦       +---parsley
+    ¦       ¦   ¦   abstract.js
+    ¦       ¦   ¦   defaults.js
+    ¦       ¦   ¦   factory.js
+    ¦       ¦   ¦   field.js
+    ¦       ¦   ¦   form.js
+    ¦       ¦   ¦   main.js
+    ¦       ¦   ¦   multiple.js
+    ¦       ¦   ¦   pubsub.js
+    ¦       ¦   ¦   remote.js
+    ¦       ¦   ¦   ui.js
+    ¦       ¦   ¦   utils.js
+    ¦       ¦   ¦   validator.js
+    ¦       ¦   ¦   validator_registry.js
+    ¦       ¦   ¦   
+    ¦       ¦   +---factory
+    ¦       ¦           constraint.js
+    ¦       ¦           
+    ¦       +---vendor
+    ¦               inputevent.js
+    ¦               
+    +---pdfmake
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   LICENSE
+    ¦   ¦   
+    ¦   +---build
+    ¦           pdfmake.js
+    ¦           pdfmake.min.js
+    ¦           pdfmake.min.js.map
+    ¦           vfs_fonts.js
+    ¦           
+    +---pnotify
+    ¦   ¦   .bower.json
+    ¦   ¦   .gitignore
+    ¦   ¦   bower.json
+    ¦   ¦   COPYING
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       pnotify.animate.js
+    ¦   ¦       pnotify.brighttheme.css
+    ¦   ¦       pnotify.buttons.css
+    ¦   ¦       pnotify.buttons.js
+    ¦   ¦       pnotify.callbacks.js
+    ¦   ¦       pnotify.confirm.js
+    ¦   ¦       pnotify.css
+    ¦   ¦       pnotify.desktop.js
+    ¦   ¦       pnotify.history.css
+    ¦   ¦       pnotify.history.js
+    ¦   ¦       pnotify.js
+    ¦   ¦       pnotify.material.css
+    ¦   ¦       pnotify.mobile.css
+    ¦   ¦       pnotify.mobile.js
+    ¦   ¦       pnotify.nonblock.css
+    ¦   ¦       pnotify.nonblock.js
+    ¦   ¦       pnotify.reference.js
+    ¦   ¦       pnotify.tooltip.js
+    ¦   ¦       
+    ¦   +---libtests
+    ¦       +---browserify
+    ¦               index.js
+    ¦               
+    +---raphael
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   license.txt
+    ¦   ¦   raphael.js
+    ¦   ¦   raphael.min.js
+    ¦   ¦   raphael.no-deps.js
+    ¦   ¦   raphael.no-deps.min.js
+    ¦   ¦   webpack.config.js
+    ¦   ¦   
+    ¦   +---dev
+    ¦       ¦   banner.txt
+    ¦       ¦   raphael.amd.js
+    ¦       ¦   raphael.core.js
+    ¦       ¦   raphael.svg.js
+    ¦       ¦   raphael.vml.js
+    ¦       ¦   
+    ¦       +---test
+    ¦           +---svg
+    ¦           ¦       dom.js
+    ¦           ¦       
+    ¦           +---vml
+    ¦                   dom.js
+    ¦                   
+    +---requirejs
+    ¦       .bower.json
+    ¦       bower.json
+    ¦       README.md
+    ¦       require.js
+    ¦       
+    +---select2
+    ¦   ¦   .bower.json
+    ¦   ¦   .editorconfig
+    ¦   ¦   .gitignore
+    ¦   ¦   .jshintignore
+    ¦   ¦   .jshintrc
+    ¦   ¦   .travis.yml
+    ¦   ¦   bower.json
+    ¦   ¦   component.json
+    ¦   ¦   composer.json
+    ¦   ¦   CONTRIBUTING.md
+    ¦   ¦   Gruntfile.js
+    ¦   ¦   ISSUE_TEMPLATE.md
+    ¦   ¦   LICENSE.md
+    ¦   ¦   package.json
+    ¦   ¦   PULL_REQUEST_TEMPLATE.md
+    ¦   ¦   README.md
+    ¦   ¦   select2.jquery.json
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦   +---css
+    ¦   ¦   ¦       select2.css
+    ¦   ¦   ¦       select2.min.css
+    ¦   ¦   ¦       
+    ¦   ¦   +---js
+    ¦   ¦       ¦   select2.full.js
+    ¦   ¦       ¦   select2.full.min.js
+    ¦   ¦       ¦   select2.js
+    ¦   ¦       ¦   select2.min.js
+    ¦   ¦       ¦   
+    ¦   ¦       +---i18n
+    ¦   ¦               ar.js
+    ¦   ¦               az.js
+    ¦   ¦               bg.js
+    ¦   ¦               ca.js
+    ¦   ¦               cs.js
+    ¦   ¦               da.js
+    ¦   ¦               de.js
+    ¦   ¦               el.js
+    ¦   ¦               en.js
+    ¦   ¦               es.js
+    ¦   ¦               et.js
+    ¦   ¦               eu.js
+    ¦   ¦               fa.js
+    ¦   ¦               fi.js
+    ¦   ¦               fr.js
+    ¦   ¦               gl.js
+    ¦   ¦               he.js
+    ¦   ¦               hi.js
+    ¦   ¦               hr.js
+    ¦   ¦               hu.js
+    ¦   ¦               id.js
+    ¦   ¦               is.js
+    ¦   ¦               it.js
+    ¦   ¦               ja.js
+    ¦   ¦               km.js
+    ¦   ¦               ko.js
+    ¦   ¦               lt.js
+    ¦   ¦               lv.js
+    ¦   ¦               mk.js
+    ¦   ¦               ms.js
+    ¦   ¦               nb.js
+    ¦   ¦               nl.js
+    ¦   ¦               pl.js
+    ¦   ¦               pt-BR.js
+    ¦   ¦               pt.js
+    ¦   ¦               ro.js
+    ¦   ¦               ru.js
+    ¦   ¦               sk.js
+    ¦   ¦               sr-Cyrl.js
+    ¦   ¦               sr.js
+    ¦   ¦               sv.js
+    ¦   ¦               th.js
+    ¦   ¦               tr.js
+    ¦   ¦               uk.js
+    ¦   ¦               vi.js
+    ¦   ¦               zh-CN.js
+    ¦   ¦               zh-TW.js
+    ¦   ¦               
+    ¦   +---docs
+    ¦   ¦   ¦   .gitignore
+    ¦   ¦   ¦   announcements-4.0.html
+    ¦   ¦   ¦   browserconfig.xml
+    ¦   ¦   ¦   community.html
+    ¦   ¦   ¦   examples.html
+    ¦   ¦   ¦   index.html
+    ¦   ¦   ¦   options-old.html
+    ¦   ¦   ¦   options.html
+    ¦   ¦   ¦   README.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---css
+    ¦   ¦   ¦       bootstrap.scss
+    ¦   ¦   ¦       font-awesome.scss
+    ¦   ¦   ¦       s2-docs.scss
+    ¦   ¦   ¦       
+    ¦   ¦   +---images
+    ¦   ¦   ¦       android-chrome-36x36.png
+    ¦   ¦   ¦       android-chrome-48x48.png
+    ¦   ¦   ¦       android-chrome-72x72.png
+    ¦   ¦   ¦       apple-touch-icon-57x57.png
+    ¦   ¦   ¦       apple-touch-icon-60x60.png
+    ¦   ¦   ¦       apple-touch-icon-72x72.png
+    ¦   ¦   ¦       apple-touch-icon-precomposed.png
+    ¦   ¦   ¦       apple-touch-icon.png
+    ¦   ¦   ¦       favicon-16x16.png
+    ¦   ¦   ¦       favicon-32x32.png
+    ¦   ¦   ¦       favicon.ico
+    ¦   ¦   ¦       logo.png
+    ¦   ¦   ¦       manifest.json
+    ¦   ¦   ¦       mstile-150x150.png
+    ¦   ¦   ¦       mstile-310x150.png
+    ¦   ¦   ¦       mstile-70x70.png
+    ¦   ¦   ¦       safari-pinned-tab.svg
+    ¦   ¦   ¦       
+    ¦   ¦   +---vendor
+    ¦   ¦   ¦   +---fonts
+    ¦   ¦   ¦   ¦       fontawesome-webfont.eot
+    ¦   ¦   ¦   ¦       fontawesome-webfont.svg
+    ¦   ¦   ¦   ¦       fontawesome-webfont.ttf
+    ¦   ¦   ¦   ¦       fontawesome-webfont.woff
+    ¦   ¦   ¦   ¦       fontawesome-webfont.woff2
+    ¦   ¦   ¦   ¦       FontAwesome.otf
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---images
+    ¦   ¦   ¦   ¦   +---flags
+    ¦   ¦   ¦   ¦           ak.png
+    ¦   ¦   ¦   ¦           al.png
+    ¦   ¦   ¦   ¦           ar.png
+    ¦   ¦   ¦   ¦           az.png
+    ¦   ¦   ¦   ¦           ca.png
+    ¦   ¦   ¦   ¦           co.png
+    ¦   ¦   ¦   ¦           ct.png
+    ¦   ¦   ¦   ¦           de.png
+    ¦   ¦   ¦   ¦           fl.png
+    ¦   ¦   ¦   ¦           ga.png
+    ¦   ¦   ¦   ¦           hi.png
+    ¦   ¦   ¦   ¦           ia.png
+    ¦   ¦   ¦   ¦           id.png
+    ¦   ¦   ¦   ¦           il.png
+    ¦   ¦   ¦   ¦           in.png
+    ¦   ¦   ¦   ¦           ks.png
+    ¦   ¦   ¦   ¦           ky.png
+    ¦   ¦   ¦   ¦           la.png
+    ¦   ¦   ¦   ¦           ma.png
+    ¦   ¦   ¦   ¦           md.png
+    ¦   ¦   ¦   ¦           me.png
+    ¦   ¦   ¦   ¦           mi.png
+    ¦   ¦   ¦   ¦           mn.png
+    ¦   ¦   ¦   ¦           mo.png
+    ¦   ¦   ¦   ¦           ms.png
+    ¦   ¦   ¦   ¦           mt.png
+    ¦   ¦   ¦   ¦           nc.png
+    ¦   ¦   ¦   ¦           nd.png
+    ¦   ¦   ¦   ¦           ne.png
+    ¦   ¦   ¦   ¦           nh.png
+    ¦   ¦   ¦   ¦           nj.png
+    ¦   ¦   ¦   ¦           nm.png
+    ¦   ¦   ¦   ¦           nv.png
+    ¦   ¦   ¦   ¦           ny.png
+    ¦   ¦   ¦   ¦           oh.png
+    ¦   ¦   ¦   ¦           ok.png
+    ¦   ¦   ¦   ¦           or.png
+    ¦   ¦   ¦   ¦           pa.png
+    ¦   ¦   ¦   ¦           ri.png
+    ¦   ¦   ¦   ¦           sc.png
+    ¦   ¦   ¦   ¦           sd.png
+    ¦   ¦   ¦   ¦           tn.png
+    ¦   ¦   ¦   ¦           tx.png
+    ¦   ¦   ¦   ¦           ut.png
+    ¦   ¦   ¦   ¦           va.png
+    ¦   ¦   ¦   ¦           vt.png
+    ¦   ¦   ¦   ¦           wa.png
+    ¦   ¦   ¦   ¦           wi.png
+    ¦   ¦   ¦   ¦           wv.png
+    ¦   ¦   ¦   ¦           wy.png
+    ¦   ¦   ¦   ¦           
+    ¦   ¦   ¦   +---js
+    ¦   ¦   ¦           anchor.min.js
+    ¦   ¦   ¦           bootstrap.min.js
+    ¦   ¦   ¦           jquery.min.js
+    ¦   ¦   ¦           placeholders.jquery.min.js
+    ¦   ¦   ¦           prettify.min.js
+    ¦   ¦   ¦           
+    ¦   ¦   +---_includes
+    ¦   ¦   ¦   ¦   footer.html
+    ¦   ¦   ¦   ¦   ga.html
+    ¦   ¦   ¦   ¦   head.html
+    ¦   ¦   ¦   ¦   js-source-states.html
+    ¦   ¦   ¦   ¦   navigation.html
+    ¦   ¦   ¦   ¦   notice-previous.html
+    ¦   ¦   ¦   ¦   social-buttons.html
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---examples
+    ¦   ¦   ¦   ¦       basics.html
+    ¦   ¦   ¦   ¦       data.html
+    ¦   ¦   ¦   ¦       disabled-mode.html
+    ¦   ¦   ¦   ¦       disabled-results.html
+    ¦   ¦   ¦   ¦       hide-search.html
+    ¦   ¦   ¦   ¦       localization-rtl-diacritics.html
+    ¦   ¦   ¦   ¦       matcher.html
+    ¦   ¦   ¦   ¦       multiple-max.html
+    ¦   ¦   ¦   ¦       placeholders.html
+    ¦   ¦   ¦   ¦       programmatic-control.html
+    ¦   ¦   ¦   ¦       tags.html
+    ¦   ¦   ¦   ¦       themes-templating-responsive-design.html
+    ¦   ¦   ¦   ¦       tokenizer.html
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---nav
+    ¦   ¦   ¦   ¦       announcements-4.0.html
+    ¦   ¦   ¦   ¦       examples.html
+    ¦   ¦   ¦   ¦       options-old.html
+    ¦   ¦   ¦   ¦       options.html
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---options
+    ¦   ¦   ¦   ¦   ¦   compatibility.html
+    ¦   ¦   ¦   ¦   ¦   core.html
+    ¦   ¦   ¦   ¦   ¦   data.html
+    ¦   ¦   ¦   ¦   ¦   dropdown.html
+    ¦   ¦   ¦   ¦   ¦   events.html
+    ¦   ¦   ¦   ¦   ¦   introduction.html
+    ¦   ¦   ¦   ¦   ¦   not-written.html
+    ¦   ¦   ¦   ¦   ¦   selections.html
+    ¦   ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   ¦   +---compatibility
+    ¦   ¦   ¦   ¦   ¦       initial-selection.html
+    ¦   ¦   ¦   ¦   ¦       introduction.html
+    ¦   ¦   ¦   ¦   ¦       matcher.html
+    ¦   ¦   ¦   ¦   ¦       query-function.html
+    ¦   ¦   ¦   ¦   ¦       text-input.html
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---core
+    ¦   ¦   ¦   ¦   ¦       amd-support.html
+    ¦   ¦   ¦   ¦   ¦       data-attributes.html
+    ¦   ¦   ¦   ¦   ¦       options.html
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---data
+    ¦   ¦   ¦   ¦   ¦       ajax.html
+    ¦   ¦   ¦   ¦   ¦       array.html
+    ¦   ¦   ¦   ¦   ¦       select.html
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---dropdown
+    ¦   ¦   ¦   ¦   ¦       filtering.html
+    ¦   ¦   ¦   ¦   ¦       placement.html
+    ¦   ¦   ¦   ¦   ¦       selections.html
+    ¦   ¦   ¦   ¦   ¦       tagging.html
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---events
+    ¦   ¦   ¦   ¦   ¦       internal.html
+    ¦   ¦   ¦   ¦   ¦       jquery.html
+    ¦   ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   ¦   +---selections
+    ¦   ¦   ¦   ¦           clearing-selections.html
+    ¦   ¦   ¦   ¦           multiple.html
+    ¦   ¦   ¦   ¦           placeholder.html
+    ¦   ¦   ¦   ¦           templating.html
+    ¦   ¦   ¦   ¦           
+    ¦   ¦   ¦   +---options-old
+    ¦   ¦   ¦           adapters.html
+    ¦   ¦   ¦           backwards-compatibility.html
+    ¦   ¦   ¦           core-options.html
+    ¦   ¦   ¦           dropdown.html
+    ¦   ¦   ¦           events.html
+    ¦   ¦   ¦           setting-default-options.html
+    ¦   ¦   ¦           
+    ¦   ¦   +---_layouts
+    ¦   ¦   ¦       default.html
+    ¦   ¦   ¦       home.html
+    ¦   ¦   ¦       
+    ¦   ¦   +---_sass
+    ¦   ¦       ¦   _alert.scss
+    ¦   ¦       ¦   _anchorjs.scss
+    ¦   ¦       ¦   _buttons.scss
+    ¦   ¦       ¦   _code.scss
+    ¦   ¦       ¦   _dl-panels.scss
+    ¦   ¦       ¦   _examples.scss
+    ¦   ¦       ¦   _featurette.scss
+    ¦   ¦       ¦   _footer.scss
+    ¦   ¦       ¦   _hamburger.scss
+    ¦   ¦       ¦   _home.scss
+    ¦   ¦       ¦   _jumbotron.scss
+    ¦   ¦       ¦   _layout.scss
+    ¦   ¦       ¦   _nav.scss
+    ¦   ¦       ¦   _prettify.scss
+    ¦   ¦       ¦   _result-repository.scss
+    ¦   ¦       ¦   _sidenav.scss
+    ¦   ¦       ¦   _social.scss
+    ¦   ¦       ¦   _syntax-highlighting.scss
+    ¦   ¦       ¦   _typography.scss
+    ¦   ¦       ¦   
+    ¦   ¦       +---vendor
+    ¦   ¦           +---bootstrap
+    ¦   ¦           ¦   ¦   _alerts.scss
+    ¦   ¦           ¦   ¦   _badges.scss
+    ¦   ¦           ¦   ¦   _breadcrumbs.scss
+    ¦   ¦           ¦   ¦   _button-groups.scss
+    ¦   ¦           ¦   ¦   _buttons.scss
+    ¦   ¦           ¦   ¦   _carousel.scss
+    ¦   ¦           ¦   ¦   _close.scss
+    ¦   ¦           ¦   ¦   _code.scss
+    ¦   ¦           ¦   ¦   _component-animations.scss
+    ¦   ¦           ¦   ¦   _dropdowns.scss
+    ¦   ¦           ¦   ¦   _forms.scss
+    ¦   ¦           ¦   ¦   _glyphicons.scss
+    ¦   ¦           ¦   ¦   _grid.scss
+    ¦   ¦           ¦   ¦   _input-groups.scss
+    ¦   ¦           ¦   ¦   _jumbotron.scss
+    ¦   ¦           ¦   ¦   _labels.scss
+    ¦   ¦           ¦   ¦   _list-group.scss
+    ¦   ¦           ¦   ¦   _media.scss
+    ¦   ¦           ¦   ¦   _mixins.scss
+    ¦   ¦           ¦   ¦   _modals.scss
+    ¦   ¦           ¦   ¦   _navbar.scss
+    ¦   ¦           ¦   ¦   _navs.scss
+    ¦   ¦           ¦   ¦   _normalize.scss
+    ¦   ¦           ¦   ¦   _pager.scss
+    ¦   ¦           ¦   ¦   _pagination.scss
+    ¦   ¦           ¦   ¦   _panels.scss
+    ¦   ¦           ¦   ¦   _popovers.scss
+    ¦   ¦           ¦   ¦   _print.scss
+    ¦   ¦           ¦   ¦   _progress-bars.scss
+    ¦   ¦           ¦   ¦   _responsive-embed.scss
+    ¦   ¦           ¦   ¦   _responsive-utilities.scss
+    ¦   ¦           ¦   ¦   _scaffolding.scss
+    ¦   ¦           ¦   ¦   _tables.scss
+    ¦   ¦           ¦   ¦   _theme.scss
+    ¦   ¦           ¦   ¦   _thumbnails.scss
+    ¦   ¦           ¦   ¦   _tooltip.scss
+    ¦   ¦           ¦   ¦   _type.scss
+    ¦   ¦           ¦   ¦   _utilities.scss
+    ¦   ¦           ¦   ¦   _variables.scss
+    ¦   ¦           ¦   ¦   _wells.scss
+    ¦   ¦           ¦   ¦   
+    ¦   ¦           ¦   +---mixins
+    ¦   ¦           ¦           _alerts.scss
+    ¦   ¦           ¦           _background-variant.scss
+    ¦   ¦           ¦           _border-radius.scss
+    ¦   ¦           ¦           _buttons.scss
+    ¦   ¦           ¦           _center-block.scss
+    ¦   ¦           ¦           _clearfix.scss
+    ¦   ¦           ¦           _forms.scss
+    ¦   ¦           ¦           _gradients.scss
+    ¦   ¦           ¦           _grid-framework.scss
+    ¦   ¦           ¦           _grid.scss
+    ¦   ¦           ¦           _hide-text.scss
+    ¦   ¦           ¦           _image.scss
+    ¦   ¦           ¦           _labels.scss
+    ¦   ¦           ¦           _list-group.scss
+    ¦   ¦           ¦           _nav-divider.scss
+    ¦   ¦           ¦           _nav-vertical-align.scss
+    ¦   ¦           ¦           _opacity.scss
+    ¦   ¦           ¦           _pagination.scss
+    ¦   ¦           ¦           _panels.scss
+    ¦   ¦           ¦           _progress-bar.scss
+    ¦   ¦           ¦           _reset-filter.scss
+    ¦   ¦           ¦           _reset-text.scss
+    ¦   ¦           ¦           _resize.scss
+    ¦   ¦           ¦           _responsive-visibility.scss
+    ¦   ¦           ¦           _size.scss
+    ¦   ¦           ¦           _tab-focus.scss
+    ¦   ¦           ¦           _table-row.scss
+    ¦   ¦           ¦           _text-emphasis.scss
+    ¦   ¦           ¦           _text-overflow.scss
+    ¦   ¦           ¦           _vendor-prefixes.scss
+    ¦   ¦           ¦           
+    ¦   ¦           +---font-awesome
+    ¦   ¦                   _animated.scss
+    ¦   ¦                   _bordered-pulled.scss
+    ¦   ¦                   _core.scss
+    ¦   ¦                   _fixed-width.scss
+    ¦   ¦                   _icons.scss
+    ¦   ¦                   _larger.scss
+    ¦   ¦                   _list.scss
+    ¦   ¦                   _mixins.scss
+    ¦   ¦                   _path.scss
+    ¦   ¦                   _rotated-flipped.scss
+    ¦   ¦                   _stacked.scss
+    ¦   ¦                   _variables.scss
+    ¦   ¦                   
+    ¦   +---src
+    ¦   ¦   +---js
+    ¦   ¦   ¦   ¦   banner.end.js
+    ¦   ¦   ¦   ¦   banner.start.js
+    ¦   ¦   ¦   ¦   jquery.mousewheel.shim.js
+    ¦   ¦   ¦   ¦   jquery.select2.js
+    ¦   ¦   ¦   ¦   jquery.shim.js
+    ¦   ¦   ¦   ¦   wrapper.end.js
+    ¦   ¦   ¦   ¦   wrapper.start.js
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---select2
+    ¦   ¦   ¦       ¦   core.js
+    ¦   ¦   ¦       ¦   defaults.js
+    ¦   ¦   ¦       ¦   diacritics.js
+    ¦   ¦   ¦       ¦   dropdown.js
+    ¦   ¦   ¦       ¦   keys.js
+    ¦   ¦   ¦       ¦   options.js
+    ¦   ¦   ¦       ¦   results.js
+    ¦   ¦   ¦       ¦   translation.js
+    ¦   ¦   ¦       ¦   utils.js
+    ¦   ¦   ¦       ¦   
+    ¦   ¦   ¦       +---compat
+    ¦   ¦   ¦       ¦       containerCss.js
+    ¦   ¦   ¦       ¦       dropdownCss.js
+    ¦   ¦   ¦       ¦       initSelection.js
+    ¦   ¦   ¦       ¦       inputData.js
+    ¦   ¦   ¦       ¦       matcher.js
+    ¦   ¦   ¦       ¦       query.js
+    ¦   ¦   ¦       ¦       utils.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---data
+    ¦   ¦   ¦       ¦       ajax.js
+    ¦   ¦   ¦       ¦       array.js
+    ¦   ¦   ¦       ¦       base.js
+    ¦   ¦   ¦       ¦       maximumInputLength.js
+    ¦   ¦   ¦       ¦       maximumSelectionLength.js
+    ¦   ¦   ¦       ¦       minimumInputLength.js
+    ¦   ¦   ¦       ¦       select.js
+    ¦   ¦   ¦       ¦       tags.js
+    ¦   ¦   ¦       ¦       tokenizer.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---dropdown
+    ¦   ¦   ¦       ¦       attachBody.js
+    ¦   ¦   ¦       ¦       attachContainer.js
+    ¦   ¦   ¦       ¦       closeOnSelect.js
+    ¦   ¦   ¦       ¦       hidePlaceholder.js
+    ¦   ¦   ¦       ¦       infiniteScroll.js
+    ¦   ¦   ¦       ¦       minimumResultsForSearch.js
+    ¦   ¦   ¦       ¦       search.js
+    ¦   ¦   ¦       ¦       selectOnClose.js
+    ¦   ¦   ¦       ¦       stopPropagation.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---i18n
+    ¦   ¦   ¦       ¦       ar.js
+    ¦   ¦   ¦       ¦       az.js
+    ¦   ¦   ¦       ¦       bg.js
+    ¦   ¦   ¦       ¦       ca.js
+    ¦   ¦   ¦       ¦       cs.js
+    ¦   ¦   ¦       ¦       da.js
+    ¦   ¦   ¦       ¦       de.js
+    ¦   ¦   ¦       ¦       el.js
+    ¦   ¦   ¦       ¦       en.js
+    ¦   ¦   ¦       ¦       es.js
+    ¦   ¦   ¦       ¦       et.js
+    ¦   ¦   ¦       ¦       eu.js
+    ¦   ¦   ¦       ¦       fa.js
+    ¦   ¦   ¦       ¦       fi.js
+    ¦   ¦   ¦       ¦       fr.js
+    ¦   ¦   ¦       ¦       gl.js
+    ¦   ¦   ¦       ¦       he.js
+    ¦   ¦   ¦       ¦       hi.js
+    ¦   ¦   ¦       ¦       hr.js
+    ¦   ¦   ¦       ¦       hu.js
+    ¦   ¦   ¦       ¦       id.js
+    ¦   ¦   ¦       ¦       is.js
+    ¦   ¦   ¦       ¦       it.js
+    ¦   ¦   ¦       ¦       ja.js
+    ¦   ¦   ¦       ¦       km.js
+    ¦   ¦   ¦       ¦       ko.js
+    ¦   ¦   ¦       ¦       lt.js
+    ¦   ¦   ¦       ¦       lv.js
+    ¦   ¦   ¦       ¦       mk.js
+    ¦   ¦   ¦       ¦       ms.js
+    ¦   ¦   ¦       ¦       nb.js
+    ¦   ¦   ¦       ¦       nl.js
+    ¦   ¦   ¦       ¦       pl.js
+    ¦   ¦   ¦       ¦       pt-BR.js
+    ¦   ¦   ¦       ¦       pt.js
+    ¦   ¦   ¦       ¦       ro.js
+    ¦   ¦   ¦       ¦       ru.js
+    ¦   ¦   ¦       ¦       sk.js
+    ¦   ¦   ¦       ¦       sr-Cyrl.js
+    ¦   ¦   ¦       ¦       sr.js
+    ¦   ¦   ¦       ¦       sv.js
+    ¦   ¦   ¦       ¦       th.js
+    ¦   ¦   ¦       ¦       tr.js
+    ¦   ¦   ¦       ¦       uk.js
+    ¦   ¦   ¦       ¦       vi.js
+    ¦   ¦   ¦       ¦       zh-CN.js
+    ¦   ¦   ¦       ¦       zh-TW.js
+    ¦   ¦   ¦       ¦       
+    ¦   ¦   ¦       +---selection
+    ¦   ¦   ¦               allowClear.js
+    ¦   ¦   ¦               base.js
+    ¦   ¦   ¦               clickMask.js
+    ¦   ¦   ¦               eventRelay.js
+    ¦   ¦   ¦               multiple.js
+    ¦   ¦   ¦               placeholder.js
+    ¦   ¦   ¦               search.js
+    ¦   ¦   ¦               single.js
+    ¦   ¦   ¦               stopPropagation.js
+    ¦   ¦   ¦               
+    ¦   ¦   +---scss
+    ¦   ¦       ¦   core.scss
+    ¦   ¦       ¦   _dropdown.scss
+    ¦   ¦       ¦   _multiple.scss
+    ¦   ¦       ¦   _single.scss
+    ¦   ¦       ¦   
+    ¦   ¦       +---mixins
+    ¦   ¦       ¦       _gradients.scss
+    ¦   ¦       ¦       
+    ¦   ¦       +---theme
+    ¦   ¦           +---classic
+    ¦   ¦           ¦       layout.scss
+    ¦   ¦           ¦       _defaults.scss
+    ¦   ¦           ¦       _multiple.scss
+    ¦   ¦           ¦       _single.scss
+    ¦   ¦           ¦       
+    ¦   ¦           +---default
+    ¦   ¦                   layout.scss
+    ¦   ¦                   _multiple.scss
+    ¦   ¦                   _single.scss
+    ¦   ¦                   
+    ¦   +---tests
+    ¦   ¦   ¦   helpers.js
+    ¦   ¦   ¦   integration.html
+    ¦   ¦   ¦   unit.html
+    ¦   ¦   ¦   
+    ¦   ¦   +---a11y
+    ¦   ¦   ¦       search-tests.js
+    ¦   ¦   ¦       selection-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---data
+    ¦   ¦   ¦       array-tests.js
+    ¦   ¦   ¦       base-tests.js
+    ¦   ¦   ¦       inputData-tests.js
+    ¦   ¦   ¦       maximumInputLength-tests.js
+    ¦   ¦   ¦       maximumSelectionLength-tests.js
+    ¦   ¦   ¦       minimumInputLength-tests.js
+    ¦   ¦   ¦       select-tests.js
+    ¦   ¦   ¦       tags-tests.js
+    ¦   ¦   ¦       tokenizer-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---dropdown
+    ¦   ¦   ¦       dropdownCss-tests.js
+    ¦   ¦   ¦       positioning-tests.js
+    ¦   ¦   ¦       selectOnClose-tests.js
+    ¦   ¦   ¦       stopPropagation-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---integration
+    ¦   ¦   ¦       dom-changes.js
+    ¦   ¦   ¦       jquery-calls.js
+    ¦   ¦   ¦       select2-methods.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---options
+    ¦   ¦   ¦       ajax-tests.js
+    ¦   ¦   ¦       data-tests.js
+    ¦   ¦   ¦       deprecated-tests.js
+    ¦   ¦   ¦       translation-tests.js
+    ¦   ¦   ¦       width-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---results
+    ¦   ¦   ¦       focusing-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---selection
+    ¦   ¦   ¦       allowClear-tests.js
+    ¦   ¦   ¦       containerCss-tests.js
+    ¦   ¦   ¦       multiple-tests.js
+    ¦   ¦   ¦       placeholder-tests.js
+    ¦   ¦   ¦       search-tests.js
+    ¦   ¦   ¦       single-tests.js
+    ¦   ¦   ¦       stopPropagation-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---utils
+    ¦   ¦   ¦       decorator-tests.js
+    ¦   ¦   ¦       escapeMarkup-tests.js
+    ¦   ¦   ¦       
+    ¦   ¦   +---vendor
+    ¦   ¦           jquery-1.7.2.js
+    ¦   ¦           qunit-1.23.1.css
+    ¦   ¦           qunit-1.23.1.js
+    ¦   ¦           
+    ¦   +---vendor
+    ¦           jquery-2.1.0.js
+    ¦           
+    +---skycons
+    ¦       .bower.json
+    ¦       .gitignore
+    ¦       index.html
+    ¦       README.md
+    ¦       skycons.js
+    ¦       
+    +---starrr
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   Gruntfile.coffee
+    ¦   ¦   index.html
+    ¦   ¦   package.json
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       starrr.css
+    ¦   ¦       starrr.js
+    ¦   ¦       
+    ¦   +---src
+    ¦           starrr.coffee
+    ¦           starrr.scss
+    ¦           
+    +---switchery
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   CHANGELOG.md
+    ¦   ¦   package.js
+    ¦   ¦   package.json
+    ¦   ¦   switchery.css
+    ¦   ¦   switchery.js
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       switchery.css
+    ¦   ¦       switchery.js
+    ¦   ¦       switchery.min.css
+    ¦   ¦       switchery.min.js
+    ¦   ¦       
+    ¦   +---meteor
+    ¦           export.js
+    ¦           tests.js
+    ¦           
+    +---transitionize
+    ¦   ¦   .bower.json
+    ¦   ¦   bower.json
+    ¦   ¦   package.json
+    ¦   ¦   transitionize.js
+    ¦   ¦   
+    ¦   +---dist
+    ¦   ¦       transitionize.js
+    ¦   ¦       transitionize.min.js
+    ¦   ¦       
+    ¦   +---examples
+    ¦           browserify.js
+    ¦           example.html
+    ¦           
+    +---validator
+            .bower.json
+            .gitattributes
+            .gitignore
+            fv.css
+            index.html
+            multifield.js
+            package.json
+            README.md
+            validator.js
+            

@@ -2,11 +2,13 @@
 session_start();
 
 function requireLogin() {
-    // Vérifier si l'utilisateur est déjà connecté
-    if (!isset($_SESSION['user_id'])) {
-        // Redirection vers l'index pour s'authentifier
-        header('Location: ../index.php');
+    if (!isset($_SESSION['authentification']) || (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 5))) {
+        
+        session_unset();     
+        session_destroy();   
+        header('Location: ../index.php?erreur=intru');
         exit();
     }
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 }
 ?>

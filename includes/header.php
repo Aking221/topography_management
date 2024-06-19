@@ -14,13 +14,13 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="../pages/dashboard.php">Dashboard</a></li>
+                    <li><a href="../../index.php">Accueil</a></li>
+                    <li><a href="../dashboard.php">Dashboard</a></li>
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <li><a href="../pages/logout.php">Se déconnecter</a></li>
+                        <li><a href="../logout.php">Se déconnecter</a></li>
                     <?php else: ?>
-                        <li><a href="../pages/user_login.php">Se connecter</a></li>
-                        <li><a href="../pages/user_register.php">S'inscrire</a></li>
+                   
+                       
                     <?php endif; ?>
                 </ul>
             </nav>
