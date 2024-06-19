@@ -1,5 +1,6 @@
 <?php
 include 'includes/db.php';
+
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     header("Location: pages/dashboard.php");
                 } elseif ($group == "labo") {
                     $_SESSION['groupe'] = $group;
-                    header("Location: pages/ldashboard.php");
+                    header("Location: pages/dashboard.php");
                 } else {
                     $_SESSION['groupe'] = $group;
                     header("Location: pages/dashboard.php");
@@ -122,7 +123,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'logout') {
                 <div>
                 <!--   <h1>CSE</h1> -->
                   <p>©2024 All Rights Reserved. Direction des Systemes d'Information CSE</p>
-                  <p><a href="https://www.groupcse.com">www.groupcse.com</a></p>
+                  <p><a href="https://www.groupecse.com">www.groupecse.com</a></p>
                 </div>
               </div>
             </form>
