@@ -4,11 +4,12 @@ include '../../includes/auth.php';
 
 requireLogin();
 
-if (!isset($_SESSION["authentification"]) || $_SESSION['privilege'] !== 'admin') {
+if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
     exit();
 }
+
 
 ?>
 
