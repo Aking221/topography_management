@@ -2,45 +2,17 @@
 require_once('../includes/db.php'); 
 require_once('../includes/auth.php');
 
-// Vérification sur la session authentification et privilège admin
+
+// Vérification sur la session authentification
 if (!isset($_SESSION["authentification"]) || $_SESSION['privilege'] !== 'admin') {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: dashboard.php"); // Redirection vers le tableau de bord
     exit();
 }
 
-// Ajout d'un utilisateur
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (empty($_POST['email'])) {
-        header("location:user_register.php?erreur=vide");
-    } else {
-        $email = addslashes($_POST['email']);
-        $nomComplet = addslashes($_POST['nomComplet']);
-        $telephone = addslashes($_POST['telephone']);
-        $chantier = addslashes($_POST['chantier']);
-        $password = addslashes($_POST['password']);
-        $passwordconf = addslashes($_POST['password1']);
-
-        if ($password !== $passwordconf) {
-            header("location:user_register.php?erreur=mp_different");
-            exit();
-        } else {
-            $password = md5($password);
-        }
-
-        $groupe = "topo";
-        $privilege = addslashes($_POST['privilege']);
-
-        // Requête d'ajout d'un utilisateur
-        $add_user = "INSERT INTO utilisateurs (email, nom_complet, password, telephone, groupe, privilege, code_chantier) VALUES ('$email','$nomComplet','$password', '$telephone', '$groupe' ,'$privilege', '$chantier')";
-        $result = mysqli_query($conn, $add_user) or die(mysqli_error($conn));
-        if ($result) {
-            header("location:user_register.php?add=ok");
-        } else {
-            header("location:user_register.php?erreur=existe");
-        }
-    }
-}
+// Récupérer les utilisateurs
+$sqlUsers = "SELECT id, email, nom_complet, telephone, groupe, privilege, code_chantier FROM utilisateurs";
+$resultUsers = mysqli_query($conn, $sqlUsers) or die(mysqli_error($conn));
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
-    <title>LaboTopo - Ajout utilisateur</title>
+    <title>LaboTopo - Liste des utilisateurs</title>
     <!-- CSS links -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -101,6 +73,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             position: fixed;
             width: 100%;
             bottom: 0;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .table-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .table-actions .btn {
+            padding: 5px 10px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -214,78 +197,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Page content -->
             <div class="right_col" role="main">
                 <div class="dashboard-content">
-                    <h1>Enregistrement Utilisateur</h1>
-                    <form action="user_register.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="email" id="email" name="email" required="required" class="form-control">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nomComplet">Nom Complet <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" id="nomComplet" name="nomComplet" required="required" class="form-control">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="password" class="col-form-label col-md-3 col-sm-3 label-align">Mot de passe <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <input class="form-control" type="password" id="password" name="password" required="required">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="password1" class="col-form-label col-md-3 col-sm-3 label-align">Confirmation mot de passe <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <input class="form-control" type="password" id="password1" name="password1" required="required">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="telephone" class="col-form-label col-md-3 col-sm-3 label-align">Téléphone</label>
-                            <div class="col-md-6 col-sm-6">
-                                <input id="telephone" class="form-control" type="text" name="telephone">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="chantier">Chantier</label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" list="listechantier" id="chantier" name="chantier" class="form-control">
-                                <?php 
-                                $req_mat = "SELECT id, code, chantier FROM chantiers";
-                                $reponse = mysqli_query($conn, $req_mat) or die(mysqli_error($conn));
-                                ?>
-                                <datalist id="listechantier">
-                                    <?php while ($response2 = mysqli_fetch_array($reponse)) { ?>
-                                        <option value="<?php echo $response2['code']; ?>"><?php echo $response2['code'].'  ---'.$response2['chantier']; ?></option>
-                                    <?php } ?>
-                                </datalist>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="privilege" class="col-form-label col-md-3 col-sm-3 label-align">Profil <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <select class="form-control" name="privilege" required="required">
-                                    <option>--- Choisir un profil ---</option>
-                                    <option value="admin">Administrateur</option>
-                                    <option value="utilisateur">Utilisateur</option>
-                                    <option value="invite">Invité</option>
-                                </select>
-                            </div>
-                        </div>
-                        <?php if (isset($_GET['erreur']) && ($_GET['erreur'] == "mp_different")) { ?>
-                            <div class="col-md-9 col-sm-9">Les mots de passe sont différents</div>
-                        <?php } ?>
-                        <div class="ln_solid"></div>
-                        <div class="item form-group">
-                            <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button class="btn btn-primary" type="button">Cancel</button>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-
-                    </form>
+                    <h1>Liste des utilisateurs</h1>
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" onkeyup="searchTable()" class="form-control" placeholder="Rechercher...">
+                    </div>
+                    <table id="userTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Email</th>
+                                <th>Nom Complet</th>
+                                <th>Téléphone</th>
+                                <th>Privilège</th>
+                                <th>Groupe</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $index = 1; while ($user = mysqli_fetch_assoc($resultUsers)) { ?>
+                                <tr>
+                                    <td><?php echo $index++; ?></td>
+                                    <td><?php echo $user['email']; ?></td>
+                                    <td><?php echo $user['nom_complet']; ?></td>
+                                    <td><?php echo $user['telephone']; ?></td>
+                                    <td><?php echo $user['privilege']; ?></td>
+                                    <td><?php echo $user['groupe']; ?></td>
+                                    <td class="table-actions">
+                                        <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                        <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /Page content -->
@@ -303,6 +247,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
     <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toLowerCase();
+            table = document.getElementById("userTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         // initialize a validator instance from the "FormValidator" constructor.
         // A "<form>" element is optionally passed as an argument, but is not a must
         var validator = new FormValidator({

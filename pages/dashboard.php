@@ -156,7 +156,7 @@ $conn->close();
                                 <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="user_register.php">Nouveau</a></li>
-                                        <li><a href="user_register.php">Liste des utilisateurs</a></li>
+                                        <li><a href="listeutilisateurs.php">Liste des utilisateurs</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -191,7 +191,7 @@ $conn->close();
                 <div class="dashboard-content">
                     <h1>Tableau de Bord</h1>
                     <div class="chart-container">
-                        <```php
+                     
                         <canvas id="dashboardChart"></canvas>
                     </div>
                 </div>

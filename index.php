@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($verif && $verif->num_rows > 0) {
         while ($data = mysqli_fetch_array($verif)) {
-            if (password_verify($pass, $data['password'])) {
+            if (md5($pass) == $data['password']) {
                 $_SESSION['authentification'] = TRUE;
                 $_SESSION['id'] = $data['id'];
                 $_SESSION['privilege'] = $data['privilege'];
