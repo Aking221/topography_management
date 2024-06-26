@@ -2,33 +2,36 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-requireLogin();
+
 if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $materiel_id = $_POST['materiel'];
+    $reason = $_POST['reason'];
+    $requested_by = $_SESSION['id'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fournisseur = $_POST['fournisseur'];
-    $code = $_POST['code'];
-    $contact = $_POST['contact'];
-    $observation = $_POST['observation'];
-    $active = isset($_POST['active']) ? 1 : 0;
+    $sql = "INSERT INTO demandes_rebut (id_materiel_topo, reason, status, requested_by) VALUES (?, ?, 'pending', ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("isi", $materiel_id, $reason, $requested_by);
 
-    $sql = "INSERT INTO fournisseurs (fournisseur, code, contact, observation, active, creer_par) VALUES ('$fournisseur', '$code', '$contact', '$observation', '$active', '" . $_SESSION['nomComplet'] . "')";
-
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Nouveau fournisseur ajouté avec succès.";
+    if ($stmt->execute()) {
+        $_SESSION['success'] = "Demande de mise au rebut envoyée avec succès.";
+        header("Location: ../dashboard.php");
+        exit();
     } else {
-        $_SESSION['error'] = "Erreur: " . $sql . "<br>" . $conn->error;
+        $_SESSION['error'] = "Erreur lors de l'envoi de la demande.";
     }
 
-    $conn->close();
-    header("Location: list.php");
-    exit();
+    $stmt->close();
 }
+
+// Fetch materials
+$sql = "SELECT id, description FROM materiel_topo";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -37,53 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un fournisseur</title>
+    <title>Demande de Mise au Rebut</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <link href="../../vendors/animate.css/animate.min.css" rel="stylesheet">
     <link href="../../build/css/custom.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .form-container {
             padding: 20px;
-        }
-        .sidebar {
-            background-color: #00a65a;
-            color: #fff;
-            height: 100%;
-            position: fixed;
-            width: 230px;
-        }
-        .sidebar .nav-title {
-            text-transform: uppercase;
-            padding: 15px 20px;
-            font-weight: bold;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar ul li {
-            padding: 10px 20px;
-        }
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .sidebar ul li a:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            background-color: #f7f7f7;
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
         }
     </style>
 </head>
@@ -207,29 +174,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="right_col" role="main">
                 <div class="form-container">
-                    <h1>Ajouter un fournisseur</h1>
-                    <form action="add_fournisseur.php" method="POST">
+                    <h1>Demande de Mise au Rebut</h1>
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                    <?php endif; ?>
+                    <form method="POST" action="mise_au_rebut.php">
                         <div class="form-group">
-                            <label for="fournisseur">Fournisseur *</label>
-                            <input type="text" class="form-control" id="fournisseur" name="fournisseur" required>
+                            <label for="materiel">Matériel *</label>
+                            <select name="materiel" id="materiel" class="form-control" required>
+                                <?php while ($row = $result->fetch_assoc()): ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['description']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="code">Code *</label>
-                            <input type="text" class="form-control" id="code" name="code" required>
+                            <label for="reason">Raison *</label>
+                            <textarea name="reason" id="reason" class="form-control" required></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="contact">Contact *</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observation</label>
-                            <textarea class="form-control" id="observation" name="observation"></textarea>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="active" name="active">
-                            <label class="form-check-label" for="active">Active</label>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">Enregistrer</button>
+                        <button type="submit" class="btn btn-success">Demander Mise au Rebut</button>
                     </form>
                 </div>
             </div>

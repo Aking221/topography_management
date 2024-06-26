@@ -2,32 +2,32 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-requireLogin();
-if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
+if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur','invite'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
+    header("Location: ../dashboard.php");
     exit();
 }
 
+$id = $_GET['id'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fournisseur = $_POST['fournisseur'];
-    $code = $_POST['code'];
-    $contact = $_POST['contact'];
-    $observation = $_POST['observation'];
-    $active = isset($_POST['active']) ? 1 : 0;
+$sql = "SELECT m.*, f.fournisseur, c.chantier 
+        FROM materiel_topo m 
+        LEFT JOIN fournisseurs f ON m.id_fournisseur = f.id 
+        LEFT JOIN chantiers c ON m.id_chantier = c.id 
+        WHERE m.id = '$id'";
+$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+$materiel = mysqli_fetch_assoc($result);
 
-    $sql = "INSERT INTO fournisseurs (fournisseur, code, contact, observation, active, creer_par) VALUES ('$fournisseur', '$code', '$contact', '$observation', '$active', '" . $_SESSION['nomComplet'] . "')";
-
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Nouveau fournisseur ajouté avec succès.";
-    } else {
-        $_SESSION['error'] = "Erreur: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-    header("Location: list.php");
-    exit();
+$mouvement_sql = "SELECT t.*, p.chantier as provenance, d.chantier as destination, u.nom_complet as receptionner_par 
+                  FROM transfert_materiel t
+                  LEFT JOIN chantiers p ON t.id_provenance = p.id
+                  LEFT JOIN chantiers d ON t.id_destination = d.id
+                  LEFT JOIN utilisateurs u ON t.receptionner = u.id 
+                  WHERE t.id_materiel_topo = '$id'";
+$mouvement_result = mysqli_query($conn, $mouvement_sql) or die(mysqli_error($conn));
+$mouvements = [];
+while ($row = mysqli_fetch_assoc($mouvement_result)) {
+    $mouvements[] = $row;
 }
 ?>
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un fournisseur</title>
+    <title>Fiche de Vie du Matériel</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -50,39 +50,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-container {
             padding: 20px;
         }
-        .sidebar {
-            background-color: #00a65a;
-            color: #fff;
-            height: 100%;
-            position: fixed;
-            width: 230px;
+        .materiel-info, .materiel-movements {
+            margin-bottom: 20px;
         }
-        .sidebar .nav-title {
-            text-transform: uppercase;
-            padding: 15px 20px;
-            font-weight: bold;
+        .materiel-info h3, .materiel-movements h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .table-info th, .table-info td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
         }
-        .sidebar ul li {
-            padding: 10px 20px;
+        .table-info {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
         }
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .sidebar ul li a:hover {
-            text-decoration: underline;
+        .btn-print {
+            margin-top: 20px;
         }
         .footer {
             background-color: #f7f7f7;
             padding: 20px;
             text-align: center;
-            position: fixed;
             width: 100%;
+            position: absolute;
             bottom: 0;
         }
     </style>
@@ -115,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                            <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
@@ -196,75 +190,136 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <ul class="navbar-right">
                             <li class="nav-item dropdown open">
                                 <a href="../logout.php"><i class="fa fa-sign-out" style="font-size:26px"></i></a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="../logout.php"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="right_col" role="main">
-                <div class="form-container">
-                    <h1>Ajouter un fournisseur</h1>
-                    <form action="add_fournisseur.php" method="POST">
-                        <div class="form-group">
-                            <label for="fournisseur">Fournisseur *</label>
-                            <input type="text" class="form-control" id="fournisseur" name="fournisseur" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="code">Code *</label>
-                            <input type="text" class="form-control" id="code" name="code" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">Contact *</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observation</label>
-                            <textarea class="form-control" id="observation" name="observation"></textarea>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="active" name="active">
-                            <label class="form-check-label" for="active">Active</label>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">Enregistrer</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer">
-                <p>&copy; 2024 All Rights Reserved. Direction des Systèmes d'Information CSE</p>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right
+                                <li><a href="../logout.php"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
+
+        <div class="right_col" role="main">
+            <div class="form-container">
+                <h1>Fiche de Vie du Matériel</h1>
+                <div class="materiel-info">
+                    <h3>Informations générales</h3>
+                    <table class="table-info">
+                        <tr>
+                            <th>Code :</th>
+                            <td><?php echo $materiel['code']; ?></td>
+                            <th>Date acquisition :</th>
+                            <td><?php echo $materiel['date_acquisition']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Description :</th>
+                            <td><?php echo $materiel['description']; ?></td>
+                            <th>Fournisseur :</th>
+                            <td><?php echo $materiel['fournisseur']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Numéro de série :</th>
+                            <td><?php echo $materiel['num_serie']; ?></td>
+                            <th>Numéro BC :</th>
+                            <td><?php echo $materiel['num_bc']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Marque :</th>
+                            <td><?php echo $materiel['marque']; ?></td>
+                            <th>Numéro BL :</th>
+                            <td><?php echo isset($materiel['num_bl']) ? $materiel['num_bl'] : 'N/A'; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Chantier :</th>
+                            <td><?php echo $materiel['chantier']; ?></td>
+                            <th>État :</th>
+                            <td><?php echo $materiel['etat']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Date de mise en service :</th>
+                            <td><?php echo $materiel['date_mise_service']; ?></td>
+                            <th>Coût :</th>
+                            <td><?php echo $materiel['cout_acquisition']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Date d'affectation :</th>
+                            <td><?php echo $materiel['date_affectation']; ?></td>
+                            <th>Observations :</th>
+                            <td><?php echo isset($materiel['observation']) ? $materiel['observation'] : 'N/A'; ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="materiel-movements">
+                    <h3>Les Mouvements</h3>
+                    <?php if (!empty($mouvements)) { ?>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date de transfert</th>
+                                    <th>Provenance</th>
+                                    <th>Destination</th>
+                                    <th>Num BT</th>
+                                    <th>Receptionner</th>
+                                    <th>Date de réception</th>
+                                    <th>Recep par</th>
+                                    <th>Observation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($mouvements as $mouvement) { ?>
+                                    <tr>
+                                        <td><?php echo $mouvement['date_transfert']; ?></td>
+                                        <td><?php echo $mouvement['provenance']; ?></td>
+                                        <td><?php echo $mouvement['destination']; ?></td>
+                                        <td><?php echo $mouvement['num_bt']; ?></td>
+                                        <td><?php echo $mouvement['receptionner']; ?></td>
+                                        <td><?php echo $mouvement['date_reception']; ?></td>
+                                        <td><?php echo $mouvement['receptionner_par']; ?></td>
+                                        <td><?php echo $mouvement['observation']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } else { ?>
+                        <p>Aucun mouvement enregistré pour ce matériel.</p>
+                    <?php } ?>
+                </div>
+                <button class="btn btn-primary btn-print" onclick="window.location.href='print.php?id=<?php echo $id; ?>'">Imprimer</button>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 All Rights Reserved. Direction des Systèmes d'Information CSE</p>
+        </div>
     </div>
+</div>
 
-    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../vendors/fastclick/lib/fastclick.js"></script>
-    <script src="../../vendors/nprogress/nprogress.js"></script>
-    <script src="../../vendors/Chart.js/dist/Chart.min.js"></script>
-    <script>
-        // Initialize the sidebar menu dropdowns
-        $(document).ready(function() {
-            $('.side-menu li a').on('click', function(e) {
-                const $this = $(this);
-                const $parent = $this.parent();
-                const $submenu = $this.next('.child_menu');
+<script src="../../vendors/jquery/dist/jquery.min.js"></script>
+<script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../vendors/fastclick/lib/fastclick.js"></script>
+<script src="../../vendors/nprogress/nprogress.js"></script>
+<script src="../../vendors/Chart.js/dist/Chart.min.js"></script>
+<script>
+    // Initialize the sidebar menu dropdowns
+    $(document).ready(function() {
+        $('.side-menu li a').on('click', function(e) {
+            const $this = $(this);
+            const $parent = $this.parent();
+            const $submenu = $this.next('.child_menu');
 
-                if ($submenu.length > 0) {
-                    e.preventDefault();
+            if ($submenu.length > 0) {
+                e.preventDefault();
 
-                    if ($parent.hasClass('active')) {
-                        $parent.removeClass('active');
-                        $submenu.slideUp();
-                    } else {
-                        $parent.addClass('active');
-                        $submenu.slideDown();
-                    }
+                if ($parent.hasClass('active')) {
+                    $parent.removeClass('active');
+                    $submenu.slideUp();
+                } else {
+                    $parent.addClass('active');
+                    $submenu.slideDown();
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

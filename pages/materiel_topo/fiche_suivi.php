@@ -1,72 +1,32 @@
 <?php
-include '../../includes/db.php';
-include '../../includes/auth.php';
+include_once '../../includes/db.php';
+include_once '../../includes/auth.php';
 
-// Vérifiez si une session est déjà active avant d'appeler session_start()
-if (session_status() == PHP_SESSION_NONE) {
-    session_start(); 
-}
 
-if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
+if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur', 'invite'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: ../dashboard.php");
     exit();
 }
 
-$id = $_GET['id'];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_famille_topo = addslashes($_POST['id_famille_topo']);
-    $code = addslashes($_POST['code']);
-    $description = addslashes($_POST['description']);
-    $marque = addslashes($_POST['marque']);
+    $designation = addslashes($_POST['designation']);
+    $code_instrument = addslashes($_POST['code_instrument']);
     $num_serie = addslashes($_POST['num_serie']);
-    $date_acquisition = addslashes($_POST['date_acquisition']);
-    $cout_acquisition = addslashes($_POST['cout_acquisition']);
-    $id_fournisseur = addslashes($_POST['id_fournisseur']);
-    $num_bc = addslashes($_POST['num_bc']);
-    $fiche_bl = addslashes($_POST['fiche_bl']);
-    $date_mise_service = addslashes($_POST['date_mise_service']);
-    $etat = addslashes($_POST['etat']);
-    $id_chantier = addslashes($_POST['id_chantier']);
-    $date_affectation = addslashes($_POST['date_affectation']);
+    $localisation = addslashes($_POST['localisation']);
+    $verification = addslashes($_POST['verification']);
+    $date_intervention = addslashes($_POST['date_intervention']);
+    $date_expiration = addslashes($_POST['date_expiration']);
+    $observations = addslashes($_POST['observations']);
+    $result_calibration = addslashes($_POST['result_calibration']);
+    $operator = addslashes($_POST['operator']);
 
-    $sql = "UPDATE materiel_topo SET 
-        id_famille_topo='$id_famille_topo', 
-        code='$code', 
-        description='$description', 
-        marque='$marque', 
-        num_serie='$num_serie', 
-        date_acquisition='$date_acquisition', 
-        cout_acquisition='$cout_acquisition', 
-        id_fournisseur='$id_fournisseur', 
-        num_bc='$num_bc', 
-        fiche_bl='$fiche_bl', 
-        date_mise_service='$date_mise_service', 
-        etat='$etat', 
-        id_chantier='$id_chantier', 
-        date_affectation='$date_affectation' 
-        WHERE id='$id'";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    // Save to database or perform other actions
 
-    if ($result) {
-        header("Location: list.php");
-        exit();
-    }
+    // Redirect to a confirmation page or display the form again
+    header("Location: fiche_suivi.php?success=1");
+    exit();
 }
-
-$sql = "SELECT * FROM materiel_topo WHERE id='$id'";
-$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-$materiel = mysqli_fetch_assoc($result);
-
-$sqlFamille = "SELECT id, materiel FROM familles_topo";
-$resultFamille = mysqli_query($conn, $sqlFamille) or die(mysqli_error($conn));
-
-$sqlFournisseur = "SELECT id, fournisseur FROM fournisseurs";
-$resultFournisseur = mysqli_query($conn, $sqlFournisseur) or die(mysqli_error($conn));
-
-$sqlChantier = "SELECT id, chantier FROM chantiers";
-$resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +35,7 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Matériel</title>
+    <title>Fiche de Suivi des Appareils Topo</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -131,35 +91,35 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="../dashboard.php" class="site_title">
-                            <img src="../../logo CSE.png" width="190" height="50"/>
-                            <span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span>
-                        </a>
+                        <a href="dashboard.php" class="site_title"><img src="../../logo CSE.png" width="190" height="50"/><span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span></a>
                     </div>
                     <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
                             <img src="../../user.png" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Bonjour,</span>
-                            <h2><?php echo $_SESSION['nomComplet']; ?></h2>
+                            <h2><?php echo $_SESSION['nomComplet'];?></h2>
                         </div>
                     </div>
+                    <!-- /menu profile quick info -->
                     <br />
+                    <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                            <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/add.php">Ajout matériel</a></li>
+                                        <li><a href="add.php">Ajout matériel</a></li>
                                      <?php } ?>
-                                        <li><a href="../materiel_topo/list.php">Liste matériel</a></li>
-                                        <li><a href="../materiel_topo/recherche_materiel.php">Rechercher / Imprimer</a></li>
+                                        <li><a href="list.php">Liste matériel</a></li>
+                                        <li><a href="recherche_materiel.php">Rechercher / Imprimer</a></li>
                                         <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
+                                        <li><a href="mise_au_rebut.php">Mise au rebut</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
@@ -190,8 +150,8 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../chantiers/list.php">Etat 1</a></li>
-                                        <li><a href="../                                        chantiers/list.php">Etat 2</a></li>
+                                        <li><a href="fiche_suivi.php">Etat 1</a></li>
+                                        <li><a href="fiche_suivi.php">Etat 2</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
@@ -201,7 +161,7 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
                                         <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
                                         <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
                                         <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                                            <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
+                                            <li><a href="rebut_requests.php">Demandes de Mise au Rebut</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
@@ -243,79 +203,47 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
 
             <div class="right_col" role="main">
                 <div class="form-container">
-                    <h1>Modifier Matériel</h1>
-                    <form action="edit.php?id=<?php echo $id; ?>" method="POST">
+                    <h1>Fiche de Suivi des Appareils Topo</h1>
+                    <form action="fiche_suivi.php" method="POST">
                         <div class="form-group">
-                            <label for="id_famille_topo">Famille de matériel *</label>
-                            <select class="form-control" id="id_famille_topo" name="id_famille_topo" required>
-                                <?php while($famille = mysqli_fetch_assoc($resultFamille)) { ?>
-                                    <option value="<?php echo $famille['id']; ?>" <?php if ($materiel['id_famille_topo'] == $famille['id']) echo 'selected'; ?>><?php echo $famille['materiel']; ?></option>
-                                <?php } ?>
-                            </select>
+                            <label for="designation">Désignation *</label>
+                            <input type="text" id="designation" name="designation" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="code">Code matériel</label>
-                            <input type="text" id="code" name="code" value="<?php echo $materiel['code']; ?>" class="form-control">
+                            <label for="code_instrument">Code Instrument *</label>
+                            <input type="text" id="code_instrument" name="code_instrument" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description du matériel</label>
-                            <input type="text" class="form-control" id="description" name="description" value="<?php echo $materiel['description']; ?>">
+                            <label for="num_serie">Numéro de Série *</label>
+                            <input type="text" id="num_serie" name="num_serie" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="marque">Marque</label>
-                            <input type="text" class="form-control" id="marque" name="marque" value="<?php echo $materiel['marque']; ?>">
+                            <label for="localisation">Localisation</label>
+                            <input type="text" id="localisation" name="localisation" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="num_serie">Numéro de Série</label>
-                            <input type="text" class="form-control" id="num_serie" name="num_serie" value="<?php echo $materiel['num_serie']; ?>">
+                            <label for="verification">Vérification</label>
+                            <input type="text" id="verification" name="verification" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="date_acquisition">Date acquisition</label>
-                            <input type="date" class="form-control" id="date_acquisition" name="date_acquisition" value="<?php echo $materiel['date_acquisition']; ?>">
+                            <label for="date_intervention">Date de l'intervention *</label>
+                            <input type="date" id="date_intervention" name="date_intervention" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="cout_acquisition">Coût d'acquisition</label>
-                            <input type="text" class="form-control" id="cout_acquisition" name="cout_acquisition" value="<?php echo $materiel['cout_acquisition']; ?>">
+                            <label for="date_expiration">Date d'expiration</label>
+                            <input type="date" id="date_expiration" name="date_expiration" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="id_fournisseur">Fournisseur *</label>
-                            <select class="form-control" id="id_fournisseur" name="id_fournisseur" required>
-                                <?php while($fournisseur = mysqli_fetch_assoc($resultFournisseur)) { ?>
-                                    <option value="<?php echo $fournisseur['id']; ?>" <?php if ($materiel['id_fournisseur'] == $fournisseur['id']) echo 'selected'; ?>><?php echo $fournisseur['fournisseur']; ?></option>
-                                <?php } ?>
-                            </select>
+                            <label for="observations">Observations</label>
+                            <textarea id="observations" name="observations" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="num_bc">Bon commande</label>
-                            <input type="text" class="form-control" id="num_bc" name="num_bc" value="<?php echo $materiel['num_bc']; ?>">
+                            <label for="result_calibration">Résultat de la calibration</label>
+                            <input type="text" id="result_calibration" name="result_calibration" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="fiche_bl">BL</label>
-                            <input type="text" class="form-control" id="fiche_bl" name="fiche_bl" value="<?php echo $materiel['fiche_bl']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="date_mise_service">Date de mise en service</label>
-                            <input type="date" class="form-control" id="date_mise_service" name="date_mise_service" value="<?php echo $materiel['date_mise_service']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="etat">État du matériel *</label>
-                            <select class="form-control" id="etat" name="etat" required>
-                                <option value="BON" <?php if ($materiel['etat'] == 'BON') echo 'selected'; ?>>Bon</option>
-                                <option value="PANNE" <?php if ($materiel['etat'] == 'PANNE') echo 'selected'; ?>>En panne</option>
-                                <option value="REFORME" <?php if ($materiel['etat'] == 'REFORME') echo 'selected'; ?>>Réformé</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_chantier">Chantier *</label>
-                            <select class="form-control" id="id_chantier" name="id_chantier" required>
-                                <?php while($chantier = mysqli_fetch_assoc($resultChantier)) { ?>
-                                    <option value="<?php echo $chantier['id']; ?>" <?php if ($materiel['id_chantier'] == $chantier['id']) echo 'selected'; ?>><?php echo $chantier['chantier']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_affectation">Date d'affectation</label>
-                            <input type="date" class="form-control" id="date_affectation" name="date_affectation" value="<?php echo $materiel['date_affectation']; ?>">
+                            <label for="operator">Nom et visa de l'opérateur</label>
+                            <input type="text" id="operator" name="operator" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Enregistrer</button>
                     </form>
@@ -352,8 +280,6 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
                 }
             });
         });
-    
-    
     </script>
 </body>
 </html>

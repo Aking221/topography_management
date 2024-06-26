@@ -10,12 +10,15 @@ if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], [
 }
 
 
-$id = $_GET['id'];
-$sql = "DELETE FROM familles_topo WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
-$stmt->execute();
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-header('Location: list.php');
+if ($id > 0) {
+    $sql = "DELETE FROM pays WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+}
+
+header('Location: view.php');
 exit();
 ?>

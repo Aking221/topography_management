@@ -1,6 +1,6 @@
 <?php
 include '../../includes/auth.php';
-requireLogin();
+
 include '../../includes/header.php';
 include '../../includes/db.php';
 

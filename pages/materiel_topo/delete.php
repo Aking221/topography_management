@@ -1,22 +1,34 @@
 <?php
-include '../../includes/auth.php';
-requireLogin();
 include '../../includes/db.php';
+include '../../includes/auth.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); 
+}
+
+if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin'])) {
+    $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
+    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $stmt = $conn->prepare("DELETE FROM materiel_topo WHERE id = ?");
-    $stmt->bind_param("i", $id);
 
-    if ($stmt->execute()) {
-        echo "<div class='alert success'>Matériel supprimé avec succès.</div>";
+    // Delete dependent records in transfert_materiel table
+    $sql_transfert = "DELETE FROM transfert_materiel WHERE id_materiel_topo = $id";
+    mysqli_query($conn, $sql_transfert) or die(mysqli_error($conn));
+
+    // Delete the record in materiel_topo table
+    $sql = "DELETE FROM materiel_topo WHERE id = $id";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+    if ($result) {
+        $_SESSION['message'] = "Le matériel a été supprimé avec succès.";
+        header("Location: list.php");
     } else {
-        echo "<div class='alert error'>Erreur: " . $stmt->error . "</div>";
+        $_SESSION['error'] = "Erreur lors de la suppression du matériel.";
+        header("Location: list.php");
     }
-
-    $stmt->close();
-    $conn->close();
-    header("Location: list.php");
-    exit();
 }
 ?>

@@ -2,33 +2,16 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-requireLogin();
-if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
-    $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
-    exit();
-}
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fournisseur = $_POST['fournisseur'];
-    $code = $_POST['code'];
-    $contact = $_POST['contact'];
-    $observation = $_POST['observation'];
-    $active = isset($_POST['active']) ? 1 : 0;
-
-    $sql = "INSERT INTO fournisseurs (fournisseur, code, contact, observation, active, creer_par) VALUES ('$fournisseur', '$code', '$contact', '$observation', '$active', '" . $_SESSION['nomComplet'] . "')";
-
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Nouveau fournisseur ajouté avec succès.";
-    } else {
-        $_SESSION['error'] = "Erreur: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-    header("Location: list.php");
-    exit();
-}
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$sql = "SELECT t.id, m.code AS materiel_code, m.description, c1.chantier AS provenance, c2.chantier AS destination, t.date_transfert, t.num_bt, t.bon_transfert, t.receptionner, t.date_reception, t.cout 
+        FROM transfert_materiel t
+        JOIN materiel_topo m ON t.id_materiel_topo = m.id
+        JOIN chantiers c1 ON t.id_provenance = c1.id
+        JOIN chantiers c2 ON t.id_destination = c2.id
+        WHERE m.code LIKE '%$search%' OR m.description LIKE '%$search%' OR c1.chantier LIKE '%$search%' OR c2.chantier LIKE '%$search%'";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un fournisseur</title>
+    <title>Rechercher / Imprimer Transferts</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -47,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .form-container {
+        .table-container {
             padding: 20px;
         }
         .sidebar {
@@ -85,11 +68,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             bottom: 0;
         }
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
+            <!-- Sidebar -->
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
@@ -206,31 +195,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="right_col" role="main">
-                <div class="form-container">
-                    <h1>Ajouter un fournisseur</h1>
-                    <form action="add_fournisseur.php" method="POST">
-                        <div class="form-group">
-                            <label for="fournisseur">Fournisseur *</label>
-                            <input type="text" class="form-control" id="fournisseur" name="fournisseur" required>
+                <div class="table-container">
+                    <h1>Rechercher / Imprimer Transferts</h1>
+                    <?php if(isset($_SESSION['message'])): ?>
+                        <div class="alert alert-success"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
+                    <?php endif; ?>
+                    <?php if(isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                    <?php endif; ?>
+                    <form action="recherche.php" method="GET" class="form-inline no-print">
+                        <div class="form-group mb-2">
+                            <label for="search" class="sr-only">Recherche</label>
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher" value="<?php echo htmlspecialchars($search); ?>">
                         </div>
-                        <div class="form-group">
-                            <label for="code">Code *</label>
-                            <input type="text" class="form-control" id="code" name="code" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">Contact *</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observation</label>
-                            <textarea class="form-control" id="observation" name="observation"></textarea>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="active" name="active">
-                            <label class="form-check-label" for="active">Active</label>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
+                        <button type="button" class="btn btn-primary mb-2" onclick="window.print()">Imprimer</button>
                     </form>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Matériel</th>
+                                <th>Provenance</th>
+                                <th>Destination</th>
+                                <th>Date Transfert</th>
+                                <th>Numéro BT</th>
+                                <th>Bon Transfert</th>
+                                <th>Réceptionné</th>
+                                <th>Date Réception</th>
+                                <th>Coût</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?php echo $row['materiel_code'] . ' - ' . $row['description']; ?></td>
+                                    <td><?php echo $row['provenance']; ?></td>
+                                    <td><?php echo $row['destination']; ?></td>
+                                    <td><?php echo $row['date_transfert']; ?></td>
+                                    <td><?php echo $row['num_bt']; ?></td>
+                                    <td><?php echo $row['bon_transfert']; ?></td>
+                                    <td><?php echo $row['receptionner'] ? 'Oui' : 'Non'; ?></td>
+                                    <td><?php echo $row['date_reception']; ?></td>
+                                    <td><?php echo $row['cout']; ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="footer">

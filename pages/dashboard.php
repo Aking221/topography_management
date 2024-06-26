@@ -2,8 +2,6 @@
 include '../includes/db.php';
 include '../includes/auth.php';
 
-requireLogin();
-
 // Récupérer le nombre de chantiers
 $sqlChantiers = "SELECT COUNT(*) as total FROM chantiers";
 $resultChantiers = $conn->query($sqlChantiers);
@@ -102,7 +100,7 @@ $conn->close();
                         </div>
                         <div class="profile_info">
                             <span>Bonjour,</span>
-                            <h2><?php echo $_SESSION['nomComplet'];?></h2>
+                            <h2><?php echo $_SESSION['nomComplet']; ?></h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -114,51 +112,66 @@ $conn->close();
                                 <li><a href="dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                                         <li><a href="materiel_topo/add.php">Ajout matériel</a></li>
+                                     <?php } ?>
                                         <li><a href="materiel_topo/list.php">Liste matériel</a></li>
                                         <li><a href="materiel_topo/recherche_materiel.php">Rechercher / Imprimer</a></li>
+                                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                                         <li><a href="materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
+                                        <?php } ?>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-refresh"></i> MOUVEMENT <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                                         <li><a href="transferts/add.php">Enregistrer transfert</a></li>
+                                        <?php } ?>
                                         <li><a href="transferts/list.php">Liste des transferts</a></li>
                                         <li><a href="transferts/recherche.php">Rechercher / Imprimer</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-table"></i> INTERVENTIONS <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                                         <li><a href="interventions/add.php">Nouvelle intervention</a></li>
+                                        <?php } ?>
                                         <li><a href="interventions/list.php">Liste des interventions</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-tasks"></i> SUIVI COMMANDES <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                                         <li><a href="chantiers/add.php">Nouvelle commande</a></li>
+                                        <?php } ?>
                                         <li><a href="chantiers/list.php">Liste des commandes</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="chantiers/list.php">Etat 1</a></li>
-                                        <li><a href="chantiers/list.php">Etat 2</a></li>
+                                        <li><a href="materiel_topo/fiche_suivi.php">Etat 1</a></li>
+                                        <li><a href="materiel_topo/fiche_suivi.php">Etat 2</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="pays/list.php">Liste abréviations</a></li>
-                                        <li><a href="pays/list.php">Liste des pays</a></li>
-                                        <li><a href="chantiers/list.php">Liste des chantiers</a></li>
-                                        <li><a href="fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <li><a href="../pages/pays/list.php">Liste abréviations</a></li>
+                                        <li><a href="../pages/pays/view.php">Liste des pays</a></li>
+                                        <li><a href="../pages/chantiers/view.php">Liste des chantiers</a></li>
+                                        <li><a href="../pages/fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                            <li><a href="../pages/materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
+                                        <?php } ?>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="user_register.php">Nouveau</a></li>
-                                        <li><a href="listeutilisateurs.php">Liste des utilisateurs</a></li>
-                                    </ul>
-                                </li>
+                                <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="user_register.php">Nouveau</a></li>
+                                            <li><a href="listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        </ul>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -166,7 +179,7 @@ $conn->close();
                     <!-- menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" title="Deconnexion" href="../pages/logout.php">
-                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                         </a>
                     </div>
                     <!-- /menu footer buttons -->
@@ -191,8 +204,12 @@ $conn->close();
                 <div class="dashboard-content">
                     <h1>Tableau de Bord</h1>
                     <div class="chart-container">
-                     
                         <canvas id="dashboardChart"></canvas>
+                    </div>
+                    <div class="stats">
+                        <p>Total Chantiers: <?php echo $totalChantiers; ?></p>
+                        <p>Total Matériels: <?php echo $totalMateriels; ?></p>
+                        <p>Total Utilisateurs: <?php echo $totalUsers; ?></p>
                     </div>
                 </div>
             </div>
@@ -252,3 +269,4 @@ $conn->close();
     </script>
 </body>
 </html>
+

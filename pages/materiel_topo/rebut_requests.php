@@ -2,33 +2,44 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-requireLogin();
-if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
+
+if (!in_array($_SESSION['privilege'], ['admin'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
+    header("Location: ../dashboard.php");
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
+    $action = $_POST['action'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fournisseur = $_POST['fournisseur'];
-    $code = $_POST['code'];
-    $contact = $_POST['contact'];
-    $observation = $_POST['observation'];
-    $active = isset($_POST['active']) ? 1 : 0;
+    if ($action == 'approve') {
+        $sql = "UPDATE demandes_rebut SET status = 'approved', approved_at = NOW() WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
 
-    $sql = "INSERT INTO fournisseurs (fournisseur, code, contact, observation, active, creer_par) VALUES ('$fournisseur', '$code', '$contact', '$observation', '$active', '" . $_SESSION['nomComplet'] . "')";
-
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Nouveau fournisseur ajouté avec succès.";
-    } else {
-        $_SESSION['error'] = "Erreur: " . $sql . "<br>" . $conn->error;
+        $sql = "UPDATE materiel_topo SET etat = 'reforme' WHERE id = (SELECT id_materiel_topo FROM demandes_rebut WHERE id = ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    } elseif ($action == 'reject') {
+        $sql = "UPDATE demandes_rebut SET status = 'rejected', approved_at = NOW() WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
     }
 
-    $conn->close();
-    header("Location: list.php");
+    header("Location: rebut_requests.php");
     exit();
 }
+
+$sql = "SELECT dr.id, m.code AS materiel_code, m.description, dr.reason, dr.requested_at, u.nom_complet AS requested_by, dr.status
+        FROM demandes_rebut dr
+        JOIN materiel_topo m ON dr.id_materiel_topo = m.id
+        JOIN utilisateurs u ON dr.requested_by = u.id
+        WHERE dr.status = 'pending'";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un fournisseur</title>
+    <title>Demande de Mise au Rebut</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -47,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .form-container {
+        .table-container {
             padding: 20px;
         }
         .sidebar {
@@ -90,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
+            <!-- Sidebar -->
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
@@ -206,31 +218,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="right_col" role="main">
-                <div class="form-container">
-                    <h1>Ajouter un fournisseur</h1>
-                    <form action="add_fournisseur.php" method="POST">
-                        <div class="form-group">
-                            <label for="fournisseur">Fournisseur *</label>
-                            <input type="text" class="form-control" id="fournisseur" name="fournisseur" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="code">Code *</label>
-                            <input type="text" class="form-control" id="code" name="code" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">Contact *</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observation</label>
-                            <textarea class="form-control" id="observation" name="observation"></textarea>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="active" name="active">
-                            <label class="form-check-label" for="active">Active</label>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">Enregistrer</button>
-                    </form>
+                <div class="table-container">
+                    <h1>Demandes de Mise au Rebut</h1>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Matériel</th>
+                                <th>Description</th>
+                                <th>Raison</th>
+                                <th>Date de Demande</th>
+                                <th>Demandé par</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $result->fetch_assoc()) { ?>
+                                <tr>
+                                    <td><?php echo $row['materiel_code']; ?></td>
+                                    <td><?php echo $row['description']; ?></td>
+                                    <td><?php echo $row['reason']; ?></td>
+                                    <td><?php echo $row['requested_at']; ?></td>
+                                    <td><?php echo $row['requested_by']; ?></td>
+                                    <td>
+                                        <form method="POST" action="rebut_requests.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approuver</button>
+                                        </form>
+                                        <form method="POST" action="rebut_requests.php" style="display:inline;">
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Rejeter</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="footer">

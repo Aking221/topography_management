@@ -2,6 +2,12 @@
 include '../../includes/auth.php';
 requireLogin();
 include '../../includes/db.php';
+if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin'])) {
+    $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
+    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
+    exit();
+}
+
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
