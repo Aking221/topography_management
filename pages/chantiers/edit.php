@@ -2,9 +2,13 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); 
+}
+
 if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php");
+    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
     exit();
 }
 
@@ -20,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_devis = $_POST['date_devis'];
     $fournisseur = $_POST['fournisseur'];
     $num_devis = $_POST['num_devis'];
+    $materiel = $_POST['materiel'];
     $montant_euro = $_POST['montant_euro'];
     $montant_cfa = $_POST['montant_cfa'];
     $chantier = $_POST['chantier'];
@@ -30,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_paiement_solde = $_POST['date_paiement_solde'];
     $num_semaines = $_POST['num_semaines'];
     $date_livraison_prevue = $_POST['date_livraison_prevue'];
-    $delai_restant = $_POST['delai_restant'];
     $date_reception = $_POST['date_reception'];
     $conformite = $_POST['conformite'];
     $date_fin_garantie = $_POST['date_fin_garantie'];
@@ -45,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             date_devis = '$date_devis', 
             fournisseur = '$fournisseur', 
             num_devis = '$num_devis', 
+            materiel = '$materiel', 
             montant_euro = '$montant_euro', 
             montant_cfa = '$montant_cfa', 
             chantier = '$chantier', 
@@ -55,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             date_paiement_solde = '$date_paiement_solde', 
             num_semaines = '$num_semaines', 
             date_livraison_prevue = '$date_livraison_prevue', 
-            delai_restant = '$delai_restant', 
             date_reception = '$date_reception', 
             conformite = '$conformite', 
             date_fin_garantie = '$date_fin_garantie', 
@@ -67,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             date_devis = '$date_devis', 
             fournisseur = '$fournisseur', 
             num_devis = '$num_devis', 
+            materiel = '$materiel', 
             montant_euro = '$montant_euro', 
             montant_cfa = '$montant_cfa', 
             chantier = '$chantier', 
@@ -77,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             date_paiement_solde = '$date_paiement_solde', 
             num_semaines = '$num_semaines', 
             date_livraison_prevue = '$date_livraison_prevue', 
-            delai_restant = '$delai_restant', 
             date_reception = '$date_reception', 
             conformite = '$conformite', 
             date_fin_garantie = '$date_fin_garantie', 
@@ -238,16 +242,16 @@ $conn->close();
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 2</a></li>
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../pays/list.php">Liste abréviations</a></li>
+                                       <li><a href="../pays/list.php">Liste abréviations</a></li>
                                         <li><a href="../pays/view.php">Liste des pays</a></li>
                                         <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
                                         <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <li><a href="../interventions/list_intervenants.php">Liste des intervenants</a></li>
                                         <?php if ($_SESSION['privilege'] === 'admin') { ?>
                                             <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
                                         <?php } ?>
@@ -291,94 +295,122 @@ $conn->close();
 
             <div class="right_col" role="main">
                 <div class="form-container">
-                    <div class="form-section">
-                        <h1>Modifier commande</h1>
-                        <form id="commandeForm" action="edit.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="date_devis">Date devis *</label>
-                                <input type="date" id="date_devis" name="date_devis" required="required" class="form-control" value="<?php echo $row['date_devis']; ?>">
+                    <h1>Modifier commande</h1>
+                    <form action="edit.php?id=<?php echo $id; ?>" method="POST" id="commande-form" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date_devis">Date du devis *</label>
+                                    <input type="date" id="date_devis" name="date_devis" required class="form-control" value="<?php echo $row['date_devis']; ?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fournisseur">Fournisseur *</label>
+                                    <input type="text" list="listefournisseur" id="fournisseur" name="fournisseur" required class="form-control" value="<?php echo $row['fournisseur']; ?>">
+                                    <datalist id="listefournisseur">
+                                        <?php 
+                                        $req_four = "SELECT id, fournisseur FROM fournisseurs";
+                                        $reponse = mysqli_query($conn, $req_four) or die(mysqli_error($conn));
+                                        while($response2 = mysqli_fetch_array($reponse)) {         
+                                        ?>
+                                        <option value="<?php echo $response2['fournisseur']; ?>"><?php echo $response2['fournisseur']; ?></option>
+                                        <?php } ?>
+                                    </datalist>
+                                </div>
+                                <div class="form-group">
+                                    <label for="num_devis">Numéro du devis *</label>
+                                    <input type="text" id="num_devis" name="num_devis" required class="form-control" value="<?php echo $row['num_devis']; ?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="materiel">Matériel *</label>
+                                    <input type="text" list="listemateriel" id="materiel" name="materiel" required="required" class="form-control" value="<?php echo $row['materiel']; ?>">
+                                    <datalist id="listemateriel">
+                                        <?php 
+                                        $req_mat = "SELECT id, materiel FROM familles_topo";
+                                        $reponse = mysqli_query($conn, $req_mat) or die(mysqli_error($conn));
+                                        while($response2 = mysqli_fetch_array($reponse)) {         
+                                        ?>
+                                        <option value="<?php echo $response2['materiel']; ?>"><?php echo $response2['materiel']; ?></option>
+                                        <?php } ?>
+                                    </datalist>
+                                </div>
+                                <div class="form-group">
+                                    <label for="montant_euro">Montant en Euro</label>
+                                    <input type="text" id="montant_euro" name="montant_euro" class="form-control" value="<?php echo $row['montant_euro']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="montant_cfa">Montant en CFA *</label>
+                                    <input type="text" id="montant_cfa" name="montant_cfa" required class="form-control" value="<?php echo $row['montant_cfa']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chantier">Chantier *</label>
+                                    <input type="text" list="listechantier" id="chantier" name="chantier" required class="form-control" value="<?php echo $row['chantier']; ?>">
+                                    <datalist id="listechantier">
+                                        <?php 
+                                        $req_chant = "SELECT id, chantier FROM chantiers";
+                                        $reponse = mysqli_query($conn, $req_chant) or die(mysqli_error($conn));
+                                        while($response2 = mysqli_fetch_array($reponse)) {         
+                                        ?>
+                                        <option value="<?php echo $response2['chantier']; ?>"><?php echo $response2['chantier']; ?></option>
+                                        <?php } ?>
+                                    </datalist>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="fournisseur">Fournisseur *</label>
-                                <input type="text" id="fournisseur" name="fournisseur" required="required" class="form-control" value="<?php echo $row['fournisseur']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="num_devis">N° Devis *</label>
-                                <input type="text" id="num_devis" name="num_devis" required="required" class="form-control" readonly value="<?php echo $row['num_devis']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="montant_euro">Montant Euro</label>
-                                <input type="number" id="montant_euro" name="montant_euro" class="form-control" value="<?php echo $row['montant_euro']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="montant_cfa">Montant CFA *</label>
-                                <input type="number" id="montant_cfa" name="montant_cfa" required="required" class="form-control" value="<?php echo $row['montant_cfa']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="chantier">Chantier *</label>
-                                <input type="text" id="chantier" name="chantier" required="required" class="form-control" value="<?php echo $row['chantier']; ?>">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="num_bc">Numéro BC</label>
+                                    <input type="text" id="num_bc" name="num_bc" class="form-control" value="<?php echo $row['num_bc']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_bc">Date BC</label>
+                                    <input type="date" id="date_bc" name="date_bc" class="form-control" value="<?php echo $row['date_bc']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="avance_montant">Avance Montant</label>
+                                    <input type="text" id="avance_montant" name="avance_montant" class="form-control" value="<?php echo $row['avance_montant']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_avance">Date Avance</label>
+                                    <input type="date" id="date_avance" name="date_avance" class="form-control" value="<?php echo $row['date_avance']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_paiement_solde">Date Paiement Solde</label>
+                                    <input type="date" id="date_paiement_solde" name="date_paiement_solde" class="form-control" value="<?php echo $row['date_paiement_solde']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="num_semaines">Délai en semaines</label>
+                                    <input type="number" id="num_semaines" name="num_semaines" class="form-control" value="<?php echo $row['num_semaines']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_livraison_prevue">Date Livraison Prévue</label>
+                                    <input type="date" id="date_livraison_prevue" name="date_livraison_prevue" class="form-control" value="<?php echo $row['date_livraison_prevue']; ?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_reception">Date Réception</label>
+                                    <input type="date" id="date_reception" name="date_reception" class="form-control" value="<?php echo $row['date_reception']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="conformite">Conformité</label>
+                                    <input type="text" id="conformite" name="conformite" class="form-control" value="<?php echo $row['conformite']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_fin_garantie">Date Fin Garantie</label>
+                                    <input type="date" id="date_fin_garantie" name="date_fin_garantie" class="form-control" value="<?php echo $row['date_fin_garantie']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fichier">Fichier</label>
+                                    <input type="file" id="fichier" name="fichier" class="form-control">
+                                    <?php if (!empty($row['fichier'])): ?>
+                                        <a href="../../uploads/<?php echo $row['fichier']; ?>" target="_blank">Voir fichier</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label for="num_bc">N° Bon commande</label>
-                                <input type="text" id="num_bc" name="num_bc" class="form-control" value="<?php echo $row['num_bc']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_bc">Date BC</label>
-                                <input type="date" id="date_bc" name="date_bc" class="form-control" value="<?php echo $row['date_bc']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="avance_montant">Avance montant</label>
-                                <input type="number" id="avance_montant" name="avance_montant" class="form-control" value="<?php echo $row['avance_montant']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_avance">Date Avance</label>
-                                <input type="date" id="date_avance" name="date_avance" class="form-control" value="<?php echo $row['date_avance']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_paiement_solde">Date paiement solde</label>
-                                <input type="date" id="date_paiement_solde" name="date_paiement_solde" class="form-control" value="<?php echo $row['date_paiement_solde']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="num_semaines">N° semaines</label>
-                                <input type="number" id="num_semaines" name="num_semaines" class="form-control" value="<?php echo $row['num_semaines']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_livraison_prevue">Date livraison prévue</label>
-                                <input type="date" id="date_livraison_prevue" name="date_livraison_prevue" class="form-control" value="<?php echo $row['date_livraison_prevue']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="delai_restant">Délai restant</label>
-                                <input type="number" id="delai_restant" name="delai_restant" class="form-control" value="<?php echo $row['delai_restant']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="date_reception">Date reception</label>
-                                <input type="date" id="date_reception" name="date_reception" class="form-control" value="<?php echo $row['date_reception']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="conformite">Conformité</label>
-                                <select id="conformite" name="conformite" class="form-control">
-                                    <option value="">--- Conformité ---</option>
-                                    <option value="Conforme" <?php echo ($row['conformite'] == 'Conforme') ? 'selected' : ''; ?>>Conforme</option>
-                                    <option value="Non Conforme" <?php echo ($row['conformite'] == 'Non Conforme') ? 'selected' : ''; ?>>Non Conforme</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="date_fin_garantie">Date fin garantie</label>
-                                <input type="date" id="date_fin_garantie" name="date_fin_garantie" class="form-control" value="<?php echo $row['date_fin_garantie']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="fichier">Fichier</label>
-                                <input type="file" id="fichier" name="fichier" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="observation">Observation</label>
-                                <textarea id="observation" name="observation" class="form-control"><?php echo $row['observation']; ?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <label for="observation">Observation</label>
+                            <textarea id="observation" name="observation" class="form-control"><?php echo $row['observation']; ?></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                    </form>
                 </div>
             </div>
             <div class="footer">
@@ -388,7 +420,7 @@ $conn->close();
     </div>
 
     <script>
-       $(document).ready(function() {
+        $(document).ready(function() {
             // Fetch the latest num_devis and set the new one
             $.ajax({
                 url: 'get_latest_num_devis.php',
@@ -408,6 +440,19 @@ $conn->close();
                     $('#montant_cfa').val('');
                 }
             });
+
+            // Calculate and set the date of delivery based on delay in weeks
+            $('#num_semaines').on('input', function() {
+                var numWeeks = $(this).val();
+                if (numWeeks) {
+                    var dateDevis = new Date($('#date_devis').val());
+                    var deliveryDate = new Date(dateDevis.setDate(dateDevis.getDate() + numWeeks * 7));
+                    $('#date_livraison_prevue').val(deliveryDate.toISOString().split('T')[0]);
+                } else {
+                    $('#date_livraison_prevue').val('');
+                }
+            });
+
             // Initialize the sidebar menu dropdowns
             $('.side-menu li a').on('click', function(e) {
                 const $this = $(this);
@@ -424,6 +469,40 @@ $conn->close();
                         $parent.addClass('active');
                         $submenu.slideDown();
                     }
+                }
+            });
+
+            // Validate coherence of dates
+            $('#commande-form').on('submit', function(event) {
+                var dateDevis = new Date($('#date_devis').val());
+                var dateBC = new Date($('#date_bc').val());
+                var dateAvance = new Date($('#date_avance').val());
+                var datePaiementSolde = new Date($('#date_paiement_solde').val());
+                var dateLivraisonPrevue = new Date($('#date_livraison_prevue').val());
+                var dateReception = new Date($('#date_reception').val());
+                var dateFinGarantie = new Date($('#date_fin_garantie').val());
+
+                var errors = [];
+
+                if (dateBC < dateDevis) {
+                    errors.push("La date BC ne peut pas être antérieure à la date du devis.");
+                }
+                if (dateAvance < dateDevis) {
+                    errors.push("La date d'avance ne peut pas être antérieure à la date du devis.");
+                }
+                if (datePaiementSolde < dateDevis) {
+                    errors.push("La date de paiement du solde ne peut pas être antérieure à la date du devis.");
+                }
+                if (dateReception < dateLivraisonPrevue) {
+                    errors.push("La date de réception ne peut pas être antérieure à la date de livraison prévue.");
+                }
+                if (dateFinGarantie < dateReception) {
+                    errors.push("La date de fin de garantie ne peut pas être antérieure à la date de réception.");
+                }
+
+                if (errors.length > 0) {
+                    event.preventDefault();
+                    alert(errors.join("\n"));
                 }
             });
         });

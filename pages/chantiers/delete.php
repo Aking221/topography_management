@@ -14,20 +14,14 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$id = intval($_GET['id']);
+$id = $_GET['id'];
 
-// Prepare the statement to delete the record
-$sql = $conn->prepare("DELETE FROM commandes WHERE id = ?");
-$sql->bind_param("i", $id);
-
-if ($sql->execute()) {
+$sql = "DELETE FROM commandes WHERE id = $id";
+if ($conn->query($sql) === TRUE) {
     $_SESSION['message'] = "Commande supprimée avec succès.";
 } else {
     $_SESSION['error'] = "Erreur lors de la suppression de la commande: " . $conn->error;
 }
-
-$sql->close();
-$conn->close();
 
 header("Location: list.php");
 exit();

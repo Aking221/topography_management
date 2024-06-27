@@ -2,7 +2,7 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-requireLogin();
+
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $sql = "SELECT c.*, p.pays as pays_name FROM chantiers c 
@@ -140,10 +140,11 @@ $result = $conn->query($sql);
                                 </li>                   
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-            <li><a href="../pays/list.php">Liste abréviations</a></li>
+           <li><a href="../pays/list.php">Liste abréviations</a></li>
             <li><a href="../pays/view.php">Liste des pays</a></li>
             <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
             <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
+            <li><a href="../interventions/list_intervenants.php">Liste des intervenants</a></li>
             <?php if ($_SESSION['privilege'] === 'admin') { ?>
                 <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
             <?php } ?>

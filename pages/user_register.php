@@ -177,10 +177,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-            <li><a href="../pages/pays/list.php">Liste abréviations</a></li>
+          <li><a href="../pages/pays/list.php">Liste abréviations</a></li>
             <li><a href="../pages/pays/view.php">Liste des pays</a></li>
             <li><a href="../pages/chantiers/view.php">Liste des chantiers</a></li>
             <li><a href="../pages/fournisseurs/list.php">Liste des fournisseurs</a></li>
+            <li><a href="../pages/interventions/list_intervenants.php">Liste des intervenants</a></li>
             <?php if ($_SESSION['privilege'] === 'admin') { ?>
                 <li><a href="../pages/materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
             <?php } ?>

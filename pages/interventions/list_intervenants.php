@@ -2,14 +2,9 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur','invite'])) {
-    $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
-    exit();
-}
-
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$sql = "SELECT * FROM pays WHERE pays LIKE '%$search%'";
+$sql = "SELECT * FROM intervenants 
+        WHERE nom LIKE '%$search%' OR code_intervenant LIKE '%$search%' OR domaine_intervention LIKE '%$search%'";
 $result = $conn->query($sql);
 ?>
 
@@ -19,7 +14,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des pays</title>
+    <title>Liste des intervenants</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -97,23 +92,23 @@ $result = $conn->query($sql);
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                            <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/add.php">Ajout matériel</a></li>
-                                     <?php } ?>
+                                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
+                                            <li><a href="../materiel_topo/add.php">Ajout matériel</a></li>
+                                        <?php } ?>
                                         <li><a href="../materiel_topo/list.php">Liste matériel</a></li>
                                         <li><a href="../materiel_topo/recherche_materiel.php">Rechercher / Imprimer</a></li>
                                         <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
+                                            <li><a href="../materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-refresh"></i> MOUVEMENT <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../transferts/add.php">Enregistrer transfert</a></li>
+                                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
+                                            <li><a href="../transferts/add.php">Enregistrer transfert</a></li>
                                         <?php } ?>
                                         <li><a href="../transferts/list.php">Liste des transferts</a></li>
                                         <li><a href="../transferts/recherche.php">Rechercher / Imprimer</a></li>
@@ -121,44 +116,45 @@ $result = $conn->query($sql);
                                 </li>
                                 <li><a><i class="fa fa-table"></i> INTERVENTIONS <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../interventions/add.php">Nouvelle intervention</a></li>
+                                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
+                                            <li><a href="../interventions/add.php">Nouvelle intervention</a></li>
                                         <?php } ?>
                                         <li><a href="../interventions/list.php">Liste des interventions</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-tasks"></i> SUIVI COMMANDES <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../chantiers/add.php">Nouvelle commande</a></li>
+                                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
+                                            <li><a href="../chantiers/add.php">Nouvelle commande</a></li>
                                         <?php } ?>
                                         <li><a href="../chantiers/list.php">Liste des commandes</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
-                                  <ul class="nav child_menu">
-                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
-                                     </ul>                
-                                </li>                   
-                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-           <li><a href="../pays/list.php">Liste abréviations</a></li>
-            <li><a href="../pays/view.php">Liste des pays</a></li>
-            <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
-            <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
-            <li><a href="../interventions/list_intervenants.php">Liste des intervenants</a></li>
-            <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
-            <?php } ?>
-        </ul>
-    </li>
-    <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../user_register.php">Nouveau</a></li>
-                                        <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                       <li><a href="../pays/list.php">Liste abréviations</a></li>
+                                        <li><a href="../pays/view.php">Liste des pays</a></li>
+                                        <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
+                                        <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <li><a href="../interventions/list_intervenants.php">Liste des intervenants</a></li>
+                                     
+                                        <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                            <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                                <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="../user_register.php">Nouveau</a></li>
+                                            <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        </ul>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -190,36 +186,44 @@ $result = $conn->query($sql);
 
             <div class="right_col" role="main">
                 <div class="table-container">
-                    <h1>Liste des pays</h1>
-                    <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                    <a href="add_pays.php" class="btn btn-success mb-3">Ajouter un pays</a>
-                    <?php } ?>
-                    <form action="view.php" method="GET" class="form-inline">
+                    <h1>Liste des intervenants</h1>
+                    <form action="list_intervenants.php" method="GET" class="form-inline">
                         <div class="form-group mb-2">
                             <label for="search" class="sr-only">Recherche</label>
                             <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher" value="<?php echo htmlspecialchars($search); ?>">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
+                        <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
+                        <a href="add_intervenant.php" class="btn btn-success mb-2">Ajouter</a>
+                        <?php } ?>
                     </form>
                     <table class="table table-striped mt-3">
                         <thead>
                             <tr>
-                                <th>Pays</th>
-                                <th>Créé par</th>
+                                <th>Nom</th>
+                                <th>Code Intervenant</th>
+                                <th>Domaine d'intervention</th>
+                                <th>Date d'entrée en service</th>
+                                <th>Active</th>
+                                <th>Observation</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php while($row = $result->fetch_assoc()): ?>
                                 <tr>
-                                    <td><?php echo $row['pays']; ?></td>
-                                    <td><?php echo $row['creer_par']; ?></td>
+                                    <td><?php echo $row['nom']; ?></td>
+                                    <td><?php echo $row['code_intervenant']; ?></td>
+                                    <td><?php echo $row['domaine_intervention']; ?></td>
+                                    <td><?php echo $row['date_entree_service']; ?></td>
+                                    <td><?php echo $row['active'] ? 'Oui' : 'Non'; ?></td>
+                                    <td><?php echo $row['observation']; ?></td>
                                     <td>
                                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <a href="edit_pays.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                        <a href="edit_intervenant.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                                         <?php } ?>
                                         <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                                        <a href="delete_pays.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="delete_intervenant.php?id=<?php echo $row['id']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         <?php } ?>
                                     </td>
                                 </tr>
