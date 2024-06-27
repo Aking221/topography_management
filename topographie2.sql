@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 24 juin 2024 à 14:47
+-- Généré le : jeu. 27 juin 2024 à 18:57
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -52,8 +52,7 @@ INSERT INTO `chantiers` (`id`, `code`, `chantier`, `id_pays`, `contact`, `active
 (7, '11-1703', 'MBEUBEUSS', 1, '', 0, 'O Faye', ''),
 (8, '11-1704', 'MBEUBEUSS LOT2', 1, '', 0, 'O Faye', ''),
 (9, '11-1705', 'ROUTE NATIONALE GOLERE THILOGNE', 1, '', 0, 'O Faye', ''),
-(10, '11-1706', 'OCEAN VIEW', 1, '', 0, 'O Faye', ''),
-(11, '11-1709', 'PROMOVILLES', 1, '', 0, 'O Faye', '');
+(10, '11-1706', 'OCEAN VIEW', 1, '', 0, 'O Faye', '');
 
 -- --------------------------------------------------------
 
@@ -81,8 +80,17 @@ CREATE TABLE `commandes` (
   `conformite` varchar(50) DEFAULT NULL,
   `date_fin_garantie` date DEFAULT NULL,
   `fichier` varchar(255) DEFAULT NULL,
-  `observation` text DEFAULT NULL
+  `observation` text DEFAULT NULL,
+  `materiel` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `commandes`
+--
+
+INSERT INTO `commandes` (`id`, `date_devis`, `fournisseur`, `num_devis`, `montant_euro`, `montant_cfa`, `chantier`, `num_bc`, `date_bc`, `avance_montant`, `date_avance`, `date_paiement_solde`, `num_semaines`, `date_livraison_prevue`, `delai_restant`, `date_reception`, `conformite`, `date_fin_garantie`, `fichier`, `observation`, `materiel`) VALUES
+(5, '2024-06-01', 'soseter', 'DEV-0003', 50, 32797.9, 'BABA GARAGE - MECKHE - FASS BOYE', '', '2024-06-02', 0, '2024-06-03', '2024-06-04', 1, '0000-00-00', NULL, '2024-06-09', 'bon', '2024-06-27', '', NULL, 'Cinématique en Temps Réel '),
+(6, '2024-06-27', 'Supplier A', 'DEV-0004', 50, 32797.9, 'MBEUBEUSS', '001', '2024-06-27', 5000, '2024-06-27', '2024-06-27', 2, '2024-07-11', NULL, '2024-07-25', 'bon', '2024-08-30', 'LaboTopo - Liste commandes_20240627185223.pdf', NULL, 'GPS différentiel');
 
 -- --------------------------------------------------------
 
@@ -96,8 +104,39 @@ CREATE TABLE `demandes_rebut` (
   `reason` text DEFAULT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending',
   `requested_by` int(11) DEFAULT NULL,
-  `requested_at` datetime DEFAULT current_timestamp()
+  `requested_at` datetime DEFAULT current_timestamp(),
+  `approved_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `demandes_rebut`
+--
+
+INSERT INTO `demandes_rebut` (`id`, `id_materiel_topo`, `reason`, `status`, `requested_by`, `requested_at`, `approved_at`) VALUES
+(1, 14, 's', 'pending', 7, '2024-06-24 16:06:48', NULL),
+(3, 8, 'c', 'approved', 5, '2024-06-26 10:30:26', '2024-06-26 10:32:11'),
+(5, 8, 'pas fonctionnel', 'approved', 5, '2024-06-26 11:21:23', '2024-06-26 11:21:37'),
+(6, 9, 's', 'rejected', 5, '2024-06-26 12:00:50', '2024-06-26 12:08:53');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `devis_counter`
+--
+
+CREATE TABLE `devis_counter` (
+  `id` int(11) NOT NULL,
+  `last_num_devis` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `devis_counter`
+--
+
+INSERT INTO `devis_counter` (`id`, `last_num_devis`) VALUES
+(1, 'DEV-0000'),
+(2, 'DEV-0001'),
+(3, 'DEV-0004');
 
 -- --------------------------------------------------------
 
@@ -112,6 +151,20 @@ CREATE TABLE `familles_topo` (
   `active` tinyint(1) DEFAULT 1,
   `observation` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `familles_topo`
+--
+
+INSERT INTO `familles_topo` (`id`, `materiel`, `abv`, `active`, `observation`) VALUES
+(1, 'GPS différentiel', 'GPS', 1, 'Aucune'),
+(6, 'Station Total', 'STT', 1, ''),
+(11, 'Cinématique en Temps Réel ', 'CTR', 1, ''),
+(12, 'Système Mondial de Navigation par Satellite ', 'SMNS', 1, ''),
+(13, ' Mesure Électronique de Distance', 'MED', 1, ''),
+(14, ' Système de Positionnement Global Différentiel', 'SPGD', 1, ''),
+(15, 'Détection et Télémétrie par Laser', 'DTL', 1, ''),
+(16, 'Scanner Laser Terrestre', 'SLT', 1, '');
 
 -- --------------------------------------------------------
 
@@ -134,7 +187,8 @@ CREATE TABLE `fournisseurs` (
 --
 
 INSERT INTO `fournisseurs` (`id`, `fournisseur`, `code`, `contact`, `active`, `creer_par`, `observation`) VALUES
-(1, 'Supplier A', 'SUPA', 'contact@suppliera.com', 1, 'admin', 'Main supplier of surveying instruments');
+(1, 'Supplier A', 'SUPA', 'contact@suppliera.com', 1, 'admin', 'Main supplier of surveying instruments'),
+(4, 'soseter', '1', '124', 1, 'Abdou Aziz Daback Ba', '');
 
 -- --------------------------------------------------------
 
@@ -174,6 +228,14 @@ CREATE TABLE `interventions` (
   `fiche` varchar(255) DEFAULT NULL,
   `observation` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `interventions`
+--
+
+INSERT INTO `interventions` (`id`, `type_intervention`, `id_materiel_topo`, `date_intervention`, `intervenant`, `sous_traitant`, `nature_intervention`, `reference`, `tolerance`, `duree_validite`, `date_fin_validite`, `cout`, `fiche`, `observation`) VALUES
+(2, 'maintenance', 8, '2024-06-15', '', '', '', '', 0, 0, '0000-00-00', 500, '', ''),
+(3, 'travaux', 8, '2024-06-28', '', '', '', '', 0, 5, '2024-07-03', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -216,6 +278,15 @@ CREATE TABLE `materiel_topo` (
   `observation` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `materiel_topo`
+--
+
+INSERT INTO `materiel_topo` (`id`, `id_famille_topo`, `code`, `description`, `marque`, `num_serie`, `date_acquisition`, `cout_acquisition`, `id_fournisseur`, `num_bc`, `fiche_bl`, `date_mise_service`, `etat`, `id_chantier`, `date_affectation`, `creer_par`, `observation`) VALUES
+(8, 1, 'GPS-00001', 'Gps différentiel', '', '', '2024-06-30', 0, 1, '51', 'Fiche de Matériel_20240625180407.pdf', '2024-07-03', 'reforme', 8, '2024-07-07', 'Abdou Aziz Daback Ba', 'Aucune'),
+(9, 1, 'GPS-00002', 'gps s500', 'nfi', '025666983', '2024-06-27', 500000, 1, '589', 'Fiche de Matériel_20240626131933.pdf', '2024-07-08', 'Bon', 7, '2024-07-31', 'Abdou Aziz Daback Ba', 'Aucune'),
+(10, 14, 'SPGD-00001', 'nao', 'nfi', '56612', '2024-06-28', 50000, 4, '51', '', '2024-06-29', 'Bon', 8, '2024-06-30', 'Abdou Aziz Daback Ba', 'Aucune');
+
 -- --------------------------------------------------------
 
 --
@@ -233,10 +304,8 @@ CREATE TABLE `pays` (
 --
 
 INSERT INTO `pays` (`id`, `pays`, `creer_par`) VALUES
-(1, 'France', 'admin'),
-(2, 'Germany', 'admin'),
-(4, 'Senegal', 'Abdou Aziz Daback Ba'),
-(5, 'mali', 'Abdou Aziz Daback Ba');
+(1, 'Senegal', 'admin'),
+(4, 'Senegal', 'Abdou Aziz Daback Ba');
 
 -- --------------------------------------------------------
 
@@ -252,6 +321,26 @@ CREATE TABLE `reforme_materiel` (
   `destination` varchar(255) DEFAULT NULL,
   `observation` text DEFAULT NULL,
   `creer_par` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `suivi_topo`
+--
+
+CREATE TABLE `suivi_topo` (
+  `id` int(11) NOT NULL,
+  `designation` varchar(255) NOT NULL,
+  `code_instrument` varchar(255) NOT NULL,
+  `num_serie` varchar(255) NOT NULL,
+  `localisation` varchar(255) DEFAULT NULL,
+  `verification` varchar(255) DEFAULT NULL,
+  `date_intervention` date NOT NULL,
+  `date_expiration` date DEFAULT NULL,
+  `observations` text DEFAULT NULL,
+  `result_calibration` varchar(255) DEFAULT NULL,
+  `operator` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -274,6 +363,14 @@ CREATE TABLE `transfert_materiel` (
   `creer_par` varchar(50) DEFAULT NULL,
   `observation` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `transfert_materiel`
+--
+
+INSERT INTO `transfert_materiel` (`id`, `id_materiel_topo`, `date_transfert`, `id_provenance`, `id_destination`, `num_bt`, `bon_transfert`, `receptionner`, `date_reception`, `cout`, `creer_par`, `observation`) VALUES
+(1, 14, '2024-06-30', 1, 5, 1, '', 1, '2024-06-27', 250000, 'Abdou Aziz Daback Ba', NULL),
+(17, 8, '2024-06-29', 6, 8, 1, 'LaboTopo - Liste commandes_20240627120959.pdf', 1, '2024-06-27', 50, 'Abdou Aziz Daback Ba', NULL);
 
 -- --------------------------------------------------------
 
@@ -330,6 +427,12 @@ ALTER TABLE `demandes_rebut`
   ADD KEY `requested_by` (`requested_by`);
 
 --
+-- Index pour la table `devis_counter`
+--
+ALTER TABLE `devis_counter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `familles_topo`
 --
 ALTER TABLE `familles_topo`
@@ -384,6 +487,12 @@ ALTER TABLE `reforme_materiel`
   ADD KEY `id_materiel_topo` (`id_materiel_topo`);
 
 --
+-- Index pour la table `suivi_topo`
+--
+ALTER TABLE `suivi_topo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `transfert_materiel`
 --
 ALTER TABLE `transfert_materiel`
@@ -412,37 +521,43 @@ ALTER TABLE `chantiers`
 -- AUTO_INCREMENT pour la table `commandes`
 --
 ALTER TABLE `commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `demandes_rebut`
 --
 ALTER TABLE `demandes_rebut`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `devis_counter`
+--
+ALTER TABLE `devis_counter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `familles_topo`
 --
 ALTER TABLE `familles_topo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseurs`
 --
 ALTER TABLE `fournisseurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `intervenants`
 --
 ALTER TABLE `intervenants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `interventions`
 --
 ALTER TABLE `interventions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `journal`
@@ -454,13 +569,13 @@ ALTER TABLE `journal`
 -- AUTO_INCREMENT pour la table `materiel_topo`
 --
 ALTER TABLE `materiel_topo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `pays`
 --
 ALTER TABLE `pays`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `reforme_materiel`
@@ -469,10 +584,16 @@ ALTER TABLE `reforme_materiel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `suivi_topo`
+--
+ALTER TABLE `suivi_topo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `transfert_materiel`
 --
 ALTER TABLE `transfert_materiel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
