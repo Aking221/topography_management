@@ -19,6 +19,14 @@ if (isset($_GET['id'])) {
     $sql_transfert = "DELETE FROM transfert_materiel WHERE id_materiel_topo = $id";
     mysqli_query($conn, $sql_transfert) or die(mysqli_error($conn));
 
+    // Delete dependent records in demandes_rebut table
+    $sql_rebut = "DELETE FROM demandes_rebut WHERE id_materiel_topo = $id";
+    mysqli_query($conn, $sql_rebut) or die(mysqli_error($conn));
+
+    // Delete dependent records in interventions table
+    $sql_interventions = "DELETE FROM interventions WHERE id_materiel_topo = $id";
+    mysqli_query($conn, $sql_interventions) or die(mysqli_error($conn));
+
     // Delete the record in materiel_topo table
     $sql = "DELETE FROM materiel_topo WHERE id = $id";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));

@@ -296,8 +296,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 2</a></li></ul>
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
+                                     </ul>                
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">

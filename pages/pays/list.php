@@ -137,10 +137,10 @@ $result = $conn->query($sql);
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                         <li><a href="../materiel_topo/fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 2</a></li></ul>
-                                </li>
+                                  <ul class="nav child_menu">
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
+                                     </ul>                
+                                </li>                   
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
             <li><a href="../pays/list.php">Liste abréviations</a></li>
@@ -194,7 +194,7 @@ $result = $conn->query($sql);
                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
                     <a href="add.php" class="btn btn-success mb-2"><i class="fa fa-plus"></i> Ajouter une abréviation</a>
                     <?php } ?>
-                    <form action="list_abbreviations.php" method="GET" class="form-inline">
+                    <form action="list.php" method="GET" class="form-inline">
                         <div class="form-group mb-2">
                             <label for="search" class="sr-only">Recherche</label>
                             <input type="text" class="form-control" id="search" name="search" placeholder="Rechercher" value="<?php echo htmlspecialchars($search); ?>">

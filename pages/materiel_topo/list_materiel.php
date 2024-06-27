@@ -1,22 +1,16 @@
 <?php
-include '../../includes/db.php';
-include '../../includes/auth.php';
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start(); 
-}
+include_once '../../includes/db.php';
+include_once '../../includes/auth.php';
 
 if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur', 'invite'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
-    header("Location: ../dashboard.php"); // Redirection vers le tableau de bord
+    header("Location: ../dashboard.php");
     exit();
 }
 
-$sql = "SELECT t.id, m.code AS materiel_code, m.description, c1.chantier AS provenance, c2.chantier AS destination, t.date_transfert, t.num_bt, t.bon_transfert, t.receptionner, t.date_reception, t.cout 
-        FROM transfert_materiel t
-        JOIN materiel_topo m ON t.id_materiel_topo = m.id
-        JOIN chantiers c1 ON t.id_provenance = c1.id
-        JOIN chantiers c2 ON t.id_destination = c2.id";
+$sql = "SELECT materiel_topo.*, chantiers.chantier AS nom_chantier 
+        FROM materiel_topo 
+        LEFT JOIN chantiers ON materiel_topo.id_chantier = chantiers.id";
 $result = $conn->query($sql);
 ?>
 
@@ -26,7 +20,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Transferts</title>
+    <title>Liste des Matériels</title>
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -79,14 +73,10 @@ $result = $conn->query($sql);
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-            <!-- Sidebar -->
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="../dashboard.php" class="site_title">
-                            <img src="../../logo CSE.png" width="190" height="50"/>
-                            <span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span>
-                        </a>
+                        <a href="dashboard.php" class="site_title"><img src="../../logo CSE.png" width="190" height="50"/><span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -96,7 +86,7 @@ $result = $conn->query($sql);
                         </div>
                         <div class="profile_info">
                             <span>Bonjour,</span>
-                            <h2><?php echo $_SESSION['nomComplet']; ?></h2>
+                            <h2><?php echo $_SESSION['nomComplet'];?></h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -105,16 +95,16 @@ $result = $conn->query($sql);
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                            <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/add.php">Ajout matériel</a></li>
+                                        <li><a href="add.php">Ajout matériel</a></li>
                                      <?php } ?>
-                                        <li><a href="../materiel_topo/list.php">Liste matériel</a></li>
-                                        <li><a href="../materiel_topo/recherche_materiel.php">Rechercher / Imprimer</a></li>
+                                        <li><a href="list.php">Liste matériel</a></li>
+                                        <li><a href="recherche_materiel.php">Rechercher / Imprimer</a></li>
                                         <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
-                                        <li><a href="../materiel_topo/mise_au_rebut.php">Mise au rebut</a></li>
+                                        <li><a href="mise_au_rebut.php">Mise au rebut</a></li>
                                         <?php } ?>
                                     </ul>
                                 </li>
@@ -144,28 +134,29 @@ $result = $conn->query($sql);
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
-                                  <ul class="nav child_menu">
-                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
-                                     </ul>                
-                                </li>                   
-                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-            <li><a href="../pays/list.php">Liste abréviations</a></li>
-            <li><a href="../pays/view.php">Liste des pays</a></li>
-            <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
-            <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
-            <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
-            <?php } ?>
-        </ul>
-    </li>
-    <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="../user_register.php">Nouveau</a></li>
-                                        <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        <li><a href="list_materiel.php">fiche de suivi</a></li>
+                                        
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="../pays/list.php">Liste abréviations</a></li>
+                                        <li><a href="../pays/view.php">Liste des pays</a></li>
+                                        <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
+                                        <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                            <li><a href="rebut_requests.php">Demandes de Mise au Rebut</a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                                <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="../user_register.php">Nouveau</a></li>
+                                            <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        </ul>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -197,50 +188,37 @@ $result = $conn->query($sql);
 
             <div class="right_col" role="main">
                 <div class="table-container">
-                    <h1>Liste des Transferts</h1>
+                    <h1>Liste des Matériels</h1>
                     <?php if(isset($_SESSION['message'])): ?>
                         <div class="alert alert-success"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
                     <?php endif; ?>
                     <?php if(isset($_SESSION['error'])): ?>
                         <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                     <?php endif; ?>
-                    <table class="table table-striped">
+                    <table class="table table-striped mt-3">
                         <thead>
                             <tr>
-                                <th>Matériel</th>
-                                <th>Provenance</th>
-                                <th>Destination</th>
-                                <th>Date Transfert</th>
-                                <th>Numéro BT</th>
-                                <th>Bon Transfert</th>
-                                <th>Réceptionné</th>
-                                <th>Date Réception</th>
-                                <th>Coût</th>
-                                <?php if ($_SESSION['privilege'] === 'admin'): ?>
-                                    <th>Action</th>
-                                <?php endif; ?>
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Marque</th>
+                                <th>Numéro de Série</th>
+                                <th>Chantier</th>
+                                <th>État</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php while($row = $result->fetch_assoc()): ?>
                                 <tr>
-                                    <td><?php echo $row['materiel_code'] . ' - ' . $row['description']; ?></td>
-                                    <td><?php echo $row['provenance']; ?></td>
-                                    <td><?php echo $row['destination']; ?></td>
-                                    <td><?php echo $row['date_transfert']; ?></td>
-                                    <td><?php echo $row['num_bt']; ?></td>
-                                    <td><?php echo $row['bon_transfert']; ?></td>
-                                    <td><?php echo $row['receptionner'] ? 'Oui' : 'Non'; ?></td>
-                                    <td><?php echo $row['date_reception']; ?></td>
-                                    <td><?php echo $row['cout']; ?></td>
-                                    <?php if ($_SESSION['privilege'] === 'admin' && !$row['receptionner']): ?>
-                                        <td>
-                                            <form action="validate_reception.php" method="POST">
-                                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" class="btn btn-success btn-sm">Valider la réception</button>
-                                            </form>
-                                        </td>
-                                    <?php endif; ?>
+                                    <td><?php echo $row['code']; ?></td>
+                                    <td><?php echo $row['description']; ?></td>
+                                    <td><?php echo $row['marque']; ?></td>
+                                    <td><?php echo $row['num_serie']; ?></td>
+                                    <td><?php echo $row['nom_chantier']; ?></td>
+                                    <td><?php echo $row['etat']; ?></td>
+                                    <td>
+                                        <a href="fiche_suivi.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Voir Fiche de Suivi</a>
+                                    </td>
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
@@ -257,7 +235,6 @@ $result = $conn->query($sql);
     <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../vendors/fastclick/lib/fastclick.js"></script>
     <script src="../../vendors/nprogress/nprogress.js"></script>
-    <script src="../../vendors/Chart.js/dist/Chart.min.js"></script>
     <script>
         // Initialize the sidebar menu dropdowns
         $(document).ready(function() {

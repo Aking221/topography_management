@@ -2,7 +2,6 @@
 include_once '../../includes/db.php';
 include_once '../../includes/auth.php';
 
-
 if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: ../dashboard.php"); 
@@ -10,11 +9,12 @@ if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], [
 }
 
 // Fetch all materiel_topo records along with related information
-$sql = "SELECT mt.*, ft.materiel AS famille_materiel, f.fournisseur AS nom_fournisseur, c.chantier AS nom_chantier 
+$sql = "SELECT mt.*, ft.materiel AS famille_materiel, f.fournisseur AS nom_fournisseur, c.chantier AS nom_chantier, dr.status AS rebut_status 
         FROM materiel_topo mt
         LEFT JOIN familles_topo ft ON mt.id_famille_topo = ft.id
         LEFT JOIN fournisseurs f ON mt.id_fournisseur = f.id
-        LEFT JOIN chantiers c ON mt.id_chantier = c.id";
+        LEFT JOIN chantiers c ON mt.id_chantier = c.id
+        LEFT JOIN demandes_rebut dr ON mt.id = dr.id_materiel_topo";
 $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 ?>
 
@@ -31,8 +31,9 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
     <link href="../../vendors/animate.css/animate.min.css" rel="stylesheet">
     <link href="../../build/css/custom.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <style>
         .form-container {
             padding: 20px;
@@ -71,6 +72,12 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
             position: fixed;
             width: 100%;
             bottom: 0;
+        }
+        .highlight-rebut {
+            background-color: #ffcccc !important;
+        }
+        .highlight-pending {
+            background-color: #ffffcc !important;
         }
     </style>
 </head>
@@ -141,10 +148,10 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                         <li><a href="../materiel_topo/fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 2</a></li></ul>
-                                </li>
+                                  <ul class="nav child_menu">
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
+                                     </ul>                
+                                </li>                   
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="../pays/list.php">Liste abréviations</a></li>
@@ -195,7 +202,7 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
             <div class="right_col" role="main">
                 <div class="form-container">
                     <h1>Liste des Matériels</h1>
-                    <table class="table table-striped">
+                    <table id="materielTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Matériel</th>
@@ -217,7 +224,7 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                         </thead>
                         <tbody>
                             <?php while ($materiel = mysqli_fetch_assoc($result)) { ?>
-                                <tr>
+                                <tr class="<?php echo ($materiel['rebut_status'] == 'approved') ? 'highlight-rebut' : (($materiel['rebut_status'] == 'pending') ? 'highlight-pending' : ''); ?>">
                                     <td><?php echo $materiel['famille_materiel']; ?></td>
                                     <td><?php echo $materiel['code']; ?></td>
                                     <td><?php echo $materiel['description']; ?></td>
@@ -256,13 +263,14 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         </div>
     </div>
 
-    <script     src="../../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../vendors/fastclick/lib/fastclick.js"></script>
-    <script src="../../vendors/nprogress/nprogress.js"></script>
     <script>
-        // Initialize the sidebar menu dropdowns
         $(document).ready(function() {
+            // Initialize the DataTable
+            $('#materielTable').DataTable({
+                "order": [[0, "asc"]] // You can change the default sorting column and order here
+            });
+
+            // Initialize the sidebar menu dropdowns
             $('.side-menu li a').on('click', function(e) {
                 const $this = $(this);
                 const $parent = $this.parent();
@@ -284,5 +292,3 @@ $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     </script>
 </body>
 </html>
-
-

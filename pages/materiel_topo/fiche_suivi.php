@@ -2,31 +2,30 @@
 include_once '../../includes/db.php';
 include_once '../../includes/auth.php';
 
-
 if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], ['admin', 'utilisateur', 'invite'])) {
     $_SESSION['error'] = "Vous n'avez pas accès à cette section.";
     header("Location: ../dashboard.php");
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $designation = addslashes($_POST['designation']);
-    $code_instrument = addslashes($_POST['code_instrument']);
-    $num_serie = addslashes($_POST['num_serie']);
-    $localisation = addslashes($_POST['localisation']);
-    $verification = addslashes($_POST['verification']);
-    $date_intervention = addslashes($_POST['date_intervention']);
-    $date_expiration = addslashes($_POST['date_expiration']);
-    $observations = addslashes($_POST['observations']);
-    $result_calibration = addslashes($_POST['result_calibration']);
-    $operator = addslashes($_POST['operator']);
-
-    // Save to database or perform other actions
-
-    // Redirect to a confirmation page or display the form again
-    header("Location: fiche_suivi.php?success=1");
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    $_SESSION['error'] = "ID du matériel non spécifié.";
+    header("Location: list_materiel.php");
     exit();
 }
+
+$sql = "SELECT m.*, c.chantier AS localisation FROM materiel_topo m
+        JOIN chantiers c ON m.id_chantier = c.id
+        WHERE m.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+$fiche = $result->fetch_assoc();
+$stmt->close();
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +81,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             position: fixed;
             width: 100%;
             bottom: 0;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .form-container, .form-container * {
+                visibility: visible;
+            }
+            .form-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .print-button {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -150,8 +166,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="fiche_suivi.php">Etat 2</a></li>
+                                        <li><a href="list_materiel.php">fiche de suivi</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
@@ -204,49 +220,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="right_col" role="main">
                 <div class="form-container">
                     <h1>Fiche de Suivi des Appareils Topo</h1>
-                    <form action="fiche_suivi.php" method="POST">
-                        <div class="form-group">
-                            <label for="designation">Désignation *</label>
-                            <input type="text" id="designation" name="designation" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="code_instrument">Code Instrument *</label>
-                            <input type="text" id="code_instrument" name="code_instrument" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="num_serie">Numéro de Série *</label>
-                            <input type="text" id="num_serie" name="num_serie" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="localisation">Localisation</label>
-                            <input type="text" id="localisation" name="localisation" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="verification">Vérification</label>
-                            <input type="text" id="verification" name="verification" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="date_intervention">Date de l'intervention *</label>
-                            <input type="date" id="date_intervention" name="date_intervention" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_expiration">Date d'expiration</label>
-                            <input type="date" id="date_expiration" name="date_expiration" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="observations">Observations</label>
-                            <textarea id="observations" name="observations" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="result_calibration">Résultat de la calibration</label>
-                            <input type="text" id="result_calibration" name="result_calibration" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="operator">Nom et visa de l'opérateur</label>
-                            <input type="text" id="operator" name="operator" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
-                    </form>
+                    <?php if ($fiche): ?>
+                        <button class="btn btn-primary print-button" onclick="window.print()">Imprimer</button>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Désignation</th>
+                                <td><?php echo $fiche['description']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Code Instrument</th>
+                                <td><?php echo $fiche['code']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Numéro de Série</th>
+                                <td><?php echo $fiche['num_serie']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Localisation</th>
+                                <td><?php echo $fiche['localisation']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>État</th>
+                                <td><?php echo $fiche['etat']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Date de l'intervention</th>
+                                <td><?php echo $fiche['date_mise_service']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Observations</th>
+                                <td><?php echo $fiche['observation']; ?></td>
+                            </tr>
+                        </table>
+                    <?php else: ?>
+                        <p class="alert alert-danger">Aucune fiche trouvée pour ce matériel.</p>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="footer">
@@ -283,4 +291,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 </body>
 </html>
-

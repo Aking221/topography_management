@@ -9,7 +9,6 @@ if (!isset($_SESSION["authentification"]) || !in_array($_SESSION['privilege'], [
     exit();
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $type_intervention = $_POST['type_intervention'];
     $id_materiel_topo = $_POST['id_materiel_topo'];
@@ -30,15 +29,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES['fiche']['tmp_name'], "../../uploads/" . $fiche);
     }
 
-    $sql = "INSERT INTO interventions (type_intervention, id_materiel_topo, date_intervention, intervenant, sous_traitant, nature_intervention, reference, tolerance, duree_validite, date_fin_validite, cout, fiche, observation)
-            VALUES ('$type_intervention', '$id_materiel_topo', '$date_intervention', '$intervenant', '$sous_traitant', '$nature_intervention', '$reference', '$tolerance', '$duree_validite', '$date_fin_validite', '$cout', '$fiche', '$observation')";
+    // Check for inconsistencies
+    $error = '';
+    if (!empty($duree_validite) && empty($date_fin_validite)) {
+        $error = "La durée de validité est définie, mais la date de fin de validité est manquante.";
+    }
 
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Nouvelle intervention ajoutée avec succès!";
-        header("Location: list.php");
-        exit();
+    if (empty($error)) {
+        $sql = "INSERT INTO interventions (type_intervention, id_materiel_topo, date_intervention, intervenant, sous_traitant, nature_intervention, reference, tolerance, duree_validite, date_fin_validite, cout, fiche, observation)
+                VALUES ('$type_intervention', '$id_materiel_topo', '$date_intervention', '$intervenant', '$sous_traitant', '$nature_intervention', '$reference', '$tolerance', '$duree_validite', '$date_fin_validite', '$cout', '$fiche', '$observation')";
+
+        if ($conn->query($sql) === TRUE) {
+            $_SESSION['message'] = "Nouvelle intervention ajoutée avec succès!";
+            header("Location: list.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Erreur: " . $conn->error;
+        }
     } else {
-        $_SESSION['error'] = "Erreur: " . $conn->error;
+        $_SESSION['error'] = $error;
     }
 }
 ?>
@@ -61,6 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         .form-container {
             padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .form-section {
+            width: 48%;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav-md .container.body .main_container {
             background: #F7F7F7;
@@ -111,23 +130,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="../dashboard.php" class="site_title"><img src="../../logo CSE.png" width="190" height="50"/><span style="color: white; font-weight: bold;">GESTION LABORATOIRE</span></a>
                     </div>
                     <div class="clearfix"></div>
-                    <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
                             <img src="../../user.png" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Bonjour,</span>
-                            <h2><?php echo $_SESSION['nomComplet'];?></h2>
+                            <h2><?php echo isset($_SESSION['nomComplet']) ? $_SESSION['nomComplet'] : 'Utilisateur'; ?></h2>
                         </div>
                     </div>
-                    <!-- /menu profile quick info -->
                     <br />
-                    <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                            <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
+                                <li><a href="../dashboard.php"><i class="fa fa-home"></i> ACCUEIL</a></li>
                                 <li><a><i class="fa fa-list"></i> MATERIEL <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                     <?php if (in_array($_SESSION['privilege'], ['admin', 'utilisateur'])) { ?>
@@ -167,27 +183,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </li>
                                 <li><a><i class="fa fa-search"></i> RECHERCHE / EDITION <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                         <li><a href="../materiel_topo/fiche_suivi.php">Etat 1</a></li>
-                                        <li><a href="../materiel_topo/fiche_suivi.php">Etat 2</a></li></ul>
-                                </li>
-                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-            <li><a href="../pays/list.php">Liste abréviations</a></li>
-            <li><a href="../pays/view.php">Liste des pays</a></li>
-            <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
-            <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
-            <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
-            <?php } ?>
-        </ul>
-    </li>
-    <?php if ($_SESSION['privilege'] === 'admin') { ?>
-                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="../user_register.php">Nouveau</a></li>
-                                        <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        <li><a href="../materiel_topo/list_materiel.php">fiche de suivi</a></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-cogs"></i> PARAMETRAGE <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="../pays/list.php">Liste abréviations</a></li>
+                                        <li><a href="../pays/view.php">Liste des pays</a></li>
+                                        <li><a href="../chantiers/view.php">Liste des chantiers</a></li>
+                                        <li><a href="../fournisseurs/list.php">Liste des fournisseurs</a></li>
+                                        <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                            <li><a href="../materiel_topo/rebut_requests.php">Demandes de Mise au Rebut</a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                                <?php if ($_SESSION['privilege'] === 'admin') { ?>
+                                    <li><a><i class="fa fa-users"></i> UTILISATEUR <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="../user_register.php">Nouveau</a></li>
+                                            <li><a href="../listeutilisateurs.php">Liste des utilisateurs</a></li>
+                                        </ul>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -219,77 +235,86 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="right_col" role="main">
                 <div class="form-container">
-                    <h1>Nouvelle Intervention</h1>
-                    <?php if(isset($_SESSION['message'])): ?>
-                        <div class="alert alert-success"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
-                    <?php endif; ?>
-                    <?php if(isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-                    <?php endif; ?>
-                    <form action="add.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="type_intervention">Type d'Intervention *</label>
-                            <input type="text" class="form-control" id="type_intervention" name="type_intervention" required>
+                    <div class="form-section">
+                        <h1>Nouvelle Intervention</h1>
+                        <?php if(isset($_SESSION['message'])): ?>
+                            <div class="alert alert-success"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
+                        <?php endif; ?>
+                        <?php if(isset($_SESSION['error'])): ?>
+                            <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                        <?php endif; ?>
+                        <form id="interventionForm" action="add.php" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="type_intervention">Type d'Intervention *</label>
+                                <select class="form-control" id="type_intervention" name="type_intervention" required>
+                                    <option value="">Sélectionner le type d'intervention</option>
+                                    <option value="Vérification">Vérification</option>
+                                    <option value="Etalonnage">Etalonnage</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_materiel_topo">Matériel *</label>
+                                <select class="form-control" id="id_materiel_topo" name="id_materiel_topo" required>
+                                    <option value="">Sélectionner le matériel</option>
+                                    <?php
+                                    $sqlMateriels = "SELECT id, code FROM materiel_topo";
+                                    $resultMateriels = $conn->query($sqlMateriels);
+                                    while($row = $resultMateriels->fetch_assoc()) {
+                                        echo "<option value='{$row['id']}'>{$row['code']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date_intervention">Date d'Intervention *</label>
+                                <input type="date" class="form-control" id="date_intervention" name="date_intervention" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="intervenant">Intervenant</label>
+                                <input type="text" class="form-control" id="intervenant" name="intervenant">
+                            </div>
+                            <div class="form-group">
+                                <label for="sous_traitant">Sous-traitant</label>
+                                <input type="text" class="form-control" id="sous_traitant" name="sous_traitant">
+                            </div>
+                            <div class="form-group">
+                                <label for="nature_intervention">Nature de l'Intervention</label>
+                                <input type="text" class="form-control" id="nature_intervention" name="nature_intervention">
+                            </div>
+                            <div class="form-group">
+                                <label for="reference">Référence</label>
+                                <input type="text" class="form-control" id="reference" name="reference">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="id_materiel_topo">Matériel *</label>
-                            <select class="form-control" id="id_materiel_topo" name="id_materiel_topo" required>
-                                <option value="">Sélectionner le matériel</option>
-                                <?php
-                                $sqlMateriels = "SELECT id, code FROM materiel_topo";
-                                $resultMateriels = $conn->query($sqlMateriels);
-                                while($row = $resultMateriels->fetch_assoc()) {
-                                    echo "<option value='{$row['id']}'>{$row['code']}</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_intervention">Date d'Intervention *</label>
-                            <input type="date" class="form-control" id="date_intervention" name="date_intervention" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="intervenant">Intervenant</label>
-                            <input type="text" class="form-control" id="intervenant" name="intervenant">
-                        </div>
-                        <div class="form-group">
-                            <label for="sous_traitant">Sous-traitant</label>
-                            <input type="text" class="form-control" id="sous_traitant" name="sous_traitant">
-                        </div>
-                        <div class="form-group">
-                            <label for="nature_intervention">Nature de l'Intervention</label>
-                            <input type="text" class="form-control" id="nature_intervention" name="nature_intervention">
-                        </div>
-                        <div class="form-group">
-                            <label for="reference">Référence</label>
-                            <input type="text" class="form-control" id="reference" name="reference">
-                        </div>
-                        <div class="form-group">
-                            <label for="tolerance">Tolérance</label>
-                            <input type="number" class="form-control" id="tolerance" name="tolerance">
-                        </div>
-                        <div class="form-group">
-                            <label for="duree_validite">Durée de Validité (en jours)</label>
-                            <input type="number" class="form-control" id="duree_validite" name="duree_validite">
-                        </div>
-                        <div class="form-group">
-                            <label for="date_fin_validite">Date de Fin de Validité</label>
-                            <input type="date" class="form-control" id="date_fin_validite" name="date_fin_validite">
-                        </div>
-                        <div class="form-group">
-                            <label for="cout">Coût</label>
-                            <input type="number" class="form-control" id="cout" name="cout">
-                        </div>
-                        <div class="form-group">
-                            <label for="fiche">Fiche</label>
-                            <input type="file" class="form-control" id="fiche" name="fiche">
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observation</label>
-                            <textarea class="form-control" id="observation" name="observation"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
-                    </form>
+                    <div class="form-section">
+                            <div class="form-group">
+                                <label for="tolerance">Tolérance</label>
+                                <input type="number" class="form-control" id="tolerance" name="tolerance">
+                            </div>
+                            <div class="form-group">
+                                <label for="duree_validite">Durée de Validité (en jours)</label>
+                                <input type="number" class="form-control" id="duree_validite" name="duree_validite">
+                            </div>
+                            <div class="form-group">
+                                <label for="date_fin_validite">Date de Fin de Validité</label>
+                                <input type="date" class="form-control" id="date_fin_validite" name="date_fin_validite" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="cout">Coût</label>
+                                <input type="number" class="form-control" id="cout" name="cout">
+                            </div>
+                            <div class="form-group">
+                                <label for="fiche">Fiche</label>
+                                <input type="file" class="form-control" id="fiche" name="fiche">
+                            </div>
+                            <div class="form-group">
+                                <label for="observation">Observation</label>
+                                <textarea class="form-control" id="observation" name="observation"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="footer">
@@ -298,14 +323,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../vendors/fastclick/lib/fastclick.js"></script>
-    <script src="../../vendors/nprogress/nprogress.js"></script>
-    <script src="../../vendors/Chart.js/dist/Chart.min.js"></script>
     <script>
-        // Initialize the sidebar menu dropdowns
         $(document).ready(function() {
+            $('#duree_validite').on('input', function() {
+                var dureeValidite = $(this).val();
+                var dateIntervention = $('#date_intervention').val();
+                if (dureeValidite && dateIntervention) {
+                    var date = new Date(dateIntervention);
+                    date.setDate(date.getDate() + parseInt(dureeValidite));
+                    var day = ('0' + date.getDate()).slice(-2);
+                    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                    var dateFinValidite = date.getFullYear() + '-' + month + '-' + day;
+                    $('#date_fin_validite').val(dateFinValidite);
+                }
+            });
+
+            $('#interventionForm').on('submit', function(event) {
+                var dateIntervention = new Date($('#date_intervention').val());
+                var dateFinValidite = new Date($('#date_fin_validite').val());
+                if (dateFinValidite < dateIntervention) {
+                    event.preventDefault();
+                    alert("La date de fin de validité ne peut pas être antérieure à la date d'intervention.");
+                }
+            });
+
             $('.side-menu li a').on('click', function(e) {
                 const $this = $(this);
                 const $parent = $this.parent();

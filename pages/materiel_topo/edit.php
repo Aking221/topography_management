@@ -2,7 +2,6 @@
 include '../../includes/db.php';
 include '../../includes/auth.php';
 
-// Vérifiez si une session est déjà active avant d'appeler session_start()
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
 }
@@ -247,15 +246,16 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
                     <form action="edit.php?id=<?php echo $id; ?>" method="POST">
                         <div class="form-group">
                             <label for="id_famille_topo">Famille de matériel *</label>
-                            <select class="form-control" id="id_famille_topo" name="id_famille_topo" required>
+                            <select class="form-control" id="id_famille_topo" name="id_famille_topo" required disabled>
                                 <?php while($famille = mysqli_fetch_assoc($resultFamille)) { ?>
                                     <option value="<?php echo $famille['id']; ?>" <?php if ($materiel['id_famille_topo'] == $famille['id']) echo 'selected'; ?>><?php echo $famille['materiel']; ?></option>
                                 <?php } ?>
                             </select>
+                            <input type="hidden" name="id_famille_topo" value="<?php echo $materiel['id_famille_topo']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="code">Code matériel</label>
-                            <input type="text" id="code" name="code" value="<?php echo $materiel['code']; ?>" class="form-control">
+                            <input type="text" id="code" name="code" value="<?php echo $materiel['code']; ?>" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label for="description">Description du matériel</label>
@@ -357,4 +357,3 @@ $resultChantier = mysqli_query($conn, $sqlChantier) or die(mysqli_error($conn));
     </script>
 </body>
 </html>
-
